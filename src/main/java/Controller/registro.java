@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Model.*;
 
-@WebServlet(name = "registro", urlPatterns = {"/registro"})
+@WebServlet(name = "registro", urlPatterns = {"/registroAdmin"})
 public class registro extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -21,7 +21,7 @@ public class registro extends HttpServlet {
             String nombre = request.getParameter("nombre");
             String clave = request.getParameter("clave");
             String mail = request.getParameter("mail");
-            GestorBD gestorBD = new GestorBD();
+            GestorBDAdmin gestorBD = new GestorBDAdmin();
 
             if (gestorBD.registrar(cuenta, nombre, clave, mail)) {
                 request.getRequestDispatcher("/registroGuardado.jsp")

@@ -10,31 +10,31 @@ package Model;
  * @author james
  */
 public class Usuario {
-private String cuenta;
+private String codigo;
+private String dpi;
 private String nombre;
-private String clave;
-private String mail;
+private String password;
 
 
-    public Usuario(String cuenta, String nombre,
-        String clave, String mail){
-        this.cuenta = cuenta;
+    public Usuario(String codigo, String dpi,
+        String nombre, String password){
+        this.codigo = codigo;
+        this.dpi = dpi;
         this.nombre = nombre;
-        this.clave = clave;
-        this.mail = mail; 
+        this.password = password; 
     }
     public String getCuenta(){
-        return cuenta;
+        return codigo;
     }
     public String getNombre(){
         return nombre;
     }
     public String getClave(){
-        return clave;
+        return password;
     }
 
-    public String getMail(){
-        return mail;
+    public String getDPI(){
+        return dpi;
     }
 
 }

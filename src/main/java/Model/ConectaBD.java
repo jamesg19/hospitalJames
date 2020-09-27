@@ -9,11 +9,11 @@ import java.sql.DriverManager;
 
 public class ConectaBD {
 public static Connection con=null;
-private static String bd = "sistemalogin";
+private static String bd = "hospital";
 public static String usuario = "root";
 public static String passw = "Guatemala13.";
 //public static String url = "jdbc:mysql://localhost/"+bd+"?useTimezona=true&serverTimezone=CST";
-public static String url="jdbc:mysql://localhost:3306/sistemalogin?useTimezona=true&serverTimezone=CST";
+public static String url="jdbc:mysql://localhost:3306/hospital?useTimezona=true&serverTimezone=CST";
 
 public static Connection abrir(){
 try{

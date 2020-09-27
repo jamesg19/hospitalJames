@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import java.io.IOException;
@@ -13,38 +8,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Model.*;
-import javax.swing.JOptionPane;
 
-@WebServlet(name = "login", urlPatterns = {"/login"})
+@WebServlet(name = "registro", urlPatterns = {"/registro"})
+public class registroAdmin extends HttpServlet {
 
-public class login extends HttpServlet {
-    
-protected void processRequest(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            String cuenta = request.getParameter("cuenta");
+            String nombre = request.getParameter("nombre");
+            String clave = request.getParameter("clave");
+            String mail = request.getParameter("mail");
+            GestorBDAdmin gestorBD = new GestorBDAdmin();
 
-response.setContentType("text/html;charset=UTF-8");
-PrintWriter out = response.getWriter();
-String cuenta = request.getParameter("cuenta");
-String clave= request.getParameter("clave");
-
-    try {
-        Usuario usuario;
-        
-        GestorBDAdmin gestorBD = new GestorBDAdmin();
-        
-        usuario = gestorBD.consultar(cuenta,clave);
-    if(usuario != null){
-        
-        request.setAttribute("nombre",usuario.getNombre());
-        request.getRequestDispatcher("/JSP/inicioSistema.jsp").forward(request, response);
-    
-    }else{
-    request.getRequestDispatcher("/noEncontrado.jsp").forward(request, response);
-    
+            if (gestorBD.registrar(cuenta, nombre, clave, mail)) {
+                request.getRequestDispatcher("/registroGuardado.jsp")
+                        .forward(request, response);
+            } else {
+                request.getRequestDispatcher("/errorEnRegistro.jsp")
+                        .forward(request, response);
+            }
+        } finally {
+            out.close();
+        }
     }
-    } finally {
-    out.close();
-    }
-}
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

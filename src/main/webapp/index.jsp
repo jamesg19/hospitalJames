@@ -15,30 +15,27 @@
 <h1></h1>
 <h2 align="center" > Ingresa al portal de Hospital USAC </h2>
 <h1></h1>
-<form >
-<h2></h2>
-<h2></h2>
-<h3 align="center" > Introduce tu IDf y tu contraseña</h3>
-  <div class="form-group" align="center">
-    <label  for="exampleInputEmail1" >Email address</label>
-    <input type="text" align="center" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted"></small>
-  </div>
-  <div class="form-group" align="center">
-    <label for="exampleInputPassword1" >Password</label>
-    <input type="password" align="center"  class="form-control" id="exampleInputPassword1" placeholder="Password:   ">
-  </div>
+
+<form>
+    <h2></h2>
+    <h2></h2>
+    <h3 align="center" > Introduce tu ID y tu contraseña</h3>
+    <div class="form-group" align="center">
+        <label  for="exampleInputEmail1" >Email address</label>
+        <input type="text" name="cuenta" align="center" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted"></small>
+    </div>
+    <div class="form-group" align="center">
+        <label for="exampleInputPassword1" >Password</label>
+        <input type="password" name="clave" align="center"  class="form-control" id="exampleInputPassword1" placeholder="Password:   ">
+    </div>
 </form>
 
+<div align="center"><input type="reset" value="Borrar" ></div>
+<div align="center"><input type="submit" value="Ingresar" ></div>
 
-
-<input type="reset" value="Borrar">
-<input type="submit" value="Ingresar">
-<form action="login" method="post" >
-
-</form>
-<form action="llenaRegistro.jsp" method="post">
-    <input type="submit" value="Registrar">
+<form action="llenaRegistro.jsp" method="post" >
+    <input type="submit" align="center" value="Registrar">
 </form>
 
 

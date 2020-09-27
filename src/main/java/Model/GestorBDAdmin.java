@@ -8,14 +8,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class GestorBD {
+public class GestorBDAdmin {
 
     String claveUsuario;
     Connection conn = null;
     Statement stm = null;
     ResultSet usuarioResultSet;
     Usuario usuarioHallado;
-    String cuent, nom, passw, mail;
+    String codigo, dpi, nombre, password;
 
     public boolean registrar(String cuenta, String nombre, String clave, String mail) {
         int resultUpdate = 0;
@@ -53,17 +53,20 @@ public class GestorBD {
             conn = ConectaBD.abrir();
             stm = conn.createStatement();
             usuarioResultSet = stm.executeQuery("SELECT * FROM usuarios WHERE cuenta='" + cuenta + "' and clave='" + clave + "';");
+            
+            
+            
             if (!usuarioResultSet.next()) {
                 System.out.println(" No se encontro el registro");
                 ConectaBD.cerrar();
                 return null;
             } else {
                 System.out.println("Se encontró el registro");
-                cuent = usuarioResultSet.getString("cuenta");
-                nom = usuarioResultSet.getString("nombre");
-                passw = usuarioResultSet.getString("clave");
-                mail = usuarioResultSet.getString("mail");
-                usuarioHallado = new Usuario(cuent, nom, passw, mail);
+                codigo = usuarioResultSet.getString("codigo");
+                dpi = usuarioResultSet.getString("dpi");
+                nombre = usuarioResultSet.getString("nombre");
+                password = usuarioResultSet.getString("password");
+                usuarioHallado = new Usuario(codigo, dpi, nombre, password);
                 ConectaBD.cerrar();
                 return usuarioHallado;
             }
@@ -74,6 +77,18 @@ public class GestorBD {
         }
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public boolean borrar(String cuenta, String clave) {
         int resultUpdate = 0;
         try {
@@ -96,32 +111,32 @@ public class GestorBD {
         }
     }
 
-    public ArrayList<Usuario> leeTodos() {
-        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-        try {
-            conn = ConectaBD.abrir();
-            stm = conn.createStatement();
-            usuarioResultSet = stm.executeQuery("SELECT * FROM usuarios");
-            if (!usuarioResultSet.next()) {
-                System.out.println(" No se encontraron registros");
-                ConectaBD.cerrar();
-                return null;
-            } else {
-                do {
-                    cuent = usuarioResultSet.getString("cuenta");
-                    nom = usuarioResultSet.getString("nombre");
-                    passw = usuarioResultSet.getString("clave");
-                    mail = usuarioResultSet.getString("mail");
-                    usuarioHallado = new Usuario(cuent, nom, passw, mail);
-                    usuarios.add(usuarioHallado);
-                } while (usuarioResultSet.next());
-                ConectaBD.cerrar();
-                return usuarios;
-            }
-        } catch (Exception e) {
-            System.out.println("Error en la base de datos.");
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    public ArrayList<Usuario> leeTodos() {
+//        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+//        try {
+//            conn = ConectaBD.abrir();
+//            stm = conn.createStatement();
+//            usuarioResultSet = stm.executeQuery("SELECT * FROM usuarios");
+//            if (!usuarioResultSet.next()) {
+//                System.out.println(" No se encontraron registros");
+//                ConectaBD.cerrar();
+//                return null;
+//            } else {
+//                do {
+//                    cuent = usuarioResultSet.getString("cuenta");
+//                    nom = usuarioResultSet.getString("nombre");
+//                    passw = usuarioResultSet.getString("clave");
+//                    mail = usuarioResultSet.getString("mail");
+//                    usuarioHallado = new Usuario(cuent, nom, passw, mail);
+//                    usuarios.add(usuarioHallado);
+//                } while (usuarioResultSet.next());
+//                ConectaBD.cerrar();
+//                return usuarios;
+//            }
+//        } catch (Exception e) {
+//            System.out.println("Error en la base de datos.");
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 }
