@@ -11,33 +11,50 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ingreso al sistema</title>
     </head>
-    <body>
-        <h1>Bienvenido al sistema de Login!</h1>
+    <body background="Imagenes/pruebaimagen.jpg">
+        <br>
+        <br>
+        <h1 align="center" >Bienvenido al portal Hospital USAC</h1>
         <%@ page import="Controller.login" %>
-        <h3> Introduce tu cuenta y tu contraseña</h3>
+        <h3 align="center" > Introduce tu cuenta y tu contraseña</h3>
         <form action="login" method="post">
             <table cellspacing="3" cellpadding="3" border="1" >
-                <tr>
-
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
+                <tr align="right" >
+                <br>    
+                <div class="form-group" align="center" >
+                    <label for="exampleInputEmail1"align="left" >Usuario :</label>
                     <input type="text" name="codigo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <small id="emailHelp" class="form-text text-muted"></small>
                 </div>
 
                 </tr>
-                <tr>
-                    <td align="right"> Contraseña: </td>
-                    <td><input type="password" name="password"></td>
-                </tr>
+                <br>
+                <div class="form-group" align="center" >
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <br>  
+                <br> 
             </table>
-            <input type="reset" value="Borrar">
-            <input type="submit" value="Ingresar">
+            <div align="center" >
+
+                <input type="reset" value="Borrar">
+                <input type="submit" value="Ingresar">
+            </div>
+
         </form>
-        <form action="llenaRegistro.jsp" method="post">
-            <input type="submit" value="Registrar">
+        <form action="pagesAdmin/llenaRegistro.jsp" method="post">
+            <br>  
+            <br> 
+            <div align="center" >
+                <input type="submit" align="center" value="Registrarse">
+            </div>
+
         </form>
     </body>
+    
+    
+    
 </html>
 
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import java.io.IOException;
@@ -12,40 +7,34 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Model.*;
-import Objetos.*;
 
 
-@WebServlet(name = "login", urlPatterns = {"/login"})
+@WebServlet(name = "crearAdmin", urlPatterns = {"/crearAdmin"})
+public class adminServlet extends HttpServlet {
 
-public class login extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            
+            String btn = request.getParameter("boton");
+            if (btn.equals("Agregar Admin")) {
+            request.getRequestDispatcher("/pagesAdmin/llenaRegistroAdmin.jsp").forward(request, response);  
+        
+            } else if (btn.equals("multiplica")) {
+
     
-protected void processRequest(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-
-response.setContentType("text/html;charset=UTF-8");
-PrintWriter out = response.getWriter();
-String codigo = request.getParameter("codigo");
-String password= request.getParameter("password");
-
-    try {
-        Usuario usuario;
-        
-        GestorBDAdmin gestorBD = new GestorBDAdmin();
-        
-        usuario = gestorBD.consultar(codigo,password);
-    if(usuario != null){
-        
-        request.setAttribute("nombre",usuario.getNombre());
-        request.getRequestDispatcher("/pagesAdmin/inicioSistema.jsp").forward(request, response);
-    
-    }else{
-
-    request.getRequestDispatcher("/index.jsp").forward(request, response);
-    }
-    } finally {
-    out.close();
-    }
 }
+            
+            
+            
+                request.getRequestDispatcher("/pagesAdmin/llenaRegistroAdmin.jsp").forward(request, response);  
+        
+        } finally {
+            out.close();
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

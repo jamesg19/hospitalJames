@@ -17,43 +17,29 @@ public class Admin {
     
     public Admin(String codigo, String dpi, String nombre, String password){
         this.codigo=codigo;
-        this.dpi=codigo;
-        this.nombre=codigo;
-        this.password=codigo;
+        this.dpi=dpi;
+        this.nombre=nombre;
+        this.password=password;
     }
-    // Getter y Setter
-    
+    // Getter 
+
     public String getCodigo() {
         return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public String getDpi() {
         return dpi;
     }
 
-    public void setDpi(String dpi) {
-        this.dpi = dpi;
-    }
-
     public String getNombre() {
         return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getPassword() {
         return password;
     }
+    
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
     
     
     
