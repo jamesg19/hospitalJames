@@ -15,30 +15,30 @@ content="text/html; charset=UTF-8">
 <body>
 <%@ page import="Model.Usuario" %>
 <%
-String cuenta = request.getParameter("cuenta");
+String codigo = request.getParameter("codigo");
+String dpi= request.getParameter("dpi");
 String nombre= request.getParameter("nombre");
-String clave= request.getParameter("clave");
-String mail = request.getParameter("mail");
+String password = request.getParameter("password");
 %>
 92
 <h3> Registro exitoso en la base de datos</h3>
 <p> Se guardaron los siguientes datos: </p>
 <table cellspacing="3" cellpadding="3" border="1" >
 <tr>
-<td align="right"> Cuenta: </td>
-<td> <%= cuenta %> </td>
+<td align="right"> Codigo: </td>
+<td> <%= codigo %> </td>
+</tr>
+<tr>
+<td align="right"> DPI: </td>
+<td> <%= nombre %> </td>
 </tr>
 <tr>
 <td align="right"> Nombre: </td>
 <td> <%= nombre %> </td>
 </tr>
 <tr>
-<td align="right"> Contraseña: </td>
-<td> <%= clave %> </td>
-</tr>
-<tr>
-<td align="right"> Mail: </td>
-<td> <%= mail %> </td>
+<td align="right"> Password: </td>
+<td> <%= password %> </td>
 </tr>
 </table>
 <form action="index.jsp" method="post">

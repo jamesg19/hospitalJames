@@ -15,9 +15,9 @@ public class GestorBDAdmin {
     Statement stm = null;
     ResultSet usuarioResultSet;
     Usuario usuarioHallado;
-    String codigo, dpi, nombre, password;
+    String codigoo, dpi, nombre, passwordd;
 
-    public boolean registrar(String cuenta, String nombre, String clave, String mail) {
+    public boolean registrar(String codigo, String dpi, String nombre, String password) {
         int resultUpdate = 0;
 
         conn = ConectaBD.abrir();
@@ -27,10 +27,10 @@ public class GestorBDAdmin {
         try (PreparedStatement preSt = conn.prepareStatement(query)) {
 
 
-            preSt.setString(1, cuenta);
-            preSt.setString(2, nombre);
-            preSt.setString(3, clave);
-            preSt.setString(4, mail);
+            preSt.setString(1, codigo);
+            preSt.setString(2, dpi);
+            preSt.setString(3, nombre);
+            preSt.setString(4, password);
 
             resultUpdate = preSt.executeUpdate();
 
@@ -48,11 +48,11 @@ public class GestorBDAdmin {
         }
     }
 
-    public Usuario consultar(String cuenta, String clave) {
+    public Usuario consultar(String codigo, String password) {
         try {
             conn = ConectaBD.abrir();
             stm = conn.createStatement();
-            usuarioResultSet = stm.executeQuery("SELECT * FROM usuarios WHERE cuenta='" + cuenta + "' and clave='" + clave + "';");
+            usuarioResultSet = stm.executeQuery("SELECT * FROM administrador WHERE codigo='" + codigo + "' AND password='" + password + "';");
             
             
             
@@ -62,11 +62,11 @@ public class GestorBDAdmin {
                 return null;
             } else {
                 System.out.println("Se encontró el registro");
-                codigo = usuarioResultSet.getString("codigo");
+                codigoo = usuarioResultSet.getString("codigo");
                 dpi = usuarioResultSet.getString("dpi");
                 nombre = usuarioResultSet.getString("nombre");
-                password = usuarioResultSet.getString("password");
-                usuarioHallado = new Usuario(codigo, dpi, nombre, password);
+                passwordd = usuarioResultSet.getString("password");
+                usuarioHallado = new Usuario(codigoo, dpi, nombre, passwordd);
                 ConectaBD.cerrar();
                 return usuarioHallado;
             }

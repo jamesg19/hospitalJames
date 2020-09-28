@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Model.*;
+import Objetos.*;
 import javax.swing.JOptionPane;
 
 @WebServlet(name = "login", urlPatterns = {"/login"})
@@ -23,23 +24,23 @@ protected void processRequest(HttpServletRequest request,HttpServletResponse res
 
 response.setContentType("text/html;charset=UTF-8");
 PrintWriter out = response.getWriter();
-String cuenta = request.getParameter("cuenta");
-String clave= request.getParameter("clave");
+String codigo = request.getParameter("codigo");
+String password= request.getParameter("password");
 
     try {
         Usuario usuario;
         
         GestorBDAdmin gestorBD = new GestorBDAdmin();
         
-        usuario = gestorBD.consultar(cuenta,clave);
+        usuario = gestorBD.consultar(codigo,password);
     if(usuario != null){
         
         request.setAttribute("nombre",usuario.getNombre());
-        request.getRequestDispatcher("/JSP/inicioSistema.jsp").forward(request, response);
+        request.getRequestDispatcher("/inicioSistema.jsp").forward(request, response);
     
     }else{
-    request.getRequestDispatcher("/noEncontrado.jsp").forward(request, response);
-    
+
+    request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
     } finally {
     out.close();

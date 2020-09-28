@@ -13,7 +13,7 @@
 </head>
 <body>
 <%@ page import="Controller.registro" %>
-<h3> Registra tu los datos del nuevo Admin</h3>
+<h3> Registra tu los datos del nuevo Admindsf</h3>
 <form action="registro" method="post">
 <table cellspacing="3" cellpadding="3" border="1" >
 <tr>

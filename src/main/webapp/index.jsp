@@ -4,39 +4,40 @@
     Author     : james
 --%>
 
-<%@ page import="Controller.login" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Ingreso al sistema</title>
+    </head>
+    <body>
+        <h1>Bienvenido al sistema de Login!</h1>
+        <%@ page import="Controller.login" %>
+        <h3> Introduce tu cuenta y tu contraseña</h3>
+        <form action="login" method="post">
+            <table cellspacing="3" cellpadding="3" border="1" >
+                <tr>
 
-<title>Ingreso al sistema</title>
-<h1></h1> 
-<h1></h1>
-<h1></h1>
-<h1></h1> 
-<h1></h1>
-<h1></h1>
-<h2 align="center" > Ingresa al portal de Hospital USAC </h2>
-<h1></h1>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="text" name="codigo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
 
-<form>
-    <h2></h2>
-    <h2></h2>
-    <h3 align="center" > Introduce tu ID y tu contrase�a</h3>
-    <div class="form-group" align="center">
-        <label  for="exampleInputEmail1" >Email address</label>
-        <input type="text" name="cuenta" align="center" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted"></small>
-    </div>
-    <div class="form-group" align="center">
-        <label for="exampleInputPassword1" >Password</label>
-        <input type="password" name="clave" align="center"  class="form-control" id="exampleInputPassword1" placeholder="Password:   ">
-    </div>
-</form>
-
-<div align="center"><input type="reset" value="Borrar" ></div>
-<div align="center"><input type="submit" value="Ingresar" ></div>
-
-<form action="llenaRegistro.jsp" method="post" >
-    <input type="submit" align="center" value="Registrar">
-</form>
-
+                </tr>
+                <tr>
+                    <td align="right"> Contraseña: </td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+            </table>
+            <input type="reset" value="Borrar">
+            <input type="submit" value="Ingresar">
+        </form>
+        <form action="llenaRegistro.jsp" method="post">
+            <input type="submit" value="Registrar">
+        </form>
+    </body>
+</html>
 
 

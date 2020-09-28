@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Model.*;
 
-@WebServlet(name = "registro", urlPatterns = {"/registroAdmin"})
+@WebServlet(name = "registro", urlPatterns = {"/registro"})
 public class registro extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
