@@ -9,10 +9,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ingreso al sistema</title>
     </head>
-    <body>
+    <body background="Imagenes/pruebaimagen.jpg">
 
-        <script src="error.js" type="text/javascript" >
-        </script>
 
         <br>
         <br>

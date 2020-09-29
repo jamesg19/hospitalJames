@@ -12,8 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body  background="Imagenes/fondoAdmin.jpg">
-        <script src="error.js" type="text/javascript" >
-        </script>
+
         <h1>Bienvenido al portal de Administrador </h1>
         <%@ page import="Controller.adminServlet" %>
         <%
