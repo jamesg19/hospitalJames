@@ -14,7 +14,7 @@ public class GestorBDAdmin {
     Connection conn = null;
     Statement stm = null;
     ResultSet usuarioResultSet;
-    Usuario usuarioHallado;
+    Administrador usuarioHallado;
     String codigoo, dpi, nombre, passwordd;
 
     public boolean registrar(String codigo, String dpi, String nombre, String password) {
@@ -48,7 +48,7 @@ public class GestorBDAdmin {
         }
     }
 
-    public Usuario consultar(String codigo, String password) {
+    public Administrador consultar(String codigo, String password) {
         try {
             conn = ConectaBD.abrir();
             stm = conn.createStatement();
@@ -66,7 +66,7 @@ public class GestorBDAdmin {
                 dpi = usuarioResultSet.getString("dpi");
                 nombre = usuarioResultSet.getString("nombre");
                 passwordd = usuarioResultSet.getString("password");
-                usuarioHallado = new Usuario(codigoo, dpi, nombre, passwordd);
+                usuarioHallado = new Administrador(codigoo, dpi, nombre, passwordd);
                 ConectaBD.cerrar();
                 return usuarioHallado;
             }
@@ -127,7 +127,7 @@ public class GestorBDAdmin {
 //                    nom = usuarioResultSet.getString("nombre");
 //                    passw = usuarioResultSet.getString("clave");
 //                    mail = usuarioResultSet.getString("mail");
-//                    usuarioHallado = new Usuario(cuent, nom, passw, mail);
+//                    usuarioHallado = new Administrador(cuent, nom, passw, mail);
 //                    usuarios.add(usuarioHallado);
 //                } while (usuarioResultSet.next());
 //                ConectaBD.cerrar();

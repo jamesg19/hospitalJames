@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Model.*;
 import Objetos.*;
+import javax.swing.JOptionPane;
 
 
 @WebServlet(name = "login", urlPatterns = {"/login"})
@@ -28,14 +29,15 @@ String codigo = request.getParameter("codigo");
 String password= request.getParameter("password");
 
     try {
-        Usuario usuario;
+        Administrador admin;
         
         GestorBDAdmin gestorBD = new GestorBDAdmin();
         
-        usuario = gestorBD.consultar(codigo,password);
-    if(usuario != null){
+        admin = gestorBD.consultar(codigo,password);
+    if(admin != null){
         
-        request.setAttribute("nombre",usuario.getNombre());
+        request.setAttribute("nombre",admin.getNombre());
+        request.setAttribute("cuenta",admin.getCuenta());
         request.getRequestDispatcher("/pagesAdmin/inicioSistema.jsp").forward(request, response);
     
     }else{

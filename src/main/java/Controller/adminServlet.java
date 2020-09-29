@@ -22,10 +22,13 @@ public class adminServlet extends HttpServlet {
             if (btn.equals("Agregar Admin")) {
             request.getRequestDispatcher("/pagesAdmin/llenaRegistroAdmin.jsp").forward(request, response);  
         
-            } else if (btn.equals("multiplica")) {
+            } else if (btn.equals("Agrega Medico")) {
 
     
-}
+            }else if (btn.equals("Agrega Laboratorista")) {
+
+    
+            }
             
             
             

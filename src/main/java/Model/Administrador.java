@@ -9,15 +9,14 @@ package Model;
  *
  * @author james
  */
-public class Usuario {
+public class Administrador {
 private String codigo;
 private String dpi;
 private String nombre;
 private String password;
 
 
-    public Usuario(String codigo, String dpi,
-        String nombre, String password){
+    public Administrador(String codigo, String dpi,String nombre, String password){
         this.codigo = codigo;
         this.dpi = dpi;
         this.nombre = nombre;

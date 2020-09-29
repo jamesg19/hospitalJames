@@ -11,7 +11,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ingreso al sistema</title>
     </head>
-    <body background="Imagenes/pruebaimagen.jpg">
+    <body>
+        
+        
+        
+        <script src="JavaScript/error.js" type="text/javascript" >
+        </script>
+        
+        
+        
+        
+        
+        
+        
+        
         <br>
         <br>
         <h1 align="center" >Bienvenido al portal Hospital USAC</h1>
