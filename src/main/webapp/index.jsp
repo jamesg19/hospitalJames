@@ -1,35 +1,26 @@
 <%-- 
     Document   : index
-    Created on : Sep 26, 2020, 7:26:20 PM
+    Created on : Sep 29, 2020, 12:00:14 AM
     Author     : james
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ingreso al sistema</title>
     </head>
     <body>
-        
-        
-        
-        <script src="JavaScript/error.js" type="text/javascript" >
+
+        <script src="error.js" type="text/javascript" >
         </script>
-        
-        
-        
-        
-        
-        
-        
-        
+
         <br>
         <br>
         <h1 align="center" >Bienvenido al portal Hospital USAC</h1>
+        
+        
         <%@ page import="Controller.login" %>
-        <h3 align="center" > Introduce tu cuenta y tu contraseÃ±a</h3>
+        <h3 align="center" > Introduce tu cuenta y tu contraseña</h3>
         <form action="login" method="post">
             <table cellspacing="3" cellpadding="3" border="1" >
                 <tr align="right" >
@@ -69,5 +60,3 @@
     
     
 </html>
-
-
