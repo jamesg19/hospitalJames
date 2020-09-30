@@ -43,6 +43,12 @@
                 <input type="submit" name="boton" align="center" value="Agregar Examen">
                 <input type="submit" name="boton" align="center" value="Modifica precios">
 
+                <p>Agrega un nuevo doctor</p>
+                <input type="submit" name="boton" align="center" value="Agregar Doctor">
+                <input type="submit" name="boton" align="center" value="Agrega Especialidad">
+                <p>Agrega un nuevo Laboratorista</p>
+                <input type="submit" name="boton" align="center" value="Agregar Laboratorista">
+                
             </div>
 
         </form>

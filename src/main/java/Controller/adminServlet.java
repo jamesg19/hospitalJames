@@ -26,12 +26,23 @@ public class adminServlet extends HttpServlet {
             
             String btn = request.getParameter("boton");
             
-            
             if (btn.equals("Agregar Admin")) {
                 
             request.getRequestDispatcher("/pagesAdmin/llenaRegistroAdmin.jsp").forward(request, response);  
-            
             } 
+            
+            
+            else if (btn.equals("Agregar Doctor")) {
+                
+            request.getRequestDispatcher("/pagesAdmin/llenaRegistroDoctor.jsp").forward(request, response);  
+            }
+            
+            
+            else if (btn.equals("Agregar Examen")) {    
+            request.getRequestDispatcher("/pagesAdmin/llenaRegistroExamen.jsp").forward(request, response);
+            }
+            
+            
             else if (btn.equals("Modificar mis datos")) {  
                 
             String USER = (String) request.getParameter("user");
@@ -46,9 +57,7 @@ public class adminServlet extends HttpServlet {
             request.getRequestDispatcher("/pagesAdmin/modificaAdmin.jsp").forward(request, response);
             }
             
-            else if (btn.equals("Agregar Examen")) {    
-            request.getRequestDispatcher("/pagesAdmin/llenaRegistroExamen.jsp").forward(request, response);
-            }
+
 
             else if (btn.equals("Registrar Admin")) {
                 
