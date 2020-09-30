@@ -47,7 +47,44 @@ public class GestorBDAdmin {
             return false;
         }
     }
-        public boolean registrarExamen(String codigo, String nombre, String orden, String descripcion,Double costo,String tipoInforme) {
+        public boolean registrarDoctor(String codigo, String nombre, String colegiado,String dpi,
+                String telefono,String correo,String horaInicio,String horaFin, String trabajo,String password) {
+        int resultUpdate = 0;
+
+        conn = ConectaBD.abrir();
+
+        String query = "INSERT INTO doctor VALUES (?,?,?,?,?,?,?,?,?,?)";
+
+        try (PreparedStatement preSt = conn.prepareStatement(query)) {
+
+
+            preSt.setString(1, codigo);
+            preSt.setString(2, nombre);
+            preSt.setString(3, colegiado);
+            preSt.setString(4, dpi);
+            preSt.setString(5, telefono);
+            preSt.setString(6, correo);
+            preSt.setString(7, horaInicio);
+            preSt.setString(8, horaFin);
+            preSt.setString(9, trabajo);
+            preSt.setString(10, password);
+
+            resultUpdate = preSt.executeUpdate();
+
+            if (resultUpdate != 0) {
+                ConectaBD.cerrar();
+                return true;
+            } else {
+                ConectaBD.cerrar();
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+                public boolean registrarExamen(String codigo, String nombre, String orden, String descripcion,Double costo,String tipoInforme) {
         int resultUpdate = 0;
 
         conn = ConectaBD.abrir();

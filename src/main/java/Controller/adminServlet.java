@@ -96,6 +96,26 @@ public class adminServlet extends HttpServlet {
                 request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
             }
             }
+            else if (btn.equals("Registrar Doctor")) {
+                
+            String codigo = request.getParameter("codigo");
+            String nombre = request.getParameter("nombre");
+            String colegiado = request.getParameter("colegiado");
+            String dpi = request.getParameter("dpi");
+            String telefono =  request.getParameter("telefono");
+            String correo = request.getParameter("correo");
+            String horaInicio =  request.getParameter("horaInicio");
+            String horaFin =  request.getParameter("horaFin");
+            String trabajo =  request.getParameter("trabajo");
+            String password =  request.getParameter("password");
+            
+            GestorBDAdmin gestorBD = new GestorBDAdmin();
+            if (gestorBD.registrarDoctor(codigo, nombre, colegiado, dpi,telefono,correo,horaInicio,horaFin,trabajo,password)) {
+                request.getRequestDispatcher("/pagesAdmin/registroGuardadoDoctor.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
+            }
+            }
             
             
             
