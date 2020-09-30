@@ -2,41 +2,37 @@ package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Model.*;
+import Objetos.Examenes;
 
-@WebServlet(name = "AdminSistem", urlPatterns = {"/AdminSistem"})
-public class registroAdmin extends HttpServlet {
+@WebServlet(name = "muestraUsuarios", urlPatterns = {"/muestraUsuarios"})
+public class muestraExamen extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
         try {
-            String btn = request.getParameter("boton");
-            if (btn.equals("Agregar Admin")) {
-            String codigo = request.getParameter("codigo");
-            String dpi = request.getParameter("dpi");
-            String nombre = request.getParameter("nombre");
-            String password = request.getParameter("password");
-            
+            ArrayList<Examenes> examenes = new ArrayList<Examenes>();
+            Examenes examen;
             GestorBDAdmin gestorBD = new GestorBDAdmin();
-
-            if (gestorBD.registrar(codigo, dpi, nombre, password)) {
-                request.getRequestDispatcher("/pagesAdmin/registroGuardado.jsp").forward(request, response);
+            examenes = gestorBD.leeTodosExamen();
+            if (examenes != null) {
+                request.setAttribute("Examenes", examenes);
+                request.getRequestDispatcher("/Examen/listaExamen.jsp").forward(request, response);
             } else {
-                request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
-            }
+                request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
             }
         } finally {
             out.close();
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

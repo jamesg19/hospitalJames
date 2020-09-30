@@ -12,7 +12,7 @@
               content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body background="Imagenes/fondoAdmin.jpg">
         <script>             
     function validaAd(form) {            
         if(document.forma.codigo.value ==='')                  
@@ -40,32 +40,38 @@
             String dpi = (String) request.getAttribute("Dpi");
             String name = (String) request.getAttribute("Password");
         %>
-
-        <h3> Tus datos son:</h3>
-        <p> Puedes modificarlos </p>
+        <br>
+        <h2 align="center"> Tus datos son:</h2>
+        <br>      
+        <br>
+        <p align="center"> Puedes modificarlos </p>
         <form action="crearAdmin">
             <table cellspacing="3" cellpadding="3" align="center"  >          
 
                 <td align="right"> Codigo: </td>            
-                <td><input required type="text"  value='<%= cuentaI%>' name="codigo" readonly=""> </td>           
+                <td><input required type="text"  value='<%=cuentaI%>' name="codigo" readonly=""> </td>           
                 </tr>             
                 <tr>             
                     <td align="right"> DPI: </td>                
-                    <td> <input required type="text"  value=' <%= dpi%>' name="dpi"> </td>           
+                    <td> <input required type="text"  value='<%=dpi%>' name="dpi"> </td>           
                 </tr>           
                 <tr>             
                     <td align="right"> Nombre: </td>                
-                    <td> <input required type="text" value=' <%= nombreI%>' name="nombre"> </td>           
+                    <td> <input required type="text" value='<%=nombreI%>' name="nombre"> </td>           
                 </tr>  
                 <tr>             
                     <td align="right"> Password: </td>                
-                    <td> <input required type="text"  value=' <%= name%>' name="password"> </td>           
+                    <td> <input required type="text"  value='<%=name%>' name="password"> </td>           
                 </tr>
-
+                <br><!-- comment -->
+                <br><!-- comment -->
+                
 
             </table>
-            <input type="reset" value="Borrar">
-            <input type="submit" name="boton" value="Actualizar Admin" onClick='validaAd(forma)' >
-        </form>
+                <div align="center">
+            
+            <input align="center" type="submit" name="boton" value="Actualizar Admin" onClick='validaAd(forma)' >
+                </div>
+            </form>
     </body>
 </html>

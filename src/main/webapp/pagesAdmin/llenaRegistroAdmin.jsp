@@ -37,7 +37,7 @@
         }
         </script>
         <%@ page import="Controller.adminServlet" %>
-
+        
         <h2 align="center"> Agrega un nuevo administrador</h2>
         <form  action="crearAdmin" name="forma" method="post">
 

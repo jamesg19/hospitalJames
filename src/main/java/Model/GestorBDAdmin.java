@@ -18,8 +18,9 @@ public class GestorBDAdmin {
     Administrador usuarioHallado;
     Examenes examenHallado;
     String codigoo, dpi, nombre, passwordd;
-    String codigoE,nombreE, ordenE, descripcionE, formatoPDFE;
+    String codigoE, nombreE, ordenE, descripcionE, formatoPDFE;
     double costoE;
+
     public boolean registrar(String codigo, String dpi, String nombre, String password) {
         int resultUpdate = 0;
 
@@ -28,7 +29,6 @@ public class GestorBDAdmin {
         String query = "INSERT INTO administrador VALUES (?,?,?,?)";
 
         try (PreparedStatement preSt = conn.prepareStatement(query)) {
-
 
             preSt.setString(1, codigo);
             preSt.setString(2, dpi);
@@ -50,8 +50,9 @@ public class GestorBDAdmin {
             return false;
         }
     }
-        public boolean registrarDoctor(String codigo, String nombre, String colegiado,String dpi,
-                String telefono,String correo,String horaInicio,String horaFin, String trabajo,String password) {
+
+    public boolean registrarDoctor(String codigo, String nombre, String colegiado, String dpi,
+            String telefono, String correo, String horaInicio, String horaFin, String trabajo, String password) {
         int resultUpdate = 0;
 
         conn = ConectaBD.abrir();
@@ -59,7 +60,6 @@ public class GestorBDAdmin {
         String query = "INSERT INTO doctor VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         try (PreparedStatement preSt = conn.prepareStatement(query)) {
-
 
             preSt.setString(1, codigo);
             preSt.setString(2, nombre);
@@ -87,7 +87,8 @@ public class GestorBDAdmin {
             return false;
         }
     }
-                public boolean registrarExamen(String codigo, String nombre, String orden, String descripcion,Double costo,String tipoInforme) {
+
+    public boolean registrarExamen(String codigo, String nombre, String orden, String descripcion, Double costo, String tipoInforme) {
         int resultUpdate = 0;
 
         conn = ConectaBD.abrir();
@@ -95,7 +96,6 @@ public class GestorBDAdmin {
         String query = "INSERT INTO examen VALUES (?,?,?,?,?,?)";
 
         try (PreparedStatement preSt = conn.prepareStatement(query)) {
-
 
             preSt.setString(1, codigo);
             preSt.setString(2, nombre);
@@ -119,11 +119,47 @@ public class GestorBDAdmin {
             return false;
         }
     }
-        public boolean modificar(String codigo, String dpi, String nombre, String password) {
+    
+    
+    
+    
+        public boolean ActualizarExamen(String codigo, double costo) {
         int resultUpdate = 0;
 
         conn = ConectaBD.abrir();
-        
+
+        String query = "UPDATE examen  SET costo = ? WHERE codigo = ?";
+
+        try (PreparedStatement preSt = conn.prepareStatement(query)) {
+
+            preSt.setDouble(1, costo);
+            preSt.setString(2, codigo);
+
+
+            resultUpdate = preSt.executeUpdate();
+
+            if (resultUpdate != 0) {
+                ConectaBD.cerrar();
+                return true;
+            } else {
+                ConectaBD.cerrar();
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    
+    
+
+    public boolean modificar(String codigo, String dpi, String nombre, String password) {
+        int resultUpdate = 0;
+
+        conn = ConectaBD.abrir();
+
         String query = "UPDATE administrador  SET dpi = ?, nombre = ?, password = ? WHERE codigo = ?";
 
         try (PreparedStatement preSt = conn.prepareStatement(query)) {
@@ -154,9 +190,7 @@ public class GestorBDAdmin {
             conn = ConectaBD.abrir();
             stm = conn.createStatement();
             usuarioResultSet = stm.executeQuery("SELECT * FROM administrador WHERE codigo='" + codigo + "' AND password='" + password + "';");
-            
-            
-            
+
             if (!usuarioResultSet.next()) {
                 System.out.println(" No se encontro el registro");
                 ConectaBD.cerrar();
@@ -177,12 +211,13 @@ public class GestorBDAdmin {
             return null;
         }
     }
-        public Administrador AdminU(String codigo) {
+
+    public Administrador AdminU(String codigo) {
         try {
             conn = ConectaBD.abrir();
             stm = conn.createStatement();
             usuarioResultSet = stm.executeQuery("SELECT * FROM administrador WHERE codigo='" + codigo + "';");
-            
+
             if (!usuarioResultSet.next()) {
                 System.out.println(" No se encontro el registro");
                 ConectaBD.cerrar();
@@ -203,18 +238,7 @@ public class GestorBDAdmin {
             return null;
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     public boolean borrar(String cuenta, String clave) {
         int resultUpdate = 0;
         try {
@@ -252,11 +276,11 @@ public class GestorBDAdmin {
                     codigoE = usuarioResultSet.getString("codigo");
                     nombreE = usuarioResultSet.getString("nombre");
                     ordenE = usuarioResultSet.getString("orden");
-                    descripcionE = usuarioResultSet.getString("descripcion");
+                    descripcionE = usuarioResultSet.getString("Descripcion");
                     costoE = usuarioResultSet.getDouble("costo");
-                    formatoPDFE = usuarioResultSet.getString("tipoInforme");
-                    
-                    examenHallado = new Examenes( codigoE,nombreE, ordenE, descripcionE,costoE, formatoPDFE);
+                    formatoPDFE = usuarioResultSet.getString("tipo_informe");
+
+                    examenHallado = new Examenes(codigoE, nombreE, ordenE, descripcionE, costoE, formatoPDFE);
                     examenes.add(examenHallado);
                 } while (usuarioResultSet.next());
                 ConectaBD.cerrar();

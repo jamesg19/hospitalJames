@@ -5,12 +5,13 @@ import Model.GestorBDAdmin;
 import java.awt.Button;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
+import Objetos.*;
 
 
 @WebServlet(name = "crearAdmin", urlPatterns = {"/crearAdmin"})
@@ -45,30 +46,18 @@ public class adminServlet extends HttpServlet {
             
             else if (btn.equals("Modificar mis datos")) {  
                 
-            String USER = (String) request.getParameter("user");
+            String USER = (String) request.getParameter("user").trim();
             request.setAttribute("cuenta",USER);
             
             GestorBDAdmin gestorBD = new GestorBDAdmin();
             Administrador admin;      
             admin=gestorBD.AdminU(USER);      
-            request.setAttribute("Nombre",admin.getNombre());
-            request.setAttribute("Dpi",admin.getDPI());
-            request.setAttribute("Password",admin.getClave());        
+            request.setAttribute("Nombre",admin.getNombre().trim());
+            request.setAttribute("Dpi",admin.getDPI().trim());
+            request.setAttribute("Password",admin.getClave().trim());        
             request.getRequestDispatcher("/pagesAdmin/modificaAdmin.jsp").forward(request, response);
             }
-            else if (btn.equals("Modificar Precio Examen")) {  
-                
-            String USER = (String) request.getParameter("user");
-            request.setAttribute("cuenta",USER);
-            
-            GestorBDAdmin gestorBD = new GestorBDAdmin();
-            Administrador admin;      
-            admin=gestorBD.AdminU(USER);      
-            request.setAttribute("Nombre",admin.getNombre());
-            request.setAttribute("Dpi",admin.getDPI());
-            request.setAttribute("Password",admin.getClave());        
-            request.getRequestDispatcher("/pagesAdmin/modificaAdmin.jsp").forward(request, response);
-            }
+
             
 
 
@@ -86,7 +75,19 @@ public class adminServlet extends HttpServlet {
                 request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
             }
             }
+            else if (btn.equals("Modificar precio examen")) {  
+                
+            String codigo = (String) request.getParameter("codigo");
+            String costo = (String) request.getParameter("costo");
+            double newcosto= Double.parseDouble(costo);
             
+            GestorBDAdmin gestorBD = new GestorBDAdmin();
+            if (gestorBD.ActualizarExamen(codigo, newcosto)) {
+                request.getRequestDispatcher("/RegistroGuardado.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("/errorGuardar.jsp").forward(request, response);
+            }
+            }
             
             
             
@@ -130,7 +131,18 @@ public class adminServlet extends HttpServlet {
             }
             }
             
-            
+            if(btn.equals("Modifica precios")){
+            ArrayList<Examenes> examenes = new ArrayList<Examenes>();
+            Examenes examen;
+            GestorBDAdmin gestorBD = new GestorBDAdmin();
+            examenes = gestorBD.leeTodosExamen();
+            if (examenes != null) {
+                request.setAttribute("Examenes", examenes);
+                request.getRequestDispatcher("/Examen/listaExamen.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+            }
+            }
             
             
             
