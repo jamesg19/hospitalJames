@@ -56,6 +56,19 @@ public class adminServlet extends HttpServlet {
             request.setAttribute("Password",admin.getClave());        
             request.getRequestDispatcher("/pagesAdmin/modificaAdmin.jsp").forward(request, response);
             }
+            else if (btn.equals("Modificar Precio Examen")) {  
+                
+            String USER = (String) request.getParameter("user");
+            request.setAttribute("cuenta",USER);
+            
+            GestorBDAdmin gestorBD = new GestorBDAdmin();
+            Administrador admin;      
+            admin=gestorBD.AdminU(USER);      
+            request.setAttribute("Nombre",admin.getNombre());
+            request.setAttribute("Dpi",admin.getDPI());
+            request.setAttribute("Password",admin.getClave());        
+            request.getRequestDispatcher("/pagesAdmin/modificaAdmin.jsp").forward(request, response);
+            }
             
 
 

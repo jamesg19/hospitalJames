@@ -1,6 +1,7 @@
 package Model;
 
 import static Model.ConectaBD.passw;
+import Objetos.Examenes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,8 +16,10 @@ public class GestorBDAdmin {
     Statement stm = null;
     ResultSet usuarioResultSet;
     Administrador usuarioHallado;
+    Examenes examenHallado;
     String codigoo, dpi, nombre, passwordd;
-
+    String codigoE,nombreE, ordenE, descripcionE, formatoPDFE;
+    double costoE;
     public boolean registrar(String codigo, String dpi, String nombre, String password) {
         int resultUpdate = 0;
 
@@ -234,32 +237,35 @@ public class GestorBDAdmin {
         }
     }
 
-//    public ArrayList<Usuario> leeTodos() {
-//        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-//        try {
-//            conn = ConectaBD.abrir();
-//            stm = conn.createStatement();
-//            usuarioResultSet = stm.executeQuery("SELECT * FROM usuarios");
-//            if (!usuarioResultSet.next()) {
-//                System.out.println(" No se encontraron registros");
-//                ConectaBD.cerrar();
-//                return null;
-//            } else {
-//                do {
-//                    cuent = usuarioResultSet.getString("cuenta");
-//                    nom = usuarioResultSet.getString("nombre");
-//                    passw = usuarioResultSet.getString("clave");
-//                    mail = usuarioResultSet.getString("mail");
-//                    usuarioHallado = new Administrador(cuent, nom, passw, mail);
-//                    usuarios.add(usuarioHallado);
-//                } while (usuarioResultSet.next());
-//                ConectaBD.cerrar();
-//                return usuarios;
-//            }
-//        } catch (Exception e) {
-//            System.out.println("Error en la base de datos.");
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
+    public ArrayList<Examenes> leeTodosExamen() {
+        ArrayList<Examenes> examenes = new ArrayList<Examenes>();
+        try {
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT * FROM examen");
+            if (!usuarioResultSet.next()) {
+                System.out.println(" No se encontraron registros");
+                ConectaBD.cerrar();
+                return null;
+            } else {
+                do {
+                    codigoE = usuarioResultSet.getString("codigo");
+                    nombreE = usuarioResultSet.getString("nombre");
+                    ordenE = usuarioResultSet.getString("orden");
+                    descripcionE = usuarioResultSet.getString("descripcion");
+                    costoE = usuarioResultSet.getDouble("costo");
+                    formatoPDFE = usuarioResultSet.getString("tipoInforme");
+                    
+                    examenHallado = new Examenes( codigoE,nombreE, ordenE, descripcionE,costoE, formatoPDFE);
+                    examenes.add(examenHallado);
+                } while (usuarioResultSet.next());
+                ConectaBD.cerrar();
+                return examenes;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

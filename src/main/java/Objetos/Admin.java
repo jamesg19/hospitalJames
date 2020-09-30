@@ -10,10 +10,10 @@ package Objetos;
  * @author james
  */
 public class Admin {
-    private String codigo;
-    private String dpi;
-    private String nombre;
-    private String password;
+    private final String codigo;
+    private final String dpi;
+    private final String nombre;
+    private final String password;
     
     public Admin(String codigo, String dpi, String nombre, String password){
         this.codigo=codigo;

@@ -12,12 +12,12 @@ package Objetos;
 public class Examenes {
     private String codigo;
     private String nombre;
-    private boolean orden;
+    private String orden;
     private String descripcion;
     private double costo;
-    private boolean formatoPDF;
+    private String formatoPDF;
 
-    public Examenes(String codigo, String nombre, boolean orden, String descripcion, double costo, boolean formatoPDF) {
+    public Examenes(String codigo, String nombre, String orden, String descripcion, double costo, String formatoPDF) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.orden = orden;
@@ -43,14 +43,6 @@ public class Examenes {
         this.nombre = nombre;
     }
 
-    public boolean isOrden() {
-        return orden;
-    }
-
-    public void setOrden(boolean orden) {
-        this.orden = orden;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
@@ -67,13 +59,23 @@ public class Examenes {
         this.costo = costo;
     }
 
-    public boolean isFormatoPDF() {
+    public String getOrden() {
+        return orden;
+    }
+
+    public void setOrden(String orden) {
+        this.orden = orden;
+    }
+
+    public String getFormatoPDF() {
         return formatoPDF;
     }
 
-    public void setFormatoPDF(boolean formatoPDF) {
+    public void setFormatoPDF(String formatoPDF) {
         this.formatoPDF = formatoPDF;
     }
+
+
     
 
 }
