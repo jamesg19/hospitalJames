@@ -70,7 +70,6 @@
                     <td align="right"> Password</td>
                     <td> <input type="text" Id='password'  name="password"  required > </td>
                 </tr>
-
             </table>
             <div class="form-group" align="center">
                 <label for="exampleFormControlTextarea1">Descripcion:</label>
@@ -78,12 +77,11 @@
             </div>
 
             <div align="center">
-                <input type="reset" value="Borrar">
+                <input  align="center" type="reset" value="Borrar">
 
-                <input type="submit" name="boton" value="Registrar Examen"  >
+                <input align="center" type="submit" name="boton" value="Registrar Examen"  >
             </div>
         </form>
-
 
     </body> 
 </html>
