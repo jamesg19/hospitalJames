@@ -79,7 +79,7 @@
             <div align="center">
                 <input  align="center" type="reset" value="Borrar">
 
-                <input align="center" type="submit" name="boton" value="Registrar Examen"  >
+                <input align="center" type="submit" name="boton" value="Registrar Doctor"  >
             </div>
         </form>
 
