@@ -38,6 +38,8 @@ String password= request.getParameter("password");
         
         request.setAttribute("nombre",admin.getNombre());
         request.setAttribute("cuenta",admin.getCuenta());
+        request.setAttribute("dpi",admin.getDPI());
+        request.setAttribute("password",admin.getClave());
         request.getRequestDispatcher("/pagesAdmin/inicioSistema.jsp").forward(request, response);
     
     }else{

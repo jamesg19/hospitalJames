@@ -16,7 +16,10 @@ public class registroAdmin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
         try {
+            String btn = request.getParameter("boton");
+            if (btn.equals("Agregar Admin")) {
             String codigo = request.getParameter("codigo");
             String dpi = request.getParameter("dpi");
             String nombre = request.getParameter("nombre");
@@ -25,9 +28,10 @@ public class registroAdmin extends HttpServlet {
             GestorBDAdmin gestorBD = new GestorBDAdmin();
 
             if (gestorBD.registrar(codigo, dpi, nombre, password)) {
-                request.getRequestDispatcher("/registroGuardado.jsp").forward(request, response);
+                request.getRequestDispatcher("/pagesAdmin/registroGuardado.jsp").forward(request, response);
             } else {
-                request.getRequestDispatcher("/errorEnRegistro.jsp").forward(request, response);
+                request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
+            }
             }
         } finally {
             out.close();

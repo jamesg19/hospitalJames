@@ -10,56 +10,65 @@
     <body  background="Imagenes/fondoAdmin.jpg">
         <script>             
             function valida(form) {            
-                if(document.forma.codigo.value ==='')                  
-                    alert("falta introducir el codigo");              
-                else{                 
-                    if(document.forma.dpi.value ==='')   
-                        alert("falta introducir el dpi");                  
-                    else{
-                        if(document.forma.nombre.value ==='')   
-                            alert("falta introducir el nombre");  
-                        else{ 
-                            if(document.forma.password.value ==='')   
-                                alert("falta introducir el password");  
-                            else 
+                if(document.forma.codigo.value ===''){
+                    alert("falta introducir el codigo"),
+                    form.cancelFormSubmission();
+                    
+            }else{                 
+                    if(document.forma.dpi.value ===''){ 
+                        alert("falta introducir el dpi"),
+                        form.cancelFormSubmission();
+                }else{
+                        if(document.forma.nombre.value ===''){
+                            form.cancelFormSubmission(),
+                            alert("falta introducir el nombre");       
+                    }else{ 
+                            if(document.forma.password.value ===''){
+                                form.cancelFormSubmission(),
+                                alert("falta introducir el password");
+                            
+                        }else{ 
+                                alert("Informacion enviada");
                                 form.submit();
                         }
                     }
                 }          
-            }      
-                    </script>
-        <%@ page import="Controller.registroAdmin" %> 
+            }
+        }
+        </script>
+        <%@ page import="Controller.adminServlet" %>
 
         <h2 align="center"> Agrega un nuevo administrador</h2>
-        <form  action="newAdmin" name="forma" method="post">
+        <form  action="crearAdmin" name="forma" method="post">
 
- 
+
             <table cellspacing="3" cellpadding="3" align="center"  >          
 
                 <td align="right"> Codigo: </td>            
-                <td><input type="text" Id='codigo' name="codigo"></td>           
+                <td><input required type="text" Id='codigo' name="codigo"></td>           
                 </tr>             
                 <tr>             
                     <td align="right"> DPI: </td>                
-                    <td> <input type="text" Id='dpi' name="dpi"> </td>           
+                    <td> <input required type="text" Id='dpi' name="dpi"  > </td>           
                 </tr>           
                 <tr>             
                     <td align="right"> Nombre: </td>                
-                    <td> <input type="text" Id='nombre' name="nombre"> </td>           
+                    <td> <input required type="text" Id='nombre' name="nombre"> </td>           
                 </tr>  
                 <tr>             
                     <td align="right"> Password: </td>                
-                    <td> <input type="text" Id='password' name="password"> </td>           
+                    <td> <input required type="text" Id='password' name="password"> </td>           
                 </tr>
 
-
-            </table> 
-             <div>
+            <div>
                 <input type="reset" value="Borrar">
-                <input type="button" value="Registrar" onClick='valida(forma)' >
+
+                <input type="submit" name="boton" value="Registrar Admin" onClick='valida(forma)' >
             </div>
+            </table> 
+
         </form>
 
-            
+
     </body> 
 </html>

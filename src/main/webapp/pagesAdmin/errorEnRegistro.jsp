@@ -11,7 +11,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
-        <h1>Error al guardar !</h1>
+    <body background="Imagenes/fondoAdmin.jsp">
+        <br>
+        <br>
+        <br> 
+        <br> 
+        <br> 
+        <br> 
+        <h1 align="center"> Error al guardar </h1>
+        <br>
+        <br>
+        <br> 
+        <br>
+        <h3 align="center"> El codigo ingresado ya existe  </h3>
     </body>
 </html>

@@ -25,7 +25,7 @@
                 <br>    
                 <div class="form-group" align="center" >
                     <label for="exampleInputEmail1"align="left" >Usuario :</label>
-                    <input type="text" name="codigo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input required type="text" name="codigo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                     <small id="emailHelp" class="form-text text-muted"></small>
                 </div>
 
@@ -33,7 +33,7 @@
                 <br>
                 <div class="form-group" align="center" >
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input required="Ingresa la contrasena" type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
                 <br>  
                 <br> 

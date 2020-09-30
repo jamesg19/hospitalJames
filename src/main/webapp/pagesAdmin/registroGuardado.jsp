@@ -12,7 +12,7 @@
               content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body background="Imagenes/fondoAdmin.jpg">
         <%@ page import="Model.Administrador" %>
         <%
             String codigo = request.getParameter("codigo");
@@ -21,16 +21,16 @@
             String password = request.getParameter("password");
         %>
         92
-        <h3> Registro exitoso en la base de datos</h3>
+        <h3 align="center"> Registro exitoso en la base de datos</h3>
         <p> Se guardaron los siguientes datos: </p>
-        <table cellspacing="3" cellpadding="3" border="1" >
+        <table cellspacing="3" cellpadding="3" align="center">
             <tr>
                 <td align="right"> Codigo: </td>
                 <td> <%= codigo%> </td>
             </tr>
             <tr>
                 <td align="right"> DPI: </td>
-                <td> <%= nombre%> </td>
+                <td> <%= dpi%> </td>
             </tr>
             <tr>
                 <td align="right"> Nombre: </td>
@@ -41,8 +41,6 @@
                 <td> <%= password%> </td>
             </tr>
         </table>
-        <form action="index.jsp" method="post">
-            <input type="submit" value="Regresar">
-        </form>
+
     </body>
 </html>

@@ -47,6 +47,67 @@ public class GestorBDAdmin {
             return false;
         }
     }
+        public boolean registrarExamen(String codigo, String nombre, String orden, String descripcion,Double costo,String tipoInforme) {
+        int resultUpdate = 0;
+
+        conn = ConectaBD.abrir();
+
+        String query = "INSERT INTO examen VALUES (?,?,?,?,?,?)";
+
+        try (PreparedStatement preSt = conn.prepareStatement(query)) {
+
+
+            preSt.setString(1, codigo);
+            preSt.setString(2, nombre);
+            preSt.setString(3, orden);
+            preSt.setString(4, descripcion);
+            preSt.setDouble(5, costo);
+            preSt.setString(6, tipoInforme);
+
+            resultUpdate = preSt.executeUpdate();
+
+            if (resultUpdate != 0) {
+                ConectaBD.cerrar();
+                return true;
+            } else {
+                ConectaBD.cerrar();
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+        public boolean modificar(String codigo, String dpi, String nombre, String password) {
+        int resultUpdate = 0;
+
+        conn = ConectaBD.abrir();
+        
+        String query = "UPDATE administrador  SET dpi = ?, nombre = ?, password = ? WHERE codigo = ?";
+
+        try (PreparedStatement preSt = conn.prepareStatement(query)) {
+
+            preSt.setString(1, dpi);
+            preSt.setString(2, nombre);
+            preSt.setString(3, password);
+            preSt.setString(4, codigo);
+
+            resultUpdate = preSt.executeUpdate();
+
+            if (resultUpdate != 0) {
+                ConectaBD.cerrar();
+                return true;
+            } else {
+                ConectaBD.cerrar();
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public Administrador consultar(String codigo, String password) {
         try {
@@ -76,7 +137,32 @@ public class GestorBDAdmin {
             return null;
         }
     }
-
+        public Administrador AdminU(String codigo) {
+        try {
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT * FROM administrador WHERE codigo='" + codigo + "';");
+            
+            if (!usuarioResultSet.next()) {
+                System.out.println(" No se encontro el registro");
+                ConectaBD.cerrar();
+                return null;
+            } else {
+                System.out.println("Se encontró el registro");
+                codigoo = usuarioResultSet.getString("codigo");
+                dpi = usuarioResultSet.getString("dpi");
+                nombre = usuarioResultSet.getString("nombre");
+                passwordd = usuarioResultSet.getString("password");
+                usuarioHallado = new Administrador(codigoo, dpi, nombre, passwordd);
+                ConectaBD.cerrar();
+                return usuarioHallado;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return null;
+        }
+    }
     
     
     
