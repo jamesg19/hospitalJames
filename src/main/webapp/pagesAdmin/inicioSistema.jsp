@@ -27,31 +27,40 @@
 
         %>
         <h1> Hola <%= nombreI%> bienvenido al sistema! tu usuario es:</h1>
-         
-        
+
+
         <form action="crearAdmin" method="post" >
             <input type="text"  name="user" value="<%= cuentaI%>" readonly="">
-            
+
             <div align="left" >
                 <br>  
                 <br> 
                 <p>Agrega un nuevo administrador </p>
                 <input type="submit" name="boton" align="center" value="Agregar Admin">
-                <input type="submit" name="boton" align="center" value="Modificar mis datos">
-                <br>
+                <input type="submit" name="boton" align="center" value="Modificar mis datos">              
                 <p>Agrega un nuevo examen y modifica precios de examen</p>
                 <input type="submit" name="boton" align="center" value="Agregar Examen">
                 <input type="submit" name="boton" align="center" value="Modifica precios">
-
                 <p>Agrega un nuevo doctor</p>
                 <input type="submit" name="boton" align="center" value="Agregar Doctor">
                 <input type="submit" name="boton" align="center" value="Agrega Especialidad a Medico">
+                <p>Agrega una nueva consulta</p>
+                <input type="submit" name="boton" align="center" value="Agregar Nueva Consulta">
+                <input type="submit" name="boton" align="center" value="Modifica precio consulta">
                 <p>Agrega un nuevo Laboratorista</p>
                 <input type="submit" name="boton" align="center" value="Agregar Nuevo Laboratorista">
-                
+                <input type="submit" name="boton" align="center" value="Modifica Laboratorista">
+
             </div>
 
+
         </form>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
     </body>
 </html>

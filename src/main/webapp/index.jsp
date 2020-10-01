@@ -10,13 +10,10 @@
         <title>Ingreso al sistema</title>
     </head>
     <body background="Imagenes/pruebaimagen.jpg">
-
-
-        <br>
         <br>
         <h1 align="center" >Bienvenido al portal Hospital USAC</h1>
-        
-        
+
+
         <%@ page import="Controller.login" %>
         <h3 align="center" > Introduce tu cuenta y tu contraseña</h3>
         <form action="login" method="post">
@@ -43,7 +40,20 @@
                 <input type="reset" value="Borrar">
                 <input type="submit" value="Ingresar">
             </div>
+            <br><!-- comment -->
+            <div align="center">
+            <div class="form-check form-check-inline" align="center">
+                <input class="form-check-input" required type="radio" name="inlineRadioOptions" id="inlineRadio1" value="admin">
+                <label class="form-check-label" for="inlineRadio1">ADMINISTRADOR</label>
 
+                <input class="form-check-input" required type="radio" name="inlineRadioOptions" id="inlineRadio2" value="paciente">
+                <label class="form-check-label"  for="inlineRadio2">PACIENTE</label>
+            
+            
+                <input class="form-check-input" required type="radio" name="inlineRadioOptions" id="inlineRadio3" value="doctor">
+                <label class="form-check-label" for="inlineRadio3">DOCTOR</label>
+            </div>
+            </div>
         </form>
         <form action="pagesAdmin/llenaRegistro.jsp" method="post">
             <br>  
@@ -54,7 +64,7 @@
 
         </form>
     </body>
-    
-    
-    
+
+
+
 </html>
