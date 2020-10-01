@@ -102,10 +102,21 @@ public class adminServlet extends HttpServlet {
                     request.getRequestDispatcher("/errorGuardar.jsp").forward(request, response);
                 }
             }
-            //Agregar Nueva Consulta
-            else if (btn.equals("Agregar Nueva Consulta")) {
+            
+            if (btn.equals("Agregar Nueva Consulta.")) {
+                ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
+                Especialidad especialidad;
+                GestorBDAdmin gestorBD = new GestorBDAdmin();
+                especialidades = gestorBD.leeEspecialidad();
+                if (especialidades != null) {
+                    request.setAttribute("Especialidad", especialidades);
                     request.getRequestDispatcher("/Consulta/llenaRegistroConsulta.jsp").forward(request, response);
-            }
+                } else {
+                    request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+                }
+            } 
+            
+            
 
             if (btn.equals("Modifica precios")) {
                 ArrayList<Examenes> examenes = new ArrayList<Examenes>();

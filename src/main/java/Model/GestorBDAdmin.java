@@ -1,8 +1,7 @@
 package Model;
 
 import static Model.ConectaBD.passw;
-import Objetos.Doctor;
-import Objetos.Examenes;
+import Objetos.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,12 +24,15 @@ public class GestorBDAdmin {
     ResultSet usuarioResultSet;
     Administrador usuarioHallado;
     Examenes examenHallado;
+    Especialidad especialidadHallada;
     Doctor doctorHallado;
+    Consulta consultaHallada;
     String codigoo, dpi, nombre, passwordd;
     String codigoE, nombreE, ordenE, descripcionE, formatoPDFE;
     String codigoD, nombreD, colegiadoD, correoD, horaInicioD, horaFinD, trabajoD, especialidadD, telefonoD, passD;
-
-    double costoE;
+    String medicoES,tipoEs,tipoC;
+    int codigoES,codigoC;
+    double costoE,costoC;
 
     /**
      * registra un nuevo administrador al sistema
@@ -489,6 +491,72 @@ public class GestorBDAdmin {
         }
     }
 
+    
+        public ArrayList<Especialidad> leeEspecialidad() {
+        ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
+        try {
+
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT DISTINCT tipo_Especialidad FROM especialidad");
+            if (!usuarioResultSet.next()) {
+
+                System.out.println(" No se encontraron registros");
+                ConectaBD.cerrar();
+                return null;
+            } else {
+                do {
+
+                    tipoEs = usuarioResultSet.getString("tipo_Especialidad");
+
+                    especialidadHallada = new Especialidad(tipoEs);
+                    especialidades.add(especialidadHallada);
+                } while (usuarioResultSet.next());
+                ConectaBD.cerrar();
+                return especialidades;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+        
+        
+                public ArrayList<Consulta> leeConsulta() {
+        ArrayList<Consulta> consultas = new ArrayList<Consulta>();
+        try {
+
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT DISTINCT tipo_Especialidad FROM especialidad");
+            if (!usuarioResultSet.next()) {
+
+                System.out.println(" No se encontraron registros");
+                ConectaBD.cerrar();
+                return null;
+            } else {
+                do {
+
+                    codigoC = usuarioResultSet.getInt("codigo");
+                    tipoC = usuarioResultSet.getString("tipo_consulta");
+                    costoC = usuarioResultSet.getDouble("costo");
+                    
+                    consultaHallada = new Consulta(codigoC,tipoC,costoC);
+                    consultas.add(consultaHallada);
+                } while (usuarioResultSet.next());
+                ConectaBD.cerrar();
+                return consultas;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    
+    
     public boolean registrarLabo(String codigo, String nombre, String registro, String dpi, String telefono, String examen, String correo, String diasT, String trabajo, String password) {
         int resultUpdate = 0;
 
