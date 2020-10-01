@@ -11,98 +11,101 @@ package Objetos;
  */
 public class Doctor {
     private String codigo;
-    private String password;
+    private String nombre;
     private String colegiado;
     private String dpi;
     private String telefono;
-    private String especialidad;
     private String correo;
-    private String horario;
+    private String horaInicio;
+    private String horaFin;
     private String fechaTrabajo;
-
-    public Doctor(String codigo, String password, String colegiado, String dpi, String telefono, String especialidad, String correo, String horario, String fechaTrabajo) {
+    private String especialidad;
+    private String password;
+    
+    /**
+     * CONSTRUCTOR PARA CREAR UN NUEVO DOCTOR
+     * @param codigo
+     * @param nombre
+     * @param colegiado
+     * @param dpi
+     * @param telefono
+     * @param correo
+     * @param horaInicio
+     * @param horaFin
+     * @param fechaTrabajo
+     * @param password 
+     */
+    public Doctor(String codigo, String nombre, String colegiado, String dpi, String telefono, String correo, String horaInicio, String horaFin, String fechaTrabajo, String password) {
         this.codigo = codigo;
-        this.password = password;
+        this.nombre = nombre;
         this.colegiado = colegiado;
         this.dpi = dpi;
         this.telefono = telefono;
-        this.especialidad = especialidad;
         this.correo = correo;
-        this.horario = horario;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
         this.fechaTrabajo = fechaTrabajo;
+        this.password = password;
     }
-    //Getter y Setter
+
+    public Doctor(String codigo, String nombre, String colegiado, String correo, String horaInicio, String horaFin, String fechaTrabajo, String especialidad) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.colegiado = colegiado;
+        this.correo = correo;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.fechaTrabajo = fechaTrabajo;
+        this.especialidad = especialidad;
+    }
+
     public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public String getNombre() {
+        return nombre;
     }
 
     public String getColegiado() {
         return colegiado;
     }
 
-    public void setColegiado(String colegiado) {
-        this.colegiado = colegiado;
-    }
-
     public String getDpi() {
         return dpi;
-    }
-
-    public void setDpi(String dpi) {
-        this.dpi = dpi;
     }
 
     public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getEspecialidad() {
-        return especialidad;
-    }
-
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
-    }
-
     public String getCorreo() {
         return correo;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public String getHoraInicio() {
+        return horaInicio;
     }
 
-    public String getHorario() {
-        return horario;
-    }
-
-    public void setHorario(String horario) {
-        this.horario = horario;
+    public String getHoraFin() {
+        return horaFin;
     }
 
     public String getFechaTrabajo() {
         return fechaTrabajo;
     }
 
-    public void setFechaTrabajo(String fechaTrabajo) {
-        this.fechaTrabajo = fechaTrabajo;
+    public String getEspecialidad() {
+        return especialidad;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    
+    
+
     
     
 }

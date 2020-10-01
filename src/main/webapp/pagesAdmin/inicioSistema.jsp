@@ -45,9 +45,9 @@
 
                 <p>Agrega un nuevo doctor</p>
                 <input type="submit" name="boton" align="center" value="Agregar Doctor">
-                <input type="submit" name="boton" align="center" value="Agrega Especialidad">
+                <input type="submit" name="boton" align="center" value="Agrega Especialidad a Medico">
                 <p>Agrega un nuevo Laboratorista</p>
-                <input type="submit" name="boton" align="center" value="Agregar Laboratorista">
+                <input type="submit" name="boton" align="center" value="Agregar Nuevo Laboratorista">
                 
             </div>
 

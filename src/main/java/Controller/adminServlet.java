@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Objetos.*;
+import java.sql.Blob;
+import java.util.Base64;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.swing.JOptionPane;
 
 
 @WebServlet(name = "crearAdmin", urlPatterns = {"/crearAdmin"})
@@ -42,8 +46,14 @@ public class adminServlet extends HttpServlet {
             else if (btn.equals("Agregar Examen")) {    
             request.getRequestDispatcher("/pagesAdmin/llenaRegistroExamen.jsp").forward(request, response);
             }
-            
-            
+            else if (btn.equals("Agregar Nuevo Laboratorista")) {
+                
+            request.getRequestDispatcher("/pagesLabo/llenaRegistroLabo.jsp").forward(request, response);  
+            }
+
+            /**
+             * 
+             */
             else if (btn.equals("Modificar mis datos")) {  
                 
             String USER = (String) request.getParameter("user").trim();
@@ -60,7 +70,9 @@ public class adminServlet extends HttpServlet {
 
             
 
-
+            /**
+             * 
+             */
             else if (btn.equals("Registrar Admin")) {
                 
             String codigo = request.getParameter("codigo");
@@ -75,6 +87,27 @@ public class adminServlet extends HttpServlet {
                 request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
             }
             }
+            /**
+             * 
+             */
+            if (btn.equals("Actualizar Admin")){  
+            String nombreI = (String) request.getParameter("nombre");
+            String codigo = (String) request.getParameter("codigo");
+            String dpiI = (String) request.getParameter("dpi");
+            String nameI = (String) request.getParameter("password");
+
+            GestorBDAdmin gestorBD = new GestorBDAdmin();
+
+            if (gestorBD.modificar(codigo, dpiI, nombreI, nameI)) {
+                request.getRequestDispatcher("/pagesAdmin/registroGuardado.jsp").forward(request, response);
+            } else {
+                
+                request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
+            }
+            }
+            
+            
+            
             else if (btn.equals("Modificar precio examen")) {  
                 
             String codigo = (String) request.getParameter("codigo");
@@ -89,10 +122,51 @@ public class adminServlet extends HttpServlet {
             }
             }
             
+            if(btn.equals("Modifica precios")){
+            ArrayList<Examenes> examenes = new ArrayList<Examenes>();
+            Examenes examen;
+            GestorBDAdmin gestorBD = new GestorBDAdmin();
+            examenes = gestorBD.leeTodosExamen();
+            if (examenes != null) {
+                request.setAttribute("Examenes", examenes);
+                request.getRequestDispatcher("/Examen/listaExamen.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+            }
+            }
+       
+            //redirige a la pagina para ver que doctor va a agregar la especialidad
+            else if (btn.equals("Agrega Especialidad a Medico")) {
+            ArrayList<Doctor> doctores = new ArrayList<Doctor>();
+            ArrayList<Doctor> doctores2 = new ArrayList<Doctor>();
+            Doctor doctor;
+            GestorBDAdmin gestorBD = new GestorBDAdmin();
+            GestorBDAdmin gestorBD2 = new GestorBDAdmin();
+            doctores = gestorBD.leeTodosDoctor();
+            doctores2 = gestorBD2.leeDoctor();
+            if ((doctores != null)) {
+                request.setAttribute("Doctor", doctores);
+                request.setAttribute("Doctor2", doctores2);
+                request.getRequestDispatcher("/pagesDoctor/listaDoctor.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+            }
+            }
+            //Agrega Nueva Especialidad y la guarda en la tabla
+            else if (btn.equals("Agrega Nueva Especialidad")) {  
+                
+            String codigo = (String) request.getParameter("codigo");
+            String especialidad = (String) request.getParameter("especialidad");
             
             
-            
-            
+            GestorBDAdmin gestorBD = new GestorBDAdmin();
+            if (gestorBD.registrarEspecialidad(codigo, especialidad) ) {
+                request.getRequestDispatcher("/RegistroGuardado.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("/errorGuardar.jsp").forward(request, response);
+            }
+            }
+
             else if (btn.equals("Registrar Examen")) {
                 
             String codigo = request.getParameter("codigo");
@@ -110,6 +184,7 @@ public class adminServlet extends HttpServlet {
                 request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
             }
             }
+            
             else if (btn.equals("Registrar Doctor")) {
                 
             String codigo = request.getParameter("codigo");
@@ -122,7 +197,8 @@ public class adminServlet extends HttpServlet {
             String horaFin =  request.getParameter("horaFin");
             String trabajo =  request.getParameter("trabajo");
             String password =  request.getParameter("password");
-            
+//            byte[] encodedBytes = Base64.encodeBase64(password.getBytes());
+//            Blob blob = new SerialBlob(encodedBytes);
             GestorBDAdmin gestorBD = new GestorBDAdmin();
             if (gestorBD.registrarDoctor(codigo, nombre, colegiado, dpi,telefono,correo,horaInicio,horaFin,trabajo,password)) {
                 request.getRequestDispatcher("/pagesAdmin/registroGuardadoDoctor.jsp").forward(request, response);
@@ -130,41 +206,27 @@ public class adminServlet extends HttpServlet {
                 request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
             }
             }
-            
-            if(btn.equals("Modifica precios")){
-            ArrayList<Examenes> examenes = new ArrayList<Examenes>();
-            Examenes examen;
-            GestorBDAdmin gestorBD = new GestorBDAdmin();
-            examenes = gestorBD.leeTodosExamen();
-            if (examenes != null) {
-                request.setAttribute("Examenes", examenes);
-                request.getRequestDispatcher("/Examen/listaExamen.jsp").forward(request, response);
-            } else {
-                request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
-            }
-            }
-            
-            
-            
-            
-            if (btn.equals("Actualizar Admin")) {  
-            String nombreI = (String) request.getParameter("nombre");
-            String codigo = (String) request.getParameter("codigo");
-            String dpiI = (String) request.getParameter("dpi");
-            String nameI = (String) request.getParameter("password");
+
+            else if (btn.equals("Registrar Laboratorista")) {
+                
+            String codigo = request.getParameter("codigo");
+            String nombre = request.getParameter("nombre");
+            String registro = request.getParameter("registro");
+            String dpi = request.getParameter("dpi");
+            String telefono = request.getParameter("telefono");
+            String examen = request.getParameter("examen");
+            String correo = request.getParameter("correo");
+            String diasT = request.getParameter("diasTrabajo");
+            String trabajo = request.getParameter("trabajo");
+            String password = request.getParameter("password");
 
             GestorBDAdmin gestorBD = new GestorBDAdmin();
-
-            if (gestorBD.modificar(codigo, dpiI, nombreI, nameI)) {
-                request.getRequestDispatcher("/pagesAdmin/registroGuardado.jsp").forward(request, response);
+            if (gestorBD.registrarLabo(codigo, nombre, registro, dpi, telefono, examen, correo, diasT, trabajo,password)) {
+                request.getRequestDispatcher("/registroGuardado.jsp").forward(request, response);
             } else {
-                request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
+                request.getRequestDispatcher("/errorGuardar.jsp").forward(request, response);
             }
             }
-            
-            
-            
-
         
         } finally {
             out.close();

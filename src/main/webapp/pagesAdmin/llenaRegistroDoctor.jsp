@@ -79,7 +79,7 @@
 
             <div class="form-group" align="center">
                 <input type="date" id="start" name="trabajo" value="2020-03-19"
-                       min="1990-01-01" max="2020-12-31">
+                       min="1980-01-01" max="2020-12-31">
             </div>
 
             <div align="center">
