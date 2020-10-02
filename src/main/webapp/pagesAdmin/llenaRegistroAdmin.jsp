@@ -4,7 +4,12 @@
     <head>         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
         <title>JSP Page</title> 
-
+        <link rel="stylesheet"
+              href="CSS/Estilo.css">
+        <link rel="stylesheet"
+              href="CSS/Letra.css">
+        <link rel="stylesheet"
+              href="CSS/botones.css">
     </head>
 
     <body  background="Imagenes/fondoAdmin.jpg">
@@ -37,7 +42,7 @@
         }
         </script>
         <%@ page import="Controller.adminServlet" %>
-        
+
         <h2 align="center"> Agrega un nuevo administrador</h2>
         <form  action="crearAdmin" name="forma" method="post">
 
@@ -60,12 +65,12 @@
                     <td> <input required type="text" Id='password' name="password"> </td>           
                 </tr>
 
-            <div>
-                <input type="reset" value="Borrar">
 
-                <input type="submit" name="boton" value="Registrar Admin" onClick='valida(forma)' >
+            </table>
+            <div align="center" >
+                <input class="btn btn--4" type="submit" name="boton" value="Registrar Admin" onClick='valida(forma)' >
+                <input  class="btn btn--4" type="reset" value="Borrar">
             </div>
-            </table> 
 
         </form>
 

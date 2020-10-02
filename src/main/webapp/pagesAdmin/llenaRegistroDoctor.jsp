@@ -91,7 +91,7 @@
             </div>
 
             <div align="center">
-                <input  align="center" type="reset" value="Borrar">
+                <input class="btn btn--4" align="center" type="reset" value="Borrar">
 
                 <input align="center" type="submit" name="boton" value="Registrar Doctor"  >
                 <h1>.</h1>

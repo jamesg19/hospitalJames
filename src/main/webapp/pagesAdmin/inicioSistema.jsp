@@ -10,6 +10,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet"
+              href="CSS/Estilo.css">
+        <link rel="stylesheet"
+              href="CSS/Letra.css">
+        <link rel="stylesheet"
+              href="CSS/botones.css">
     </head>
     <body  background="Imagenes/fondoAdmin.jpg">
 
@@ -36,8 +42,8 @@
                 <br>  
                 <br> 
                 <p>Agrega un nuevo administrador </p>
-                <input type="submit" name="boton" align="center" value="Agregar Admin">
-                <input type="submit" name="boton" align="center" value="Modificar mis datos">              
+                <input  type="submit" name="boton" align="center" value="Agregar Admin">
+                <input  type="submit" name="boton" align="center" value="Modificar mis datos">              
                 <p>Agrega un nuevo examen y modifica precios de examen</p>
                 <input type="submit" name="boton" align="center" value="Agregar Examen">
                 <input type="submit" name="boton" align="center" value="Modifica precios">
