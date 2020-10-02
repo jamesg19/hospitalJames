@@ -13,13 +13,25 @@ public class Consulta {
     private int codigo;
     private String tipo;
     private double costo;
-
+    /**
+     * 
+     * @param codigo
+     * @param tipo
+     * @param costo 
+     */
     public Consulta(int codigo, String tipo, double costo) {
         this.codigo = codigo;
         this.tipo = tipo;
         this.costo = costo;
     }
-
+    /**
+     * 
+     * @param tipo 
+     */
+    public Consulta(String tipo) {
+        this.tipo = tipo;
+    }
+    
     public int getCodigo() {
         return codigo;
     }

@@ -10,14 +10,10 @@
         <%@ page import="Controller.adminServlet" %>
         <%@ page import="Objetos.Especialidad, java.util.ArrayList" %> 
         <h2>Agrega consulta por especialidad </h2> 
-        <br>
         <h2>las especialidades de los medicos del hospital son las siguientes </h2> 
-        <br>
         <%ArrayList<Especialidad> especialidades = null;
             especialidades = (ArrayList<Especialidad>) request.getAttribute("Especialidad");      %>
-
-        <%ArrayList<Consulta> consultas = null;
-            consultas = (ArrayList<Consulta>) request.getAttribute("Consulta");      %>
+            <div>
         <table align="center" border="1">                  
             <tr>             
                 <th>Especialidades de los medicos  </th>            
@@ -29,36 +25,74 @@
 
             </tr>          
             <% }%>
-            <br><!-- comment --> 
         </table>
-        <h4>Para Agregar una consulta se debe de seleccionar que especialidad y agregar un costo </h4> 
-        <br>
+        </div>
         <div>
-            <%            for (Consulta consulta : consultas) {%>          
-            <tr valign="rigth">            
-                <td><%=consulta.getTipo() %></td>             
+            <%ArrayList<Consulta> consultas = null;
+            consultas = (ArrayList<Consulta>) request.getAttribute("Consulta");      %>
+            <%ArrayList<Consulta> consultas2 = null;
+            consultas2 = (ArrayList<Consulta>) request.getAttribute("Consulta2");      %>            
+            <table align="center" border="1">                  
+                <tr>             
+                    <th>Codigo consulta </th>    
+                    <th>Tipo consulta </th> 
+                    <th>Costo (Q):</th> 
 
-            </tr>          
-            <% }%>
+                </tr> 
+                <%for (Consulta consulta : consultas) {%>          
+                <tr valign="rigth">            
+                    <td><%=consulta.getCodigo()%></td>  
+                    <td><%=consulta.getTipo()%></td>  
+                    <td><%=consulta.getCosto()%></td>  
+                </tr>          
+                <% }%>
+                <h4>Para Agregar una consulta se debe de seleccionar la especialidad y agregar un costo </h4>
+                <br><!-- comment --> 
+            </table>
         </div>
 
-
+             
         <form action="crearAdmin" method="post">
-            <table align="left">
-                <td align="right"> Codigo: </td>            
-                <td><input required type="text" Id='codigo' name="codigo"></td>           
-                </tr>             
+                    <br>
+                 
+            <table align="center" >
+                <tr>
+                    
+                    
+                    
+                <td>Tipo de consulta:</td>                                  
+                <td><select align="center" required type="text" Id='tipo' name="tipo" >
+                    <%for (Consulta consulta2 : consultas2) {%>
+                    <option><%=consulta2.getTipo()%></option>
+
+                    <% }%>
+                    </select></td>
+                </tr>
                 <tr>             
-                    <td align="right"> Precio: </td>                
-                    <td> <input required type="number" Id='costo' name="costo" step="any" > </td>           
+                    <td align="left"> Costo: </td>                
+                    <td> <input align="left" required type="number" Id='costo' name="costo" step="any" > </td>           
                 </tr>
 
-                <input type="submit" name="boton" value="Modificar precio examen"  >
-
-
+                <tr>
+                    <td>
+                        <input  type="submit" name="boton" value="Crear Consulta"  >
+                    </td>
+                    
+                </tr>
+                    
             </table><!--  -->
-
+            
+            
         </form>
+                
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
 
     </body> 

@@ -72,6 +72,26 @@ public class adminServlet extends HttpServlet {
                     request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
                 }
             }
+            
+            /**
+             * Crea una Consulta en la base de datos
+             */
+            else if (btn.equals("Crear Consulta")) {
+
+                String tipo = request.getParameter("tipo");
+                String costo = request.getParameter("costo");
+                double costoC = Double.parseDouble(costo);
+                
+                if (tipo.length() >= 2) {
+                    GestorBDAdmin gestorBD = new GestorBDAdmin();
+                    if (gestorBD.registrarConsulta("", tipo, costoC)) {
+                        request.getRequestDispatcher("/RegistroGuardado.jsp").forward(request, response);
+                    } else {
+                        request.getRequestDispatcher("/errorEnRegistro.jsp").forward(request, response);
+                    }
+                }
+
+            }
             /**
              *
              */
@@ -108,17 +128,30 @@ public class adminServlet extends HttpServlet {
                 Especialidad especialidad;
                 GestorBDAdmin gestorBD = new GestorBDAdmin();
                 especialidades = gestorBD.leeEspecialidad();
+                
+                ArrayList<Consulta> consultas = new ArrayList<Consulta>();
+                Consulta consulta;
+                GestorBDAdmin gestorBD2 = new GestorBDAdmin();
+                consultas = gestorBD2.leeConsulta();
+                
+                ArrayList<Consulta> consultas2 = new ArrayList<Consulta>();
+                Consulta consulta2;
+                GestorBDAdmin gestorBD3 = new GestorBDAdmin();
+                consultas2 = gestorBD3.leeConsultaSA();
+                
                 if (especialidades != null) {
                     request.setAttribute("Especialidad", especialidades);
+                    request.setAttribute("Consulta", consultas);
+                    request.setAttribute("Consulta2", consultas2);
                     request.getRequestDispatcher("/Consulta/llenaRegistroConsulta.jsp").forward(request, response);
                 } else {
                     request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
                 }
             } 
-            
+ 
             
 
-            if (btn.equals("Modifica precios")) {
+            else if (btn.equals("Modifica precios")) {
                 ArrayList<Examenes> examenes = new ArrayList<Examenes>();
                 Examenes examen;
                 GestorBDAdmin gestorBD = new GestorBDAdmin();
@@ -176,7 +209,8 @@ public class adminServlet extends HttpServlet {
                 } else {
                     request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
                 }
-            } else if (btn.equals("Registrar Doctor")) {
+            } 
+            else if (btn.equals("Registrar Doctor")) {
 
                 String codigo = request.getParameter("codigo");
                 String nombre = request.getParameter("nombre");

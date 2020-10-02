@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author james
  */
-public class GestorBDAdmin {
+public class GestorBDPaciente {
 
     String claveUsuario;
     Connection conn = null;
