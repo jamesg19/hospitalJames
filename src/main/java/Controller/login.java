@@ -26,10 +26,14 @@ public class login extends HttpServlet {
         PrintWriter out = response.getWriter();
         String codigo = request.getParameter("codigo");
         String password = request.getParameter("password");
-
+        String btn = request.getParameter("boton");
         try {
+            
             Administrador admin;
+            Paciente paciente;
             String Check = request.getParameter("inlineRadioOptions");
+            
+
             //verifica si es administrador
             if (Check.equals("admin")) {
 
@@ -50,8 +54,50 @@ public class login extends HttpServlet {
                 }
 
             }
+            //PENDIENTE ACTUALIZAR
+            else if (Check.equals("paciente")) {
 
-        } finally {
+                GestorBDPaciente gestorBD = new GestorBDPaciente();
+
+                paciente = gestorBD.consultar(codigo, password);
+                if (paciente != null) {
+
+                    request.setAttribute("nombre", paciente.getNombre());
+                    request.setAttribute("cuenta", paciente.getCodigo());
+                    request.getRequestDispatcher("/pagesPaciente/inicioSistema.jsp").forward(request, response);
+
+                } else {
+
+                    request.getRequestDispatcher("/index.jsp").forward(request, response);
+                }
+
+            }
+
+            /**
+             * Regista un Paciente nuevo
+             */
+            else if (btn.equals("Registrarme")) {
+
+                String codigoo = request.getParameter("codigo");
+                String nombre = request.getParameter("nombre");
+                String sexo = request.getParameter("sexo");
+                String cumple = request.getParameter("cumple");
+                String dpi = request.getParameter("dpi");
+                String tel = request.getParameter("tel");
+                String peso = request.getParameter("peso");
+                double pes=Double.parseDouble(peso);
+                String sangre = request.getParameter("sangre");
+                String correo = request.getParameter("correo");
+                String passwordd = request.getParameter("password");
+
+                GestorBDPaciente gestorBD = new GestorBDPaciente();
+                if (gestorBD.registrarPaciente(codigoo, nombre, sexo, cumple, dpi, tel, pes, sangre, correo, passwordd));
+                    request.getRequestDispatcher("/RegistroGuardado.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/errorGuardar.jsp").forward(request, response);
+                }
+            }
+            finally {
             out.close();
         }
 

@@ -55,8 +55,9 @@ public class adminServlet extends HttpServlet {
                 request.setAttribute("Dpi", admin.getDPI().trim());
                 request.setAttribute("Password", admin.getClave().trim());
                 request.getRequestDispatcher("/pagesAdmin/modificaAdmin.jsp").forward(request, response);
-            } /**
-             *
+            } 
+            /**
+             *Registra un nuevo Administrador a la base de datos
              */
             else if (btn.equals("Registrar Admin")) {
 
@@ -93,7 +94,7 @@ public class adminServlet extends HttpServlet {
 
             }
             /**
-             *
+             *Actualiza un aministrador en la BD y recibe los parametros correspondientes
              */
             if (btn.equals("Actualizar Admin")) {
                 String nombreI = (String) request.getParameter("nombre");
@@ -109,7 +110,11 @@ public class adminServlet extends HttpServlet {
 
                     request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
                 }
-            } else if (btn.equals("Modificar precio examen")) {
+            } 
+            /**
+             * Modifica un examen y recibe los parametros
+             */
+            else if (btn.equals("Modificar precio examen")) {
 
                 String codigo = (String) request.getParameter("codigo");
                 String costo = (String) request.getParameter("costo");
@@ -123,7 +128,7 @@ public class adminServlet extends HttpServlet {
                 }
             }
             
-            if (btn.equals("Agregar Nueva Consulta.")) {
+            else if (btn.equals("Agregar Nueva Consulta.")) {
                 ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
                 Especialidad especialidad;
                 GestorBDAdmin gestorBD = new GestorBDAdmin();
@@ -246,7 +251,8 @@ public class adminServlet extends HttpServlet {
                 } else {
                     request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
                 }
-            } else if (btn.equals("Registrar Laboratorista")) {
+            } 
+            else if (btn.equals("Registrar Laboratorista")) {
 
                 String codigo = request.getParameter("codigo");
                 String nombre = request.getParameter("nombre");
@@ -312,3 +318,4 @@ public class adminServlet extends HttpServlet {
     }// </editor-fold>
 
 }
+//Registrar Laboratorista

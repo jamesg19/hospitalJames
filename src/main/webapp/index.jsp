@@ -15,6 +15,7 @@
 
 
         <%@ page import="Controller.login" %>
+        <%@ page import="Controller.registraPaciente" %>
         <h3 align="center" > Introduce tu cuenta y tu contraseña</h3>
         <form action="login" method="post">
             <table cellspacing="3" cellpadding="3" border="1" >
@@ -55,11 +56,11 @@
             </div>
             </div>
         </form>
-        <form action="pagesAdmin/llenaRegistro.jsp" method="post">
+        <form action="registraPaciente" method="post">
             <br>  
             <br> 
             <div align="center" >
-                <input type="submit" align="center" value="Registrarse">
+                <input  type="submit" name="boton" align="center" value="Registrarse">
             </div>
 
         </form>

@@ -1,3 +1,9 @@
+<%-- 
+    Document   : llenaRegistroPaciente
+    Created on : Oct 2, 2020, 2:23:50 AM
+    Author     : james
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>     
@@ -36,10 +42,10 @@
             }
         }
         </script>
-        <%@ page import="Controller.adminServlet" %>
-        
-        <h2 align="center"> Agrega un nuevo administrador</h2>
-        <form  action="crearAdmin" name="forma" method="post">
+        <%@ page import="Controller.pacienteServlet" %>
+
+        <h2 align="center"> Registrate como nuevo paciente</h2>
+        <form  action="paciente" name="forma" method="post">
 
 
             <table cellspacing="3" cellpadding="3" align="center"  >          
@@ -48,24 +54,63 @@
                 <td><input required type="text" Id='codigo' name="codigo"></td>           
                 </tr>             
                 <tr>             
-                    <td align="right"> DPI: </td>                
-                    <td> <input required type="text" Id='dpi' name="dpi"  > </td>           
+                    <td align="right"> Nombres: </td>                
+                    <td> <input required type="text" Id='nombre' name="nombre"  > </td>           
                 </tr>           
                 <tr>             
-                    <td align="right"> Nombre: </td>                
-                    <td> <input required type="text" Id='nombre' name="nombre"> </td>           
+                    <td align="right"> Sexo: </td>                
+                    <td> <select class="form-control" name="sexo" Id="sexo" >
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                        </select> 
+                    </td>           
                 </tr>  
                 <tr>             
-                    <td align="right"> Password: </td>                
+                    <td align="right"> Fecha nacimiento: </td>                
+                    <td> <input required type="text" Id='cumple' name="cumple"> </td>           
+                </tr>
+                <tr>             
+                    <td align="right"> DPI </td>                
+                    <td> <input required type="number" Id='dpi' name="dpi"  > </td>           
+                </tr>           
+                <tr>             
+                    <td align="right"> Telefono: </td>                
+                    <td> <input required type="number" Id='telefono' name="telefono"> </td>           
+                </tr>
+                <tr>             
+                    <td align="right"> Sangre: </td>                
+                    <td> <select class="form-control" Id="sangre" name="sangre">
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option>O+</option>
+                            <option>O-</option>
+                            <option>AB+</option>
+                            <option>AB-</option>
+                        </select> 
+                    </td>           
+                </tr>
+                <tr>             
+                    <td align="right"> Peso </td>                
+                    <td> <input required type="number" step="any" Id='peso' name="peso"> </td>           
+                </tr>
+                <tr>             
+                    <td align="right"> correo </td>                
+                    <td> <input required type="text" Id='correo' name="correo"> </td>           
+                </tr>  
+                <tr>             
+                    <td align="right"> Password </td>                
                     <td> <input required type="text" Id='password' name="password"> </td>           
                 </tr>
 
-            <div>
-                <input type="reset" value="Borrar">
 
-                <input type="submit" name="boton" value="Registrar Admin" onClick='valida(forma)' >
-            </div>
             </table> 
+                            <div align="center" >
+                    <input type="reset" value="Borrar">
+
+                    <input type="submit" name="boton" value="Registrarme como paciente" >
+                </div>
 
         </form>
 
