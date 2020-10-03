@@ -24,7 +24,7 @@ public class GestorBDPaciente {
     ResultSet usuarioResultSet;
     Paciente usuarioHallado;
     String codigo, nombre;
-
+    Doctor doctorHallado;
     /**
      * registra un nuevo administrador al sistema
      *
@@ -105,6 +105,90 @@ public class GestorBDPaciente {
             return null;
         }
     }
+        
+        
+        
+    /**
+     * Array List 
+     *Busca un doctor por nombre incluyendo especialidad
+     * @return
+     */
+    public ArrayList<Doctor> leeTodosDoctorNombre(String nombre) {
+        ArrayList<Doctor> doctores = new ArrayList<Doctor>();
+        try {
+
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT distinctrow d.codigo, d.nombre,d.colegiado,d.correo,d.hora_inicio,hora_fin, d.trabajo,e.tipo_Especialidad FROM doctor d INNER JOIN especialidad e ON d.codigo = e.id_doctor WHERE d.nombre LIKE '%"+nombre+"%';");
+            if (!usuarioResultSet.next()) {
+
+                System.out.println(" No se encontraron registros");
+                ConectaBD.cerrar();
+                return doctores;
+            } else {
+                do {
+                    String codigoD = usuarioResultSet.getString("codigo");
+                    String nombreD = usuarioResultSet.getString("nombre");
+                    String colegiadoD = usuarioResultSet.getString("colegiado");
+                    String correoD = usuarioResultSet.getString("correo");
+                    String horaInicioD = usuarioResultSet.getString("hora_inicio");
+                    String horaFinD = usuarioResultSet.getString("hora_fin");
+                    String trabajoD = usuarioResultSet.getString("trabajo");
+                    String especialidadD = usuarioResultSet.getString("tipo_Especialidad");
+
+                    doctorHallado = new Doctor(codigoD, nombreD, colegiadoD, correoD, horaInicioD, horaFinD, trabajoD, especialidadD);
+                    doctores.add(doctorHallado);
+                } while (usuarioResultSet.next());
+                ConectaBD.cerrar();
+                return doctores;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+        /**
+         * Busca todos los doctores segun la especialidad que busquen
+         * @param nombre
+         * @return 
+         */
+        public ArrayList<Doctor> leeTodosDoctorEspecialidad(String nombre) {
+        ArrayList<Doctor> doctores = new ArrayList<Doctor>();
+        try {
+
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT distinctrow d.codigo, d.nombre,d.colegiado,d.correo,d.hora_inicio,hora_fin, d.trabajo,e.tipo_Especialidad FROM doctor d INNER JOIN especialidad e ON d.codigo = e.id_doctor WHERE e.tipo_Especialidad LIKE '%"+nombre+"%';");
+            if (!usuarioResultSet.next()) {
+
+                System.out.println(" No se encontraron registros");
+                ConectaBD.cerrar();
+                return doctores;
+            } else {
+                do {
+                    String codigoD = usuarioResultSet.getString("codigo");
+                    String nombreD = usuarioResultSet.getString("nombre");
+                    String colegiadoD = usuarioResultSet.getString("colegiado");
+                    String correoD = usuarioResultSet.getString("correo");
+                    String horaInicioD = usuarioResultSet.getString("hora_inicio");
+                    String horaFinD = usuarioResultSet.getString("hora_fin");
+                    String trabajoD = usuarioResultSet.getString("trabajo");
+                    String especialidadD = usuarioResultSet.getString("tipo_Especialidad");
+
+                    doctorHallado = new Doctor(codigoD, nombreD, colegiadoD, correoD, horaInicioD, horaFinD, trabajoD, especialidadD);
+                    doctores.add(doctorHallado);
+                } while (usuarioResultSet.next());
+                ConectaBD.cerrar();
+                return doctores;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     
     
     

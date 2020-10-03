@@ -31,7 +31,7 @@
                 <th>Costo</th>            
                 <th>Tipo Informe</th> 
             </tr> 
-            <%            for (Examenes examen : examenes) {%>          
+            <%         if(examenes!=null){   for (Examenes examen : examenes) {%>          
             <tr valign="rigth">            
                 <td><%=examen.getCodigo() %></td>             
                 <td><%=examen.getNombre()%></td>             
@@ -40,7 +40,7 @@
                 <td><%=examen.getCosto() %></td> 
                 <td><%=examen.getFormatoPDF()%></td> 
             </tr>          
-            <% }%>         
+            <% }}%>         
         </table>
         <h4>Para cambiar el precio debes de buscar el codigo y luego ingresa el nuevo precio </h4> 
         <br>

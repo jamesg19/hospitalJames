@@ -483,7 +483,7 @@ public class GestorBDAdmin {
     }
 
     /**
-     *
+     *lee un doctor sin especialidad
      */
     public ArrayList<Doctor> leeDoctor() {
         ArrayList<Doctor> doctores = new ArrayList<Doctor>();

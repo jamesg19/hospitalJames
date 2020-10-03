@@ -6,8 +6,10 @@
 package Controller;
 
 import Model.*;
+import Objetos.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +37,7 @@ public class pacienteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String btn = request.getParameter("boton");
+            String Check = request.getParameter("inlineRadioOptions");
             /**
              * Registra un nuevo paciente
              */
@@ -60,6 +63,60 @@ public class pacienteServlet extends HttpServlet {
                     request.getRequestDispatcher("/errorGuardar.jsp").forward(request, response);
                 }
             }
+             else if (btn.equals("Buscar doctor")) {
+
+                 request.getRequestDispatcher("/pagesPaciente/buscarMedico.jsp").forward(request, response);
+             }
+            else if (btn.equals("Pagina de Inicio")) {
+
+                 request.getRequestDispatcher("/pagesPaciente/inicioSistema.jsp").forward(request, response);
+            }
+             
+            else if (btn.equals("Busca doctor")) {
+                
+                if (Check.equals("nombre")) {
+                ArrayList<Doctor> doctores = new ArrayList<Doctor>();              
+                Doctor doctor;
+                GestorBDPaciente gestorBD = new GestorBDPaciente();
+                String busqueda = request.getParameter("busqueda");
+                doctores = gestorBD.leeTodosDoctorNombre(busqueda);
+                
+                if ((doctores != null)) {
+                    request.setAttribute("Doctor", doctores);
+                    request.getRequestDispatcher("/pagesPaciente/buscarMedico.jsp").forward(request, response);
+                    
+                } else {
+                    request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+                }    
+                }
+                
+                
+                if (Check.equals("especialidad")) {
+                ArrayList<Doctor> doctores = new ArrayList<Doctor>();              
+                Doctor doctor;
+                GestorBDPaciente gestorBD = new GestorBDPaciente();
+                String busqueda = request.getParameter("busqueda");
+                doctores = gestorBD.leeTodosDoctorEspecialidad(busqueda);
+                
+                if ((doctores != null)) {
+                    request.setAttribute("Doctor", doctores);
+                    request.getRequestDispatcher("/pagesPaciente/buscarMedico.jsp").forward(request, response);
+                    
+                } else {
+                    request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+                }    
+                }
+                
+                
+                
+                
+            }
+             
+             
+             
+             
+             
+             
         }
     }
 

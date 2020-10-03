@@ -20,7 +20,7 @@
     <body  background="Imagenes/fondoAdmin.jpg">
 
         <h1>Bienvenido al portal de Administrador </h1>
-        <%@ page import="Controller.adminServlet" %>
+        <%@ page import="Controller.pacienteServlet" %>
         <%
             String nombreI = (String) request.getAttribute("nombre");
             String cuentaI = (String) request.getAttribute("cuenta");
@@ -32,7 +32,7 @@
         <h1> Hola <%= nombreI%> bienvenido al sistema! tu usuario es:</h1>
 
 
-        <form action="crearAdmin" method="post" >
+        <form action="paciente" method="post" >
             <input type="text"  name="user" value="<%= cuentaI%>" readonly="">
 
             <div align="center" >
@@ -40,13 +40,16 @@
                 <br>
                 <table >
                     <tr>
-                        
-                    <br>
-                        <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="Ver historial medico">
+                    <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="Ver historial medico">
                     </td>
-
-                        
-                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Buscar doctor">
+                    <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Buscar doctor">
+                    </td>
+                    </tr>
+                    
+                    <tr>                  
+                    <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="Agendar una cita">
+                    </td>
+                    <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Ver citas">
                     </td>
                     </tr>
                 </table>

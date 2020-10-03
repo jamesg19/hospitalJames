@@ -10,6 +10,7 @@
         <title>Ingreso al sistema</title>
     </head>
     <body background="Imagenes/pruebaimagen.jpg">
+        
         <br>
         <h1 align="center" >Bienvenido al portal Hospital USAC2.0</h1>
 
@@ -64,6 +65,7 @@
             </div>
 
         </form>
+        
     </body>
 
 

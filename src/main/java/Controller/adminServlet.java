@@ -139,10 +139,7 @@ public class adminServlet extends HttpServlet {
                     request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
                 }
             }
-            
-            
-            
-            
+
             else if (btn.equals("Agregar Nueva Consulta.")) {
                 ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
                 Especialidad especialidad;

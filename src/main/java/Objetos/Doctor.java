@@ -103,6 +103,9 @@ public class Doctor {
         return password;
     }
 
+    public Doctor() {
+    }
+
     
     
 
