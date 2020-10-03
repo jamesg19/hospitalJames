@@ -46,11 +46,19 @@
                     </tr>
                     <tr>
                         <td align="right"> Correo: </td>
-                        <td> <input type="text" Id='correo'  name="correo"  required > </td>
+                        <td> <input type="email" Id='correo'  name="correo"  required > </td>
                     </tr>
                     <tr>
                         <td align="right"> Dias trabajo: </td>
-                        <td> <input type="text" Id='diasTrabajo'  name="diasTrabajo"  required > </td>
+                        <td> <select name="diasTrabajo" multiple>
+                                <option selected>Lunes, </option>
+                                <option>Martes, </option>
+                                <option>Miercoles, </option>
+                                <option>Jueves, </option>
+                                <option>Viernes, </option>
+                                <option>Sabado, </option>
+                                <option>Domingo, </option>
+                            </select> </td>
                     </tr>
 
                     <tr>
@@ -61,7 +69,7 @@
             </table>
 
             <div class="form-group" align="center">
-                <td align="right"> Trabaja desde </td>
+                <td align="right"> Trabaja desde: </td>
                 <input type="date" id="start" name="trabajo" value="2020-03-19"
                        min="1980-01-01" max="2020-12-31" required>
             </div>

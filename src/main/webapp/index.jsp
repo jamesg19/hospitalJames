@@ -11,7 +11,7 @@
     </head>
     <body background="Imagenes/pruebaimagen.jpg">
         <br>
-        <h1 align="center" >Bienvenido al portal Hospital USAC</h1>
+        <h1 align="center" >Bienvenido al portal Hospital USAC2.0</h1>
 
 
         <%@ page import="Controller.login" %>

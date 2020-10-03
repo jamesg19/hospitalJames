@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : inicioSistema
     Created on : Sep 27, 2020, 5:29:52 PM
     Author     : james
@@ -19,33 +19,37 @@
     </head>
     <body  background="Imagenes/fondoAdmin.jpg">
 
-        <h1>Bienvenido al portal del Paciente </h1>
+        <h1>Bienvenido al portal de Administrador </h1>
         <%@ page import="Controller.adminServlet" %>
         <%
             String nombreI = (String) request.getAttribute("nombre");
             String cuentaI = (String) request.getAttribute("cuenta");
-
+            String dpi = (String) request.getAttribute("dpi");
+            String name = (String) request.getAttribute("password");
+            request.setAttribute("nombre",nombreI);
+            request.setAttribute("cuenta",cuentaI);
         %>
-        <h1> Hola <%= nombreI%> bienvenido al sistema! </h1>
-        <h3>Tu usuario es:</h3>
+        <h1> Hola <%= nombreI%> bienvenido al sistema! tu usuario es:</h1>
 
 
         <form action="crearAdmin" method="post" >
             <input type="text"  name="user" value="<%= cuentaI%>" readonly="">
 
-            <div align="left" >
-                <br>  
-                <br> 
-                <p>Agrega un nuevo administrador </p>
-                <input  type="submit" name="boton" align="center" value="Agregar Admin">
-                <input  type="submit" name="boton" align="center" value="Modificar mis datos">              
-                <p>Agrega un nuevo examen y modifica precios de examen</p>
-                <input type="submit" name="boton" align="center" value="Agregar Examen">
-                <input type="submit" name="boton" align="center" value="Modifica precios">
-                <p>Agrega un nuevo doctor</p>
-                <input type="submit" name="boton" align="center" value="Agregar Doctor">
-                <input type="submit" name="boton" align="center" value="Agrega Especialidad a Medico">
+            <div align="center" >
+                <br>
+                <br>
+                <table >
+                    <tr>
+                        
+                    <br>
+                        <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="Ver historial medico">
+                    </td>
 
+                        
+                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Buscar doctor">
+                    </td>
+                    </tr>
+                </table>
             </div>
 
 

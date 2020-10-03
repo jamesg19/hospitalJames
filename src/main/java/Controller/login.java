@@ -35,7 +35,7 @@ public class login extends HttpServlet {
             
 
             //verifica si es administrador
-            if (Check.equals("admin")) {
+             if (Check.equals("admin")) {
 
                 GestorBDAdmin gestorBD = new GestorBDAdmin();
 

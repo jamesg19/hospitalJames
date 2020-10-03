@@ -112,7 +112,7 @@ public class adminServlet extends HttpServlet {
                 }
             } 
             /**
-             * Modifica un examen y recibe los parametros
+             * Modifica un examen y recibe los 
              */
             else if (btn.equals("Modificar precio examen")) {
 
@@ -127,6 +127,21 @@ public class adminServlet extends HttpServlet {
                     request.getRequestDispatcher("/errorGuardar.jsp").forward(request, response);
                 }
             }
+            else if (btn.equals("Modifica precios")) {
+                ArrayList<Examenes> examenes = new ArrayList<Examenes>();
+                Examenes examen;
+                GestorBDAdmin gestorBD = new GestorBDAdmin();
+                examenes = gestorBD.leeTodosExamen();
+                if (examenes != null) {
+                    request.setAttribute("Examenes", examenes);
+                    request.getRequestDispatcher("/Examen/listaExamen.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+                }
+            }
+            
+            
+            
             
             else if (btn.equals("Agregar Nueva Consulta.")) {
                 ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
@@ -155,19 +170,6 @@ public class adminServlet extends HttpServlet {
             } 
  
             
-
-            else if (btn.equals("Modifica precios")) {
-                ArrayList<Examenes> examenes = new ArrayList<Examenes>();
-                Examenes examen;
-                GestorBDAdmin gestorBD = new GestorBDAdmin();
-                examenes = gestorBD.leeTodosExamen();
-                if (examenes != null) {
-                    request.setAttribute("Examenes", examenes);
-                    request.getRequestDispatcher("/Examen/listaExamen.jsp").forward(request, response);
-                } else {
-                    request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
-                }
-            } 
             //redirige a la pagina para ver que doctor va a agregar la especialidad
             else if (btn.equals("Agrega Especialidad a Medico")) {
                 ArrayList<Doctor> doctores = new ArrayList<Doctor>();
@@ -251,8 +253,7 @@ public class adminServlet extends HttpServlet {
                 } else {
                     request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
                 }
-            } 
-            else if (btn.equals("Registrar Laboratorista")) {
+            } else if (btn.equals("Registrar Laboratorista")) {
 
                 String codigo = request.getParameter("codigo");
                 String nombre = request.getParameter("nombre");

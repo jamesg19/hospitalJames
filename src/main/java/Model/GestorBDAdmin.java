@@ -496,7 +496,7 @@ public class GestorBDAdmin {
 
                 System.out.println(" No se encontraron registros");
                 ConectaBD.cerrar();
-                return null;
+                return doctores;
             } else {
                 do {
                     codigoD = usuarioResultSet.getString("codigo");
@@ -532,7 +532,7 @@ public class GestorBDAdmin {
 
                 System.out.println(" No se encontraron registros");
                 ConectaBD.cerrar();
-                return null;
+                return especialidades;
             } else {
                 do {
 
@@ -563,7 +563,7 @@ public class GestorBDAdmin {
 
                 System.out.println(" No se encontraron registros");
                 ConectaBD.cerrar();
-                return null;
+                return consultas;
             } else {
                 do {
 

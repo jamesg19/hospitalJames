@@ -10,10 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet"
-              href="CSS/Estilo.css">
-        <link rel="stylesheet"
-              href="CSS/Letra.css">
+        
+
         <link rel="stylesheet"
               href="CSS/botones.css">
     </head>
@@ -38,25 +36,47 @@
         <form action="crearAdmin" method="post" >
             <input type="text"  name="user" value="<%= cuentaI%>" readonly="">
 
-            <div align="left" >
-                <br>  
-                <br> 
-                <p>Agrega un nuevo administrador </p>
-                <input  type="submit" name="boton" align="center" value="Agregar Admin">
-                <input  type="submit" name="boton" align="center" value="Modificar mis datos">              
-                <p>Agrega un nuevo examen y modifica precios de examen</p>
-                <input type="submit" name="boton" align="center" value="Agregar Examen">
-                <input type="submit" name="boton" align="center" value="Modifica precios">
-                <p>Agrega un nuevo doctor</p>
-                <input type="submit" name="boton" align="center" value="Agregar Doctor">
-                <input type="submit" name="boton" align="center" value="Agrega Especialidad a Medico">
-                <p>Agrega una nueva consulta</p>
-                <input type="submit" name="boton" align="center" value="Agregar Nueva Consulta.">
-                <input type="submit" name="boton" align="center" value="Modifica precio consulta">
-                <p>Agrega un nuevo Laboratorista</p>
-                <input type="submit" name="boton" align="center" value="Agregar Nuevo Laboratorista">
-                <input type="submit" name="boton" align="center" value="Modifica Laboratorista">
+            <div align="center" >
 
+                <table align="center" >
+                    <tr align="center" >
+                        <td align="center" >
+                <input class="btn btn--3" type="submit" name="boton" align="center" value="Agregar Admin">
+                <input class="btn btn--3" type="submit" name="boton" align="center" value="Agregar Examen">
+                        </td>
+
+                    
+                    <td>   
+                <input class="btn btn--3" type="submit" name="boton" align="center" value="Modificar mis datos">
+                <input class="btn btn--3" type="submit" name="boton" align="center" value="Modifica precios">
+                    </td>
+                
+                <tr>
+                    <td> 
+                <input class="btn btn--3" type="submit" name="boton" align="center" value="Agregar Doctor">
+                                <input class="btn btn--3" type="submit" name="boton" align="center" value="Agregar Nueva Consulta.">
+                    </td>
+
+                    
+                    <td>
+                <input class="btn btn--3" type="submit" name="boton" align="center" value="Agrega Especialidad a Medico">    
+
+                <input class="btn btn--3" type="submit" name="boton" align="center" value="Modifica precio consulta">
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td>
+                    
+                <input class="btn btn--3" type="submit" name="boton" align="center" value="Agregar Nuevo Laboratorista">
+                    </td><!-- comment -->
+                    <td>
+                <input class="btn btn--3" type="submit" name="boton" align="center" value="Modifica Laboratorista">
+                    </td>
+                </tr>
+                
+                
+                </table>
             </div>
 
 

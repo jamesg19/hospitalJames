@@ -50,7 +50,7 @@
 
             <table cellspacing="3" cellpadding="3" align="center"  >          
 
-                <td align="right"> Codigo: </td>            
+                <td align="right"> Usuario: </td>            
                 <td><input required type="text" Id='codigo' name="codigo"></td>           
                 </tr>             
                 <tr>             
@@ -67,7 +67,8 @@
                 </tr>  
                 <tr>             
                     <td align="right"> Fecha nacimiento: </td>                
-                    <td> <input required type="text" Id='cumple' name="cumple"> </td>           
+                    <td> <input type="date" id="cumple" name="cumple" value="2020-03-19"
+                       min="1980-01-01" max="2020-12-31"> </td>           
                 </tr>
                 <tr>             
                     <td align="right"> DPI </td>                
@@ -101,7 +102,7 @@
                 </tr>  
                 <tr>             
                     <td align="right"> Password </td>                
-                    <td> <input required type="text" Id='password' name="password"> </td>           
+                    <td> <input required type="password" Id='password' name="password"> </td>           
                 </tr>
 
 

@@ -38,7 +38,7 @@ public class pacienteServlet extends HttpServlet {
             /**
              * Registra un nuevo paciente
              */
-             if (btn.equals("Registrarme")) {
+             if (btn.equals("Registrarme como paciente")) {
 
                 String codigo = request.getParameter("codigo");
                 String nombre = request.getParameter("nombre");
@@ -55,9 +55,9 @@ public class pacienteServlet extends HttpServlet {
                 GestorBDPaciente gestorBD = new GestorBDPaciente();
                 if (gestorBD.registrarPaciente(codigo, nombre, sexo, cumple,dpi,
                         telefono,pesoo,sangre,correo,password)) {
-                    request.getRequestDispatcher("/pagesAdmin/registroGuardado.jsp").forward(request, response);
+                    request.getRequestDispatcher("RegistroGuardado.jsp").forward(request, response);
                 } else {
-                    request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
+                    request.getRequestDispatcher("/errorGuardar.jsp").forward(request, response);
                 }
             }
         }

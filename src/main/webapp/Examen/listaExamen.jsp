@@ -4,7 +4,14 @@
     <head>        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <title>Listado de Examenes</title>    
-    </head>     
+                <script>             
+            function valida(form) {            
+                form.submit();
+                
+        }
+        </script> 
+    </head> 
+           
     <body background="Imagenes/fondoAdmin.jpg"> 
         <%@ page import="Controller.adminServlet" %>
         <%@ page import="Objetos.Examenes, java.util.ArrayList" %> 
@@ -37,7 +44,7 @@
         </table>
         <h4>Para cambiar el precio debes de buscar el codigo y luego ingresa el nuevo precio </h4> 
         <br>
-        <form action="crearAdmin" method="post">
+        <form  name="forma" action="crearAdmin" method="post">
             <table align="left">
                 <td align="right"> Codigo: </td>            
                 <td><input required type="text" Id='codigo' name="codigo"></td>           
@@ -46,13 +53,8 @@
                     <td align="right"> Precio: </td>                
                     <td> <input required type="number" Id='costo' name="costo" step="any" > </td>           
                 </tr>
-
-        <input type="submit" name="boton" value="Modificar precio examen"  >
-
-                
-            </table><!--  -->
-
-        </form>
-
+        <input type="submit" name="boton" value="Modificar precio examen" >  
+            </table>
+        </form>       
     </body> 
 </html> 
