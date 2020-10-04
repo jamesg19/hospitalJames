@@ -31,6 +31,11 @@ public class Consulta {
     public Consulta(String tipo) {
         this.tipo = tipo;
     }
+
+    public Consulta(double costo) {
+        this.costo = costo;
+    }
+    
     
     public int getCodigo() {
         return codigo;

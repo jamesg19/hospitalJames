@@ -25,6 +25,7 @@ public class GestorBDPaciente {
     Paciente usuarioHallado;
     String codigo, nombre;
     Doctor doctorHallado;
+    Consulta consultaHallada;
     /**
      * registra un nuevo administrador al sistema
      *
@@ -228,6 +229,73 @@ public class GestorBDPaciente {
             System.out.println("Error en la base de datos.");
             e.printStackTrace();
             return null;
+        }
+    }
+    
+
+        /**
+         * Agregar cita del paciente
+         * @param codigo
+         * @param especialidad
+         * @return 
+         */
+        public boolean registrarCita(String paciente, String medico,String especialidad, String fecha, String hora) {
+        int resultUpdate = 0;
+
+        conn = ConectaBD.abrir();
+
+        String query = "INSERT INTO cita VALUES (?,?,?,?,?)";
+
+        try (PreparedStatement preSt = conn.prepareStatement(query)) {
+            
+
+            preSt.setString(1, paciente);
+            preSt.setString(2, medico);
+            preSt.setString(3, especialidad);
+            preSt.setString(4, fecha);
+            preSt.setString(5, hora);
+
+            resultUpdate = preSt.executeUpdate();
+
+            if (resultUpdate != 0) {
+                ConectaBD.cerrar();
+                return true;
+            } else {
+                ConectaBD.cerrar();
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+        
+        
+        
+                public Consulta consultarPrecioCita(String tipo) {
+        try {
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT costo FROM consulta WHERE tipo_consulta ='" + tipo.trim() + "';");
+
+            if (!usuarioResultSet.next()) {
+                System.out.println(" No se encontro el registro");
+                ConectaBD.cerrar();
+                return consultaHallada;
+            } else {
+                System.out.println("Se encontró el registro");
+                double COSTO = usuarioResultSet.getDouble("costo");
+                
+                
+                consultaHallada = new Consulta(COSTO);
+                ConectaBD.cerrar();
+                return consultaHallada;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return consultaHallada;
         }
     }
     

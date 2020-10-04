@@ -19,6 +19,7 @@
             String especialidad=(String) request.getAttribute("especialidad");
             String hora=(String) request.getAttribute("hora");
             String fecha=(String) request.getAttribute("fecha");
+            Double costo=(Double) request.getAttribute("costo");
             %>
 
         <div>
@@ -64,16 +65,24 @@
             </tr>
                             <tr>
                     <td>Codigo del medico:</td>                                  
-                    <td><select align="center" required type="text" Id='especialidad' name="especialidad" >
+                    <td><select align="center" required type="text" Id='medico' name="medico" >
                             <%if(doctoresd!=null){for (Doctor doctorr : doctoresd) {%>
                             <option><%=doctorr.getCodigo() %></option>
                             <% }}%>
                         </select></td>
                 </tr>
+                <tr>
+                <td>
+                    Costo (Q):
+                </td>
+                <td>
+                    <input type="text" Id="costo" name="costo" value="<%=costo%>"readonly >
+                </td>
+                </tr>
                 <% if(especialidad!= null && hora!=null && fecha!= null && cuenta!= null){%>
                 <tr>
                     <td>Mi codigo Paciente</td><!-- comment -->
-                    <td><input  type="text" Id="user" name="user" value="<%=cuenta%>" readonly ></td><!-- comment -->
+                    <td><input  type="text" Id="paciente" name="paciente" value="<%=cuenta%>" readonly ></td><!-- comment -->
 
                 </tr>
                 <tr>

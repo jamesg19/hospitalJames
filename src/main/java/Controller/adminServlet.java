@@ -183,7 +183,8 @@ public class adminServlet extends HttpServlet {
                 } else {
                     request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
                 }
-            } //Agrega Nueva Especialidad y la guarda en la tabla
+            } 
+            //Agrega Nueva Especialidad y la guarda en la tabla
             else if (btn.equals("Agrega Nueva Especialidad")) {
                 
                 String codigo = (String) request.getParameter("codigo");
@@ -197,7 +198,9 @@ public class adminServlet extends HttpServlet {
                 } else {
                     request.getRequestDispatcher("/errorGuardar.jsp").forward(request, response);
                 }
-            } else if (btn.equals("Registrar Examen")) {
+            } 
+            
+            else if (btn.equals("Registrar Examen")) {
 
                 String codigo = request.getParameter("codigo");
                 String nombre = request.getParameter("nombre");

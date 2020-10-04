@@ -20,7 +20,7 @@
     <body  background="Imagenes/fondo2.jpg">
         <%@ include file = "../pagesPaciente/menu.jsp" %>
 
-        <h1>Bienvenido al portal de Administrador </h1>
+        <h1>Bienvenido al portal de Paciente </h1>
         <%@ page import="Controller.pacienteServlet" %>
         <%
             String nombreI = (String) request.getAttribute("nombre");
@@ -28,7 +28,7 @@
             request.setAttribute("nombre",nombreI);
             request.setAttribute("cuenta",cuentaI);
         %>
-        <h1> Hola <%= nombreI%> bienvenido al sistema! tu usuario es:</h1>
+        <h1> Hola  bienvenido al sistema! tu usuario es:</h1>
         <form action="paciente" method="post" >
             <div align="right" >
               <input  type="submit" name="boton" align="right" value="Cerrar sesion">  

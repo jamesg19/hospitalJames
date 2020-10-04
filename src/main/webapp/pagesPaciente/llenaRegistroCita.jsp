@@ -39,7 +39,7 @@
                 <tr>
                     <td>Mi codigo Paciente</td><!-- comment -->
                     <td><input  type="text" Id="user" name="user" value="<%=cuentaI%>" readonly ></td><!-- comment -->
-
+                    
                 </tr>
                 <tr>
                     <td>Tipo de consulta:</td>                                  

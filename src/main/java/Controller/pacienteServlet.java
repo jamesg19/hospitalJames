@@ -44,6 +44,7 @@ public class pacienteServlet extends HttpServlet {
             GestorBDPaciente pacienteDB = new GestorBDPaciente();
             String fechaC,horaC,especialidadC;
             Paciente paciente1;
+            Consulta consulta;
             /**
              * Registra un nuevo paciente
              */
@@ -182,6 +183,13 @@ public class pacienteServlet extends HttpServlet {
                 
                 doctores=pacienteDB.leeDoctorEspFecha(especialidadC,horaC);
                 
+                
+                GestorBDPaciente gestorBDs = new GestorBDPaciente();
+
+                consulta = gestorBDs.consultarPrecioCita(especialidadC);
+
+                
+                
                 if (especialidades != null) {
                     String paciente = (String) request.getParameter("user");
                     
@@ -189,6 +197,7 @@ public class pacienteServlet extends HttpServlet {
                     request.setAttribute("nombre", paciente1.getNombre());
                     request.setAttribute("fecha", fechaC);
                     request.setAttribute("hora", horaC);
+                    request.setAttribute("costo", consulta.getCosto());
                     request.setAttribute("especialidad", especialidadC);
                     request.setAttribute("Especialidad", especialidades);
                     request.setAttribute("Doctor", doctores);
@@ -197,29 +206,28 @@ public class pacienteServlet extends HttpServlet {
                 } else {
                     request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
                 }
-                
-                
+
             }
              
              //agrega cita
              else if (btn.equals("Agregar mi cita")) {
 
-                ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
-                Especialidad especialidad;
-                GestorBDAdmin gestorBD = new GestorBDAdmin();
-                especialidades = gestorBD.leeEspecialidad();
+                String medico = (String) request.getParameter("medico");
+                String especialidad = (String) request.getParameter("especialidad");
+                String paciente = (String) request.getParameter("paciente");
+                String fecha = (String) request.getParameter("fecha");
+                String hora = (String) request.getParameter("hora");
                 
-                if (especialidades != null) {
-                    String paciente = (String) request.getParameter("user");
-                    String nombres=(String) request.getAttribute("nombre");
+                GestorBDPaciente gestorBD = new GestorBDPaciente();
+                Cita appoiment=new Cita(0,paciente,medico,especialidad,fecha,hora);
+                
+                if (gestorBD.registrarCita(appoiment.getPaciente(),appoiment.getMedico(),
+                        appoiment.getEspecialidad(),appoiment.getFecha(),appoiment.getHora())) {
                     
-                    
-                    request.setAttribute("cuenta", paciente);
-                    request.setAttribute("nombre", nombres);
-                    request.setAttribute("Especialidad", especialidades);
-                    request.getRequestDispatcher("/pagesPaciente/llenaRegistroCita.jsp").forward(request, response);
+                    out.print("Cita Programada con exito.");
+                    out.print("Para mas detalles ve a la seccion de ''Ver mi citas'' ");
                 } else {
-                    request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+                    out.print("No hay citas disponibles en la hora ingresada "+hora);
                 }
                 
                 
