@@ -1,6 +1,6 @@
 <%--
     Document   : inicioSistema
-    Created on : Sep 27, 2020, 5:29:52 PM
+    Created on : Sep 27, 2020, 4:29:52 AM
     Author     : james
 --%>
 
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Portal Paciente</title>
         <link rel="stylesheet"
               href="CSS/Estilo.css">
         <link rel="stylesheet"

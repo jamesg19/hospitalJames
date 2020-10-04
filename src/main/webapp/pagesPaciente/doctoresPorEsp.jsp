@@ -3,7 +3,7 @@
 <html>     
     <head>        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
-        <title>Listado de Doctores</title>    
+        <title>Agendar cita</title>    
     </head>     
     <body background="Imagenes/fondoPaciente.jpg"> 
         <%@ page import="Controller.adminServlet" %>

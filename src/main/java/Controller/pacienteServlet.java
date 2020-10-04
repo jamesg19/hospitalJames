@@ -72,7 +72,8 @@ public class pacienteServlet extends HttpServlet {
             }
              else if (btn.equals("Buscar doctor")) {
                     String cuentaI = (String) request.getParameter("user");
-                    request.setAttribute("cuenta", cuentaI);
+                    paciente1=new Paciente(cuentaI);
+                    request.setAttribute("cuenta", paciente1.getCodigo());
 
                  request.getRequestDispatcher("/pagesPaciente/buscarMedico.jsp").forward(request, response);
              }
@@ -92,8 +93,9 @@ public class pacienteServlet extends HttpServlet {
             }
              
             else if (btn.equals("Busca doctor")) {
-                String cuentaI = (String) request.getParameter("user2");
-                request.setAttribute("cuenta", cuentaI);
+                String cuentaI = (String) request.getParameter("user");
+                paciente1=new Paciente(cuentaI);
+                request.setAttribute("cuenta", paciente1.getCodigo());
                 
                 if (Check.equals("nombre")) {
         

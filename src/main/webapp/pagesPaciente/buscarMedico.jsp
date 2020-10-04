@@ -1,6 +1,6 @@
 <%-- 
     Document   : buscarMedico
-    Created on : Oct 2, 2020, 9:43:31 PM
+    Created on : Oct 2, 2020, 2:43:31 PM
     Author     : james
 --%>
 
@@ -9,8 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        
+        <title>Buscar Medico</title>
+
     </head>
     <body>
         <%@ page import="Controller.pacienteServlet" %>
@@ -21,41 +21,41 @@
         request.setAttribute("cuenta",cuentaI);
 
         %>
-        <div>
-            
+
+        <div align="right" >
+
             <form action="paciente" name="boton" method="post" >
+                <input align="right" type="submit" name="boton" value="Inicio"  >
             </form> 
         </div>
-        
-        
         <div>
-        <form action="paciente" method="get">
-            
-            <table align="left">
-                
-                <tr>
-                <br>
-                <h4>Busca un doctor adecuado </h4>
-                <td align="right">Ingresa busqueda </td>            
-                <td><input required type="text" Id='busqueda' name="busqueda"></td>           
-                </tr>             
-                <tr>
-                <div class="form-check form-check-inline" align="center">
-                    <input class="form-check-input" required type="radio" name="inlineRadioOptions" id="inlineRadio1" value="nombre">
-                    <label class="form-check-label"  for="inlineRadio1">Por nombre</label>
+            <form action="paciente" method="get">
 
-                    <input class="form-check-input" required type="radio" name="inlineRadioOptions" id="inlineRadio2" value="especialidad">
-                    <label class="form-check-label"  for="inlineRadio2">Por especialidad</label>
-                </div>
-                </tr>
+                <h4>Tu usuario es:</h4>
+                <input readonly type="text" Id='user' name="user" value="<%=cuentaI%>">
+                <table align="left">
 
-                <input type="submit" name="boton" value="Busca doctor"  >
-                
+                    <tr>
+                    <br>
+                    <h4>Busca un doctor adecuado </h4>
+                    <td align="right">Ingresa busqueda </td>            
+                    <td><input required type="text" Id='busqueda' name="busqueda"></td>           
+                    </tr>             
+                    <tr>
+                    <div class="form-check form-check-inline" align="center">
+                        <input class="form-check-input" required type="radio" name="inlineRadioOptions" id="inlineRadio1" value="nombre">
+                        <label class="form-check-label"  for="inlineRadio1">Por nombre</label>
 
+                        <input class="form-check-input" required type="radio" name="inlineRadioOptions" id="inlineRadio2" value="especialidad">
+                        <label class="form-check-label"  for="inlineRadio2">Por especialidad</label>
+                    </div>
+                    </tr>
 
-            </table><!--  -->
+                    <input type="submit" name="boton" value="Busca doctor"  >
 
-        </form>
+                </table><!--  -->
+
+            </form>
         </div>
 
     </body>
