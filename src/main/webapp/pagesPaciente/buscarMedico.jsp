@@ -10,17 +10,27 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        
     </head>
     <body>
+        <%@ page import="Controller.pacienteServlet" %>
+        <%@ page import="Model.*" %>
+        <%
+
+        String cuentaI = (String) request.getAttribute("cuenta");   
+        request.setAttribute("cuenta",cuentaI);
+
+        %>
         <div>
+            
             <form action="paciente" name="boton" method="post" >
-                <input type="submit" name="boton" value="Pagina de Inicio"  >
             </form> 
         </div>
         
         
         <div>
         <form action="paciente" method="get">
+            
             <table align="left">
                 
                 <tr>

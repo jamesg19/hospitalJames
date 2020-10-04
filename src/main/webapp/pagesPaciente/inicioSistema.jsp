@@ -17,23 +17,30 @@
         <link rel="stylesheet"
               href="CSS/botones.css">
     </head>
-    <body  background="Imagenes/fondoAdmin.jpg">
+    <body  background="Imagenes/fondo2.jpg">
+        <%@ include file = "../pagesPaciente/menu.jsp" %>
 
         <h1>Bienvenido al portal de Administrador </h1>
         <%@ page import="Controller.pacienteServlet" %>
         <%
             String nombreI = (String) request.getAttribute("nombre");
             String cuentaI = (String) request.getAttribute("cuenta");
-            String dpi = (String) request.getAttribute("dpi");
-            String name = (String) request.getAttribute("password");
             request.setAttribute("nombre",nombreI);
             request.setAttribute("cuenta",cuentaI);
         %>
         <h1> Hola <%= nombreI%> bienvenido al sistema! tu usuario es:</h1>
+        <form action="paciente" method="post" >
+            <div align="right" >
+              <input  type="submit" name="boton" align="right" value="Cerrar sesion">  
+                
+            </div>
+            
+            
+        </form>
 
 
         <form action="paciente" method="post" >
-            <input type="text"  name="user" value="<%= cuentaI%>" readonly="">
+            <input type="text" Id="user" name="user" value="<%= cuentaI%>" readonly="">
 
             <div align="center" >
                 <br>

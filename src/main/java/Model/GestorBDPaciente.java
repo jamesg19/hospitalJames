@@ -189,6 +189,47 @@ public class GestorBDPaciente {
         }
     }
     
+    /**
+     * Lee todos los doctores segun la especialidad y horario de atencion
+     * @param nombre
+     * @return 
+     */    
+    public ArrayList<Doctor> leeDoctorEspFecha(String nombre,String hora) {
+        ArrayList<Doctor> doctores = new ArrayList<Doctor>();
+        try {
+
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT distinctrow d.codigo, d.nombre,d.colegiado,d.correo,d.hora_inicio,hora_fin, d.trabajo,e.tipo_Especialidad FROM doctor d INNER JOIN especialidad e ON d.codigo = e.id_doctor WHERE e.tipo_Especialidad LIKE '%"+nombre+"%' AND '"+hora+"' BETWEEN d.hora_inicio AND d.hora_fin;");
+            if (!usuarioResultSet.next()) {
+
+                System.out.println(" No se encontraron registros");
+                ConectaBD.cerrar();
+                return doctores;
+            } else {
+                do {
+                    String codigoD = usuarioResultSet.getString("codigo");
+                    String nombreD = usuarioResultSet.getString("nombre");
+                    String colegiadoD = usuarioResultSet.getString("colegiado");
+                    String correoD = usuarioResultSet.getString("correo");
+                    String horaInicioD = usuarioResultSet.getString("hora_inicio");
+                    String horaFinD = usuarioResultSet.getString("hora_fin");
+                    String trabajoD = usuarioResultSet.getString("trabajo");
+                    String especialidadD = usuarioResultSet.getString("tipo_Especialidad");
+
+                    doctorHallado = new Doctor(codigoD, nombreD, colegiadoD, correoD, horaInicioD, horaFinD, trabajoD, especialidadD);
+                    doctores.add(doctorHallado);
+                } while (usuarioResultSet.next());
+                ConectaBD.cerrar();
+                return doctores;
+            }
+        } catch (Exception e) {
+        
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return null;
+        }
+    }
     
     
     

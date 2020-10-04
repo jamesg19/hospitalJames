@@ -5,17 +5,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <title>Listado de Doctores</title>    
     </head>     
-    <body background="Imagenes/fondoAdmin.jpg"> 
+    <body background="Imagenes/fondoPaciente.jpg"> 
         <%@ page import="Controller.adminServlet" %>
         <%@ page import="Objetos.Doctor, java.util.ArrayList" %> 
         <h2>Los doctores que están registrados son: </h2> 
         <br>
-        <%ArrayList<Doctor> doctores = null;
-            doctores = (ArrayList<Doctor>) request.getAttribute("Doctor");    
+        <%
+        
+            
+            ArrayList<Doctor> doctores = null;
+            doctores = (ArrayList<Doctor>) request.getAttribute("Doctor");
+        
             %>
 
-                <div>
-
+        <div>
+            
         </div><!-- comment -->
          
         <br>        

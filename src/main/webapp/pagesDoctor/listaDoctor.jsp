@@ -51,9 +51,12 @@
             <table align="left">
                 <br>
                 <h4> </h4>
-                <td align="right"> Buscar: </td>            
-                <td><input required type="text" Id='busca' name="busca"></td>           
-                </tr>             
+                <td align="right"> Codigo Doctor: </td>            
+                <td><input required type="text" Id='codigo' name="codigo"></td>
+                
+                <td align="right"> Tipo Especialidad: </td>            
+                <td><input required type="text" Id='especialidad' name="especialidad"></td>
+                             
 
                 <input type="submit" name="boton" value="Agrega Nueva Especialidad"  >
 
@@ -67,15 +70,6 @@
             <br>
             <br>
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+
     </body> 
 </html> 

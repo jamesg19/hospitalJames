@@ -6,6 +6,7 @@
 package Controller;
 
 import Model.*;
+import static Model.ConectaBD.cerrar;
 import Objetos.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +16,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -38,6 +41,9 @@ public class pacienteServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String btn = request.getParameter("boton");
             String Check = request.getParameter("inlineRadioOptions");
+            GestorBDPaciente pacienteDB = new GestorBDPaciente();
+            String fechaC,horaC,especialidadC;
+            Paciente paciente1;
             /**
              * Registra un nuevo paciente
              */
@@ -64,25 +70,42 @@ public class pacienteServlet extends HttpServlet {
                 }
             }
              else if (btn.equals("Buscar doctor")) {
+                    String cuentaI = (String) request.getParameter("user");
+                    request.setAttribute("cuenta", cuentaI);
 
                  request.getRequestDispatcher("/pagesPaciente/buscarMedico.jsp").forward(request, response);
              }
-            else if (btn.equals("Pagina de Inicio")) {
+            
+            else if (btn.equals("Inicio")) {
+                String cuentaC=(String) request.getParameter("user");
+                paciente1=new Paciente(cuentaC);
+                request.setAttribute("cuenta", paciente1.getCodigo());
 
                  request.getRequestDispatcher("/pagesPaciente/inicioSistema.jsp").forward(request, response);
             }
+                    
+            else if (btn.equals("Cerrar sesion")) {
+                cerrar();
+
+                 request.getRequestDispatcher("/index.jsp").forward(request, response);
+            }
              
             else if (btn.equals("Busca doctor")) {
+                String cuentaI = (String) request.getParameter("user2");
+                request.setAttribute("cuenta", cuentaI);
                 
                 if (Check.equals("nombre")) {
-                ArrayList<Doctor> doctores = new ArrayList<Doctor>();              
-                Doctor doctor;
-                GestorBDPaciente gestorBD = new GestorBDPaciente();
-                String busqueda = request.getParameter("busqueda");
-                doctores = gestorBD.leeTodosDoctorNombre(busqueda);
+        
+                    ArrayList<Doctor> doctores = new ArrayList<Doctor>();
+                    Doctor doctor;
+                    GestorBDPaciente gestorBD = new GestorBDPaciente();
+                    String busqueda = request.getParameter("busqueda");
+                    doctores = gestorBD.leeTodosDoctorNombre(busqueda);
                 
                 if ((doctores != null)) {
                     request.setAttribute("Doctor", doctores);
+                    request.setAttribute("cuenta", cuentaI);
+
                     request.getRequestDispatcher("/pagesPaciente/buscarMedico.jsp").forward(request, response);
                     
                 } else {
@@ -92,31 +115,118 @@ public class pacienteServlet extends HttpServlet {
                 
                 
                 if (Check.equals("especialidad")) {
-                ArrayList<Doctor> doctores = new ArrayList<Doctor>();              
-                Doctor doctor;
-                GestorBDPaciente gestorBD = new GestorBDPaciente();
-                String busqueda = request.getParameter("busqueda");
-                doctores = gestorBD.leeTodosDoctorEspecialidad(busqueda);
-                
-                if ((doctores != null)) {
-                    request.setAttribute("Doctor", doctores);
-                    request.getRequestDispatcher("/pagesPaciente/buscarMedico.jsp").forward(request, response);
                     
-                } else {
-                    request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
-                }    
+                    ArrayList<Doctor> doctores = new ArrayList<Doctor>();              
+                    Doctor doctor;
+                    GestorBDPaciente gestorBD = new GestorBDPaciente();
+
+                    String busqueda = request.getParameter("busqueda");
+                    doctores = gestorBD.leeTodosDoctorEspecialidad(busqueda);
+
+                    if ((doctores != null)) {
+                        request.setAttribute("Doctor", doctores);
+                        request.getRequestDispatcher("/pagesPaciente/buscarMedico.jsp").forward(request, response);
+
+                    } else {
+                        request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+                    } 
+                
                 }
                 
                 
                 
                 
             }
+
+            else if (btn.equals("Agendar una cita")) {
+                
+                 
+                ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
+                Especialidad especialidad;
+                GestorBDAdmin gestorBD = new GestorBDAdmin();
+                especialidades = gestorBD.leeEspecialidad();
+                
+                if (especialidades != null) {
+                    String paciente = (String) request.getParameter("user");
+                    String nombres=(String) request.getAttribute("nombre");
+                    
+                    
+                    request.setAttribute("cuenta", paciente);
+                    request.setAttribute("nombre", nombres);
+                    request.setAttribute("Especialidad", especialidades);
+                    request.getRequestDispatcher("/pagesPaciente/llenaRegistroCita.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+                }
+                
+                
+            }
+             
+            else if (btn.equals("Buscar cita")) {
+                
+                //especialidades en el combo 
+                ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
+                //buscar doctor entre fecha laboral y especialidad
+                ArrayList<Doctor> doctores = new ArrayList<Doctor>();
+                Especialidad especialidad;
+                
+                String cuentaC=(String) request.getParameter("user");
+                String nombre=(String) request.getAttribute("nombreI");
+                fechaC=(String) request.getParameter("fecha");
+                horaC=(String) request.getParameter("hora");
+                especialidadC=(String) request.getParameter("especialidad");
+                paciente1=new Paciente(cuentaC,nombre);
+                
+                GestorBDAdmin gestorBD = new GestorBDAdmin();
+                especialidades = gestorBD.leeEspecialidad();
+                
+                doctores=pacienteDB.leeDoctorEspFecha(especialidadC,horaC);
+                
+                if (especialidades != null) {
+                    String paciente = (String) request.getParameter("user");
+                    
+                    request.setAttribute("cuenta", paciente1.getCodigo());
+                    request.setAttribute("nombre", paciente1.getNombre());
+                    request.setAttribute("fecha", fechaC);
+                    request.setAttribute("hora", horaC);
+                    request.setAttribute("especialidad", especialidadC);
+                    request.setAttribute("Especialidad", especialidades);
+                    request.setAttribute("Doctor", doctores);
+                    
+                    request.getRequestDispatcher("/pagesPaciente/llenaRegistroCita.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+                }
+                
+                
+            }
+             
+             //agrega cita
+             else if (btn.equals("Agregar mi cita")) {
+
+                ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
+                Especialidad especialidad;
+                GestorBDAdmin gestorBD = new GestorBDAdmin();
+                especialidades = gestorBD.leeEspecialidad();
+                
+                if (especialidades != null) {
+                    String paciente = (String) request.getParameter("user");
+                    String nombres=(String) request.getAttribute("nombre");
+                    
+                    
+                    request.setAttribute("cuenta", paciente);
+                    request.setAttribute("nombre", nombres);
+                    request.setAttribute("Especialidad", especialidades);
+                    request.getRequestDispatcher("/pagesPaciente/llenaRegistroCita.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+                }
+                
+                
+            }
              
              
-             
-             
-             
-             
+              
         }
     }
 

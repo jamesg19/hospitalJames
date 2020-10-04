@@ -15,32 +15,7 @@
 
     <body  background="Imagenes/fondoAdmin.jpg">
         <script>             
-            function valida(form) {            
-                if(document.forma.codigo.value ===''){
-                    alert("falta introducir el codigo"),
-                    form.cancelFormSubmission();
-                    
-            }else{                 
-                    if(document.forma.dpi.value ===''){ 
-                        alert("falta introducir el dpi"),
-                        form.cancelFormSubmission();
-                }else{
-                        if(document.forma.nombre.value ===''){
-                            form.cancelFormSubmission(),
-                            alert("falta introducir el nombre");       
-                    }else{ 
-                            if(document.forma.password.value ===''){
-                                form.cancelFormSubmission(),
-                                alert("falta introducir el password");
-                            
-                        }else{ 
-                                alert("Informacion enviada");
-                                form.submit();
-                        }
-                    }
-                }          
-            }
-        }
+
         </script>
         <%@ page import="Controller.pacienteServlet" %>
 
@@ -98,7 +73,7 @@
                 </tr>
                 <tr>             
                     <td align="right"> correo </td>                
-                    <td> <input required type="text" Id='correo' name="correo"> </td>           
+                    <td> <input required type="email" Id='correo' name="correo"> </td>           
                 </tr>  
                 <tr>             
                     <td align="right"> Password </td>                

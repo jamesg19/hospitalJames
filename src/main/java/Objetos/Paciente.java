@@ -55,6 +55,11 @@ public class Paciente {
         this.nombre = nombre;
     }
 
+    public Paciente(String codigo) {
+        this.codigo = codigo;
+    }
+    
+
     public String getCodigo() {
         return codigo;
     }
