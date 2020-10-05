@@ -1,3 +1,4 @@
+<%@page import="Objetos.Cita"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <!DOCTYPE html> 
 <html>     
@@ -11,47 +12,29 @@
         <h2>Los doctores que están registrados son: </h2> 
         <br>
         <%
-        
-            
-            ArrayList<Doctor> doctores = null;
-            doctores = (ArrayList<Doctor>) request.getAttribute("Doctor");
+            ArrayList<Cita> citas = null;
+            citas = (ArrayList<Cita>) request.getAttribute("Cita");
         
             %>
-
-        <div>
-            
+        <div>     
         </div><!-- comment -->
-         
         <br>        
             <table align="center" border="1">                  
             <tr> 
             <h5>Medicos con especialidad</h5>
-                <th>Codigo </th>            
-                <th>Nombre</th>            
-                <th>Colegiado</th>            
-                <th>Correo</th>           
-                <th>Hora Inicio jornada</th> 
-                <th>Hora Finaliza jornada</th>
-                <th>Fecha de contratacion</th> 
-                <th>Especialidad</th> 
+                <th>Medico </th>            
+                <th>Especialidad</th>            
+                <th>Fecha</th>            
+                <th>Hora</th>           
             </tr> 
-            <%        if(doctores!=null){    for (Doctor doctor : doctores) {%>          
+            <%        if(citas!=null){    for (Cita cita : citas) {%>          
             <tr valign="rigth">            
-                <td><%=doctor.getCodigo()%></td>             
-                <td><%=doctor.getNombre()%></td> 
-                <td><%=doctor.getColegiado()%></td> 
-                <td><%=doctor.getCorreo() %></td> 
-                <td><%=doctor.getHoraInicio()%></td> 
-                <td><%=doctor.getHoraFin()%></td>
-                <td><%=doctor.getFechaTrabajo()%></td>
-                <td><%=doctor.getEspecialidad()%></td>
-
+                <td><%=cita.getPaciente() %></td>             
+                <td><%=cita.getMedico() %></td> 
+                <td><%=cita.getFecha() %></td> 
+                <td><%=cita.getHora() %></td> 
             </tr>          
             <% }}%>
-
-
-
         </table>
-   
     </body> 
 </html> 

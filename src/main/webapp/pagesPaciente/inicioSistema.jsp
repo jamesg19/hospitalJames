@@ -56,7 +56,7 @@
                     <tr>                  
                     <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="Agendar una cita">
                     </td>
-                    <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Ver citas">
+                    <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Ver mis citas">
                     </td>
                     </tr>
                 </table>

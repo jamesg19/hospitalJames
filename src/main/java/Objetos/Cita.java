@@ -26,6 +26,14 @@ public class Cita {
         this.hora = hora;
     }
 
+    public Cita(String paciente, String medico, String fecha, String hora) {
+        this.paciente = paciente;
+        this.medico = medico;
+        this.fecha = fecha;
+        this.hora = hora;
+    }
+    
+
     public int getCodigo() {
         return codigo;
     }

@@ -3,6 +3,7 @@ package Model;
 import static Model.ConectaBD.passw;
 import Objetos.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +27,8 @@ public class GestorBDPaciente {
     String codigo, nombre;
     Doctor doctorHallado;
     Consulta consultaHallada;
+    Cita citaHallada;
+    String nom,tipE,fecha,hora;
     /**
      * registra un nuevo administrador al sistema
      *
@@ -201,7 +204,7 @@ public class GestorBDPaciente {
 
             conn = ConectaBD.abrir();
             stm = conn.createStatement();
-            usuarioResultSet = stm.executeQuery("SELECT distinctrow d.codigo, d.nombre,d.colegiado,d.correo,d.hora_inicio,hora_fin, d.trabajo,e.tipo_Especialidad FROM doctor d INNER JOIN especialidad e ON d.codigo = e.id_doctor WHERE e.tipo_Especialidad LIKE '%"+nombre+"%' AND '"+hora+"' BETWEEN d.hora_inicio AND d.hora_fin;");
+            usuarioResultSet = stm.executeQuery("SELECT distinctrow d.codigo, d.nombre,d.colegiado,d.correo,d.hora_inicio,hora_fin, d.trabajo,e.tipo_Especialidad FROM doctor d INNER JOIN especialidad e ON d.codigo = e.id_doctor WHERE e.tipo_Especialidad LIKE '%"+nombre+"%' AND '"+hora+":01' BETWEEN d.hora_inicio AND d.hora_fin;");
             if (!usuarioResultSet.next()) {
 
                 System.out.println(" No se encontraron registros");
@@ -228,7 +231,7 @@ public class GestorBDPaciente {
         
             System.out.println("Error en la base de datos.");
             e.printStackTrace();
-            return null;
+            return doctores;
         }
     }
     
@@ -273,7 +276,7 @@ public class GestorBDPaciente {
         
         
         
-                public Consulta consultarPrecioCita(String tipo) {
+        public Consulta consultarPrecioCita(String tipo) {
         try {
             conn = ConectaBD.abrir();
             stm = conn.createStatement();
@@ -282,7 +285,7 @@ public class GestorBDPaciente {
             if (!usuarioResultSet.next()) {
                 System.out.println(" No se encontro el registro");
                 ConectaBD.cerrar();
-                return consultaHallada;
+                return null;
             } else {
                 System.out.println("Se encontró el registro");
                 double COSTO = usuarioResultSet.getDouble("costo");
@@ -298,8 +301,40 @@ public class GestorBDPaciente {
             return consultaHallada;
         }
     }
-    
-    
+    //Ver citas
+
+        public ArrayList<Cita> leeCita(String paciente) {
+        ArrayList<Cita> citas = new ArrayList<Cita>();
+        try {
+ 
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT distinct d.nombre,c.tipo_Especialidad,c.fecha, c.hora FROM doctor d INNER JOIN cita c ON d.codigo = c.id_doctor where c.id_paciente = '"+paciente+"';");
+            if (!usuarioResultSet.next()) {
+
+                System.out.println(" No se encontraron registros");
+                ConectaBD.cerrar();
+                return citas;
+            } else {
+                do {
+
+                    nombre = usuarioResultSet.getString("nombre");
+                    tipE = usuarioResultSet.getString("tipo_Especialidad");
+                    fecha = usuarioResultSet.getString("fecha");
+                    hora = usuarioResultSet.getString("hora");
+                    
+                    citaHallada = new Cita(nombre,tipE,fecha,hora);
+                    citas.add(citaHallada);
+                } while (usuarioResultSet.next());
+                ConectaBD.cerrar();
+                return citas;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return null;
+        }
+    }
     
     
     

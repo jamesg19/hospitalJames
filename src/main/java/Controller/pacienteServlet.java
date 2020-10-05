@@ -10,6 +10,7 @@ import static Model.ConectaBD.cerrar;
 import Objetos.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -176,7 +177,7 @@ public class pacienteServlet extends HttpServlet {
                 String cuentaC=(String) request.getParameter("user");
                 String nombre=(String) request.getAttribute("nombreI");
                 fechaC=(String) request.getParameter("fecha");
-                horaC=(String) request.getParameter("hora");
+                horaC=request.getParameter("hora");
                 especialidadC=(String) request.getParameter("especialidad");
                 paciente1=new Paciente(cuentaC,nombre);
                 
@@ -189,12 +190,12 @@ public class pacienteServlet extends HttpServlet {
                 GestorBDPaciente gestorBDs = new GestorBDPaciente();
 
                 consulta = gestorBDs.consultarPrecioCita(especialidadC);
-
+                
                 
                 
                 if (especialidades != null) {
                     String paciente = (String) request.getParameter("user");
-                    
+                    try{
                     request.setAttribute("cuenta", paciente1.getCodigo());
                     request.setAttribute("nombre", paciente1.getNombre());
                     request.setAttribute("fecha", fechaC);
@@ -203,6 +204,7 @@ public class pacienteServlet extends HttpServlet {
                     request.setAttribute("especialidad", especialidadC);
                     request.setAttribute("Especialidad", especialidades);
                     request.setAttribute("Doctor", doctores);
+                    }catch(Exception e){}
                     
                     request.getRequestDispatcher("/pagesPaciente/llenaRegistroCita.jsp").forward(request, response);
                 } else {
@@ -234,6 +236,25 @@ public class pacienteServlet extends HttpServlet {
                 
                 
             }
+             
+             else if (btn.equals("Ver mis citas")) {
+                ArrayList<Cita> citas = new ArrayList<Cita>();
+                String user = (String) request.getParameter("user");
+                Doctor doctor;
+                GestorBDPaciente gestorBDPacient = new GestorBDPaciente();
+                
+                citas = gestorBDPacient.leeCita(user);
+
+                if ((citas != null)) {
+                    request.setAttribute("Cita", citas);
+                    request.getRequestDispatcher("/pagesPaciente/VerMisCitas.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+                }     
+                 
+                 
+             }
+             
              
              
               

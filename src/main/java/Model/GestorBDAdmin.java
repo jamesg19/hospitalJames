@@ -584,7 +584,7 @@ public class GestorBDAdmin {
         }
     }
     
-                     public ArrayList<Consulta> leeConsultaSA() {
+        public ArrayList<Consulta> leeConsultaSA() {
         ArrayList<Consulta> consultas = new ArrayList<Consulta>();
         try {
 

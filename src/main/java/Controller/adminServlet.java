@@ -217,6 +217,7 @@ public class adminServlet extends HttpServlet {
                     request.getRequestDispatcher("/pagesAdmin/errorEnRegistro.jsp").forward(request, response);
                 }
             } 
+            
             else if (btn.equals("Registrar Doctor")) {
 
                 String codigo = request.getParameter("codigo");
