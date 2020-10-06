@@ -11,20 +11,23 @@
         <h2>Los doctores que están registrados son: </h2> 
         <br>
         <%
-        
-            
+
             ArrayList<Doctor> doctores = null;
             doctores = (ArrayList<Doctor>) request.getAttribute("Doctor");
-        
+            String user= (String) request.getAttribute("cuenta");   
             %>
 
         <div>
             
         </div><!-- comment -->
          
-        <br>        
+        <br>   
+        <form action="paciente" method="post" >
+            
             <table align="center" border="1">                  
-            <tr> 
+
+            <%        if(doctores != null){%>
+             <tr>
             <h5>Medicos con especialidad</h5>
                 <th>Codigo </th>            
                 <th>Nombre</th>            
@@ -34,8 +37,12 @@
                 <th>Hora Finaliza jornada</th>
                 <th>Fecha de contratacion</th> 
                 <th>Especialidad</th> 
-            </tr> 
-            <%        if(doctores!=null){    for (Doctor doctor : doctores) {%>          
+            </tr>   
+                
+               <% for (Doctor doctor : doctores) {%>          
+           
+            
+            
             <tr valign="rigth">            
                 <td><%=doctor.getCodigo()%></td>             
                 <td><%=doctor.getNombre()%></td> 
@@ -52,6 +59,6 @@
 
 
         </table>
-   
+    </form>
     </body> 
 </html> 

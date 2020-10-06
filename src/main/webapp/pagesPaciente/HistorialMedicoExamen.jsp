@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <title>Ver mis citas</title>    
     </head>     
-    <body background="Imagenes/fondo2.jpg"> 
+    <body background="Imagenes/fondoPaciente.jpg"> 
         <%@ page import="Controller.adminServlet" %>
         <%@ page import="Objetos.Doctor, java.util.ArrayList" %> 
         <h2>Citas programadas: </h2> 
@@ -14,15 +14,9 @@
         <%
             ArrayList<Cita> citas = null;
             citas = (ArrayList<Cita>) request.getAttribute("Cita");
-            
-            String cuentaI = (String) request.getAttribute("cuenta");   
-            request.setAttribute("cuenta",cuentaI);
+        
             %>
-        <div> 
-            <form action="paciente" method="post" >
-            <input readonly type="text"  value='<%=cuentaI%>' Id="user" name="user" style="visibility:hidden">
-            <input align="center" type="submit" name="boton" value="Inicio">
-            </form>
+        <div>     
         </div><!-- comment -->
         <br>        
             <table align="center" border="1">                  

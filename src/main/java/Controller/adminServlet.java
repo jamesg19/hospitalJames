@@ -15,7 +15,7 @@ import Objetos.*;
 import java.sql.Blob;
 import java.util.Base64;
 import javax.sql.rowset.serial.SerialBlob;
-import javax.swing.JOptionPane;
+
 
 @WebServlet(name = "crearAdmin", urlPatterns = {"/crearAdmin"})
 
@@ -40,8 +40,9 @@ public class adminServlet extends HttpServlet {
             } else if (btn.equals("Agregar Nuevo Laboratorista")) {
 
                 request.getRequestDispatcher("/pagesLabo/llenaRegistroLabo.jsp").forward(request, response);
-            } /**
-             *
+            } 
+            /**
+             *Modifica los datos del administrador
              */
             else if (btn.equals("Modificar mis datos")) {
 
@@ -233,8 +234,7 @@ public class adminServlet extends HttpServlet {
                 String esp1 = request.getParameter("especialidad");
                 String esp2 = request.getParameter("especialidad2");
                 String esp3 = request.getParameter("especialidad3");
-//            byte[] encodedBytes = Base64.encodeBase64(password.getBytes());
-//            Blob blob = new SerialBlob(encodedBytes);
+
                 GestorBDAdmin gestorBD = new GestorBDAdmin();
 
                 if (gestorBD.registrarDoctor(codigo, nombre, colegiado, dpi, telefono, correo, horaInicio, horaFin, trabajo, password)) {

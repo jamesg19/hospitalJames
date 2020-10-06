@@ -27,19 +27,14 @@
 
             </table>
             </form>
-
         </div>
-
-
         <form action="paciente" method="get">
-            <input align="right" type="submit" name="boton" value="Inicio"  >
+            <input align="right" class="btn btn-danger" type="submit" name="boton" value="Inicio"  >
             <br>
-
             <table align="center" >
                 <tr>
                     <td>Mi codigo Paciente</td><!-- comment -->
-                    <td><input  type="text" Id="user" name="user" value="<%=cuentaI%>" readonly ></td><!-- comment -->
-                    
+                    <td><input  type="text" Id="user" name="user" value="<%=cuentaI%>" readonly ></td><!-- comment -->                  
                 </tr>
                 <tr>
                     <td>Tipo de consulta:</td>                                  
@@ -82,9 +77,7 @@
                     </td>
                 </tr>
             </table><!--  -->
-
-        </form>
-                 
+        </form>                 
     </body> 
     <%@ include file = "../pagesPaciente/doctoresPorEsp.jsp" %>
 </html> 

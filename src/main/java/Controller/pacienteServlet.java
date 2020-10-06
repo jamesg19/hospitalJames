@@ -102,7 +102,9 @@ public class pacienteServlet extends HttpServlet {
         
                     ArrayList<Doctor> doctores = new ArrayList<Doctor>();
                     Doctor doctor;
+                    
                     GestorBDPaciente gestorBD = new GestorBDPaciente();
+                    
                     String busqueda = request.getParameter("busqueda");
                     doctores = gestorBD.leeTodosDoctorNombre(busqueda);
                 
@@ -238,6 +240,11 @@ public class pacienteServlet extends HttpServlet {
             }
              
              else if (btn.equals("Ver mis citas")) {
+                 
+                String cuentaI = (String) request.getParameter("user");
+                paciente1=new Paciente(cuentaI);
+                request.setAttribute("cuenta", paciente1.getCodigo());
+                
                 ArrayList<Cita> citas = new ArrayList<Cita>();
                 String user = (String) request.getParameter("user");
                 Doctor doctor;
@@ -249,11 +256,65 @@ public class pacienteServlet extends HttpServlet {
                     request.setAttribute("Cita", citas);
                     request.getRequestDispatcher("/pagesPaciente/VerMisCitas.jsp").forward(request, response);
                 } else {
-                    request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
+                    request.getRequestDispatcher("/pagesPaciente/VerMisCitas.jsp").forward(request, response);
                 }     
                  
                  
              }
+             
+            /**
+             * 
+             */ 
+            else if (btn.equals("Actualizar paciente")) {
+                
+                String codigo =(String) request.getParameter("codigo");
+                String nombre = (String) request.getParameter("nombre");
+                String sexo = (String) request.getParameter("sexo");
+                String cumple= (String) request.getParameter("nacimiento");
+                String dpi = (String) request.getParameter("dpi");
+                String tel = (String) request.getParameter("telefono");
+                String peso = (String) request.getParameter("peso");
+                String sangre = (String) request.getParameter("sangre");
+                String correo = (String) request.getParameter("correo");
+                String password = (String) request.getParameter("password");
+                double pesoo=Double.parseDouble(peso);
+
+                GestorBDPaciente gestorBDPa = new GestorBDPaciente();
+                
+                
+                if (gestorBDPa.modificarPACIENTE(codigo, nombre, sexo, cumple, dpi, tel, pesoo, sangre, correo, password)) {
+                    request.getRequestDispatcher("/RegistroGuardado.jsp").forward(request, response);
+                } else {
+
+                    request.getRequestDispatcher("/errorGuardar.jsp").forward(request, response);
+                }
+            } 
+            /**
+             * JSP que modifica los datos del paciente
+             */
+             else if (btn.equals("Modificar mis datos")) {
+
+                String USER = (String) request.getParameter("user");     
+                request.setAttribute("codigo", USER);
+
+                GestorBDPaciente gestorBD = new GestorBDPaciente();
+                Paciente paciente;
+                paciente = gestorBD.leePaciente(USER);
+               
+
+                request.setAttribute("Nombre", paciente.getNombre());
+                request.setAttribute("Sexo", paciente.getSexo());
+                request.setAttribute("Nacimiento", paciente.getCumple());
+                request.setAttribute("Dpi", paciente.getDpi());
+                request.setAttribute("Telefono", paciente.getTel());
+                request.setAttribute("Peso", paciente.getPeso());
+                request.setAttribute("Sangre", paciente.getSangre());
+                request.setAttribute("Correo", paciente.getCorreo());
+                request.setAttribute("Password", paciente.getPassword());
+                
+
+                request.getRequestDispatcher("/pagesPaciente/modificaPaciente.jsp").forward(request, response);
+            } 
              
              
              

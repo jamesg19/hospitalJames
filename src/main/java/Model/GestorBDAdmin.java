@@ -552,7 +552,7 @@ public class GestorBDAdmin {
     }
         
         
-                public ArrayList<Consulta> leeConsulta() {
+        public ArrayList<Consulta> leeConsulta() {
         ArrayList<Consulta> consultas = new ArrayList<Consulta>();
         try {
 

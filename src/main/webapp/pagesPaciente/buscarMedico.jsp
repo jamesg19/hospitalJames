@@ -25,6 +25,7 @@
         <div align="right" >
 
             <form action="paciente" name="boton" method="post" >
+                <input readonly type="text" Id='user' name="user" value="<%=cuentaI%>" style="visibility:hidden">
                 <input align="right" type="submit" name="boton" value="Inicio"  >
             </form> 
         </div>

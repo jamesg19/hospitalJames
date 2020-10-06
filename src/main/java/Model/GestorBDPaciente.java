@@ -2,6 +2,7 @@ package Model;
 
 import static Model.ConectaBD.passw;
 import Objetos.*;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -9,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Base64;
+import javax.sql.rowset.serial.SerialBlob;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,6 +32,8 @@ public class GestorBDPaciente {
     Consulta consultaHallada;
     Cita citaHallada;
     String nom,tipE,fecha,hora;
+    String codigoP,nombreP,sexoP,nacimientoP,dpiP,telP,sangreP,correoP,passP;
+    double pesoP;
     /**
      * registra un nuevo administrador al sistema
      *
@@ -277,6 +282,9 @@ public class GestorBDPaciente {
         
         
         public Consulta consultarPrecioCita(String tipo) {
+            String password="james";
+//            byte[] encodedBytes = Base64.encodeBase64(password.getBytes());
+//            Blob blob = new SerialBlob(encodedBytes);
         try {
             conn = ConectaBD.abrir();
             stm = conn.createStatement();
@@ -285,7 +293,7 @@ public class GestorBDPaciente {
             if (!usuarioResultSet.next()) {
                 System.out.println(" No se encontro el registro");
                 ConectaBD.cerrar();
-                return null;
+                return consultaHallada;
             } else {
                 System.out.println("Se encontró el registro");
                 double COSTO = usuarioResultSet.getDouble("costo");
@@ -314,7 +322,7 @@ public class GestorBDPaciente {
 
                 System.out.println(" No se encontraron registros");
                 ConectaBD.cerrar();
-                return citas;
+                return null;
             } else {
                 do {
 
@@ -335,6 +343,88 @@ public class GestorBDPaciente {
             return null;
         }
     }
+        
+        
+    /**
+     * Obiene datos del paciente con codigo
+     * @param codigo
+     * @return 
+     */    
+    public Paciente leePaciente(String codigo) {
+        try {
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT * FROM paciente WHERE codigo='" + codigo + "';");
+
+            if (!usuarioResultSet.next()) {
+                System.out.println(" No se encontro el registro");
+                ConectaBD.cerrar();
+                return null;
+            } else {
+                System.out.println("Se encontró el registro");
+                
+                codigoP = usuarioResultSet.getString("codigo");
+                nombreP = usuarioResultSet.getString("nombre");
+                sexoP = usuarioResultSet.getString("sexo");
+                nacimientoP = usuarioResultSet.getString("nacimiento");
+                dpiP = usuarioResultSet.getString("dpi");
+                telP = usuarioResultSet.getString("telefono");
+                pesoP = usuarioResultSet.getDouble("peso");
+                sangreP = usuarioResultSet.getString("tipo_sangre");
+                correoP = usuarioResultSet.getString("correo");
+                passP = usuarioResultSet.getString("password");
+                                
+                usuarioHallado = new Paciente(codigoP, nombreP, sexoP, nacimientoP,dpiP,telP,pesoP,sangreP,correoP,passP);
+                ConectaBD.cerrar();
+                return usuarioHallado;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    
+    
+    
+        public boolean modificarPACIENTE(String codigo, String nombre, String sexo, String cumple,String dpi,String telefono, double peso, String sangre, String correo,String password) {
+        int resultUpdate = 0;
+
+        conn = ConectaBD.abrir();
+
+        String query = "UPDATE paciente SET nombre = ?, sexo = ?, nacimiento = ?, dpi = ?, telefono = ?, peso = ?, tipo_sangre = ?, correo = ?, password = ? WHERE (codigo = ?);";
+
+        try (PreparedStatement preSt = conn.prepareStatement(query)) {
+
+            preSt.setString(1, nombre);
+            preSt.setString(2, sexo);
+            preSt.setString(3, cumple);
+            preSt.setString(4, dpi);
+            preSt.setString(5, telefono);
+            preSt.setDouble(6, peso);
+            preSt.setString(7, sangre);
+            preSt.setString(8, correo);
+            preSt.setString(9, password);
+            preSt.setString(10, codigo);
+
+            resultUpdate = preSt.executeUpdate();
+
+            if (resultUpdate != 0) {
+                ConectaBD.cerrar();
+                return true;
+            } else {
+                ConectaBD.cerrar();
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+        
+
     
     
     
@@ -342,3 +432,25 @@ public class GestorBDPaciente {
 
   
 }
+
+//
+//
+//    public boolean modificarPaciente(String codigo, String nombre, String sexo, String cumple,String dpi,String telefono, double peso, String sangre, String correo,String password) {
+//        int resultUpdate = 0;
+//
+//        conn = ConectaBD.abrir();
+//
+//        String query = "UPDATE paciente  SET nombre = ?, sexo = ?, String nacimiento = ?, dpi = ?, telefono = ?, peso = ?, tipo_sangre = ?, correo = ?, password = ? WHERE codigo = ?;";
+//
+//        try (PreparedStatement preSt = conn.prepareStatement(query)) {
+//
+//            preSt.setString(1, nombre);
+//            preSt.setString(2, sexo);
+//            preSt.setString(3, cumple);
+//            preSt.setString(4, dpi);
+//            preSt.setString(5, telefono);
+//            preSt.setDouble(6, 40);
+//            preSt.setString(7, sangre);
+//            preSt.setString(8, correo);
+//            preSt.setString(9, password);
+//            preSt.setString(10, codigo);

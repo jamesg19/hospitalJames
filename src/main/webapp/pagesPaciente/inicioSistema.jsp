@@ -16,10 +16,10 @@
               href="CSS/Letra.css">
         <link rel="stylesheet"
               href="CSS/botones.css">
+        <link rel="stylesheet"
+              href="CSS/SuccesBtn.css">
     </head>
     <body  background="Imagenes/fondo2.jpg">
-        <%@ include file = "../pagesPaciente/menu.jsp" %>
-
         <h1>Bienvenido al portal de Paciente </h1>
         <%@ page import="Controller.pacienteServlet" %>
         <%
@@ -28,48 +28,50 @@
             request.setAttribute("nombre",nombreI);
             request.setAttribute("cuenta",cuentaI);
         %>
-        <h1> Hola  bienvenido al sistema! tu usuario es:</h1>
+        <h1> Hola  bienvenido al sistema!</h1>
         <form action="paciente" method="post" >
             <div align="right" >
-              <input  type="submit" name="boton" align="right" value="Cerrar sesion">  
-                
+                <input  type="submit" name="boton" align="right" value="Cerrar sesion">    
             </div>
-            
-            
         </form>
-
-
         <form action="paciente" method="post" >
-            <input type="text" Id="user" name="user" value="<%= cuentaI%>" readonly="">
-
+            <input type="text" Id="user" name="user" value="<%= cuentaI%>" readonly="" style="visibility:hidden">
             <div align="center" >
-                <br>
-                <br>
                 <table >
                     <tr>
-                    <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="Ver historial medico">
-                    </td>
-                    <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Buscar doctor">
-                    </td>
+                        <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="Ver historial medico">
+                        </td>
+                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Buscar doctor">
+                        </td>
                     </tr>
-                    
                     <tr>                  
-                    <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="Agendar una cita">
-                    </td>
-                    <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Ver mis citas">
-                    </td>
-                    </tr>
+                        <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="Agendar una cita">
+                        </td>
+                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Ver mis citas">
+                        </td>
+                    </tr>                   
+                        <tr align="center" >                      
+                            <td align="center" ><input class="btn btn--3"  type="submit" name="boton" align="center" value="Modificar mis datos">
+                            </td>
+                        </tr>
                 </table>
             </div>
-
-
         </form>
+        <div align="center" >
+            <form action="ReportePaciente" method="get"  >
+                <table>
+                    <tr>
+                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Reportes">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
         <br>
         <br>
         <br>
         <br>
         <br>
         <br>
-
     </body>
 </html>
