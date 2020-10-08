@@ -1,0 +1,202 @@
+CREATE SCHEMA IF NOT EXISTS hospital;
+
+USE hospital;
+
+CREATE TABLE IF NOT EXISTS usuario(
+
+	id INT NOT NULL AUTO_INCREMENT,
+	user VARCHAR(100) NOT NULL,
+	password VARCHAR(90) NOT NULL,
+	
+	PRIMARY KEY(id,user)
+);
+
+CREATE TABLE IF NOT EXISTS administrador(
+	codigo VARCHAR(60) NOT NULL,
+	dpi VARCHAR(40) NOT NULL,
+	nombre VARCHAR(90) NOT NULL,
+	password VARCHAR(50) NOT NULL,
+
+	PRIMARY KEY(codigo)
+);
+
+CREATE TABLE IF NOT EXISTS doctor(
+
+	codigo VARCHAR(60) NOT NULL,
+	nombre VARCHAR(100) NOT NULL,
+	colegiado VARCHAR(60) NOT NULL,
+	dpi VARCHAR(60) NOT NULL,
+	telefono VARCHAR(50) NOT NULL,
+	correo VARCHAR(90) NOT NULL,
+	hora_inicio TIME NOT NULL,
+	hora_fin TIME NOT NULL,
+	trabajo DATE NOT NULL,
+	password VARCHAR(100) NOT NULL,	
+	PRIMARY KEY(codigo)
+);
+
+CREATE TABLE IF NOT EXISTS especialidad(
+	codigo INT NOT NULL AUTO_INCREMENT,
+	id_doctor VARCHAR(90) NOT NULL,
+	tipo_Especialidad VARCHAR(150) NOT NULL,	
+	PRIMARY KEY(codigo),
+	FOREIGN KEY(id_doctor) REFERENCES doctor(codigo)	
+);
+
+
+CREATE TABLE IF NOT EXISTS paciente(
+	codigo VARCHAR(50) NOT NULL,
+	nombre VARCHAR(100) NOT NULL,
+	sexo VARCHAR(30) NOT NULL,
+	nacimiento DATE NOT NULL,
+	dpi VARCHAR(60) NOT NULL,
+	telefono VARCHAR(50) NOT NULL,
+	peso double NOT NULL,
+	tipo_sangre VARCHAR(50) NOT NULL,
+	correo VARCHAR(100) NOT NULL,
+	password VARCHAR(100) NOT NULL,
+	
+	PRIMARY KEY(codigo)
+);
+
+
+CREATE TABLE IF NOT EXISTS examen(
+
+	codigo VARCHAR(50) NOT NULL,
+	nombre VARCHAR(200) NOT NULL,
+	orden VARCHAR(20) NOT NULL,
+	Descripcion VARCHAR(3000) NOT NULL,
+	costo DOUBLE NOT NULL,
+	tipo_informe VARCHAR(30) NOT NULL,
+	
+	PRIMARY KEY(codigo)	
+);
+
+CREATE TABLE IF NOT EXISTS laboratorista(
+
+	codigo VARCHAR(50) NOT NULL,
+	nombre VARCHAR(100) NOT NULL,
+	registro VARCHAR(50) NOT NULL,
+	dpi VARCHAR(60) NOT NULL,
+	telefono VARCHAR(50) NOT NULL,
+	examen VARCHAR(100) NOT NULL,
+	correo VARCHAR(100) NOT NULL,
+	dias_trabajo VARCHAR(110) NOT NULL,
+	trabajo DATE NOT NULL,
+	password BLOB NOT NULL,
+	PRIMARY KEY(codigo)
+	
+);
+
+CREATE TABLE IF NOT EXISTS informe(
+
+	codigo INT NOT NULL AUTO_INCREMENT,
+	id_paciente VARCHAR(50) NOT NULL,
+	id_doctor VARCHAR(50) NOT NULL,
+	informe VARCHAR(2000) NOT NULL,
+	fecha DATE NOT NULL,
+	hora VARCHAR(50) NOT NULL,
+	
+	PRIMARY KEY(codigo),
+	FOREIGN KEY(id_doctor) REFERENCES doctor(codigo),
+	FOREIGN KEY(id_paciente) REFERENCES paciente(codigo)
+);
+
+
+CREATE TABLE IF NOT EXISTS resultado(
+
+	codigo INT NOT NULL AUTO_INCREMENT,
+	id_paciente VARCHAR(50) NOT NULL,
+	id_doctor VARCHAR(50),
+	id_examen VARCHAR(50) NOT NULL,
+	id_laboratorista VARCHAR(50) NOT NULL,
+	ordenN VARCHAR(100),
+	informeN VARCHAR(100),
+	fecha DATE NOT NULL,
+	hora TIME NOT NULL,
+	
+	PRIMARY KEY(codigo),
+	FOREIGN KEY(id_doctor) REFERENCES doctor(codigo),
+	FOREIGN KEY(id_paciente) REFERENCES paciente(codigo),
+	FOREIGN KEY(id_examen) REFERENCES examen(codigo),
+	FOREIGN KEY(id_laboratorista) REFERENCES laboratorista(codigo)
+
+);
+
+CREATE TABLE IF NOT EXISTS cita(	
+	id_paciente VARCHAR(50) NOT NULL,
+	id_doctor VARCHAR(50) NOT NULL,
+	tipo_Especialidad VARCHAR(150) NOT NULL,
+	fecha DATE NOT NULL,
+	hora VARCHAR(80),
+	
+	PRIMARY KEY(hora,fecha,id_doctor),
+	FOREIGN KEY(id_doctor) REFERENCES doctor(codigo),
+	FOREIGN KEY(id_paciente) REFERENCES paciente(codigo)	
+);
+
+CREATE TABLE IF NOT EXISTS consulta(
+
+	codigo INT NOT NULL AUTO_INCREMENT,
+	tipo_consulta VARCHAR(70) NOT NULL,
+	costo DOUBLE NOT NULL,
+	
+	PRIMARY KEY(codigo)
+);
+
+CREATE TABLE IF NOT EXISTS cita_realizada(	
+	id_paciente VARCHAR(50) NOT NULL,
+	id_doctor VARCHAR(50) NOT NULL,
+	tipo_Especialidad VARCHAR(150) NOT NULL,
+	fecha DATE NOT NULL,
+	hora VARCHAR(80),
+	
+	PRIMARY KEY(hora,fecha,id_doctor),
+	FOREIGN KEY(id_doctor) REFERENCES doctor(codigo),
+	FOREIGN KEY(id_paciente) REFERENCES paciente(codigo)	
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

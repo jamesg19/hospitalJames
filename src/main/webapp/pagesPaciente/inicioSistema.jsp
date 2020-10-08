@@ -59,12 +59,15 @@
         </form>
         <div align="center" >
             <form action="ReportePaciente" method="get"  >
+                <h3>Reportes de paciente</h3>
                 <input type="text" Id="user" name="user" value="<%=cuentaI%>" readonly="" style="visibility:hidden">
                 <table>
                     <tr>
                         <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Ultimas 5 citas">
                         </td>
-                         <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Ultimas 5 citas">
+                        
+                            <label align="right" for="Consultas realizadas" >consultas en intervalo de tiempo </label>
+                            <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Consultas realizadas.">
                         </td>
                     </tr>
                 </table>

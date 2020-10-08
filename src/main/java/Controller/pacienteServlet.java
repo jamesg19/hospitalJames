@@ -315,10 +315,9 @@ public class pacienteServlet extends HttpServlet {
                 
 
                 request.getRequestDispatcher("/pagesPaciente/modificaPaciente.jsp").forward(request, response);
-            } 
+            }
              
-             
-             
+              
               
         }
     }

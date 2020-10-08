@@ -5,8 +5,12 @@
  */
 package Controller;
 
+import Model.GestorBDDoctor;
+import Model.GestorBDPaciente;
+import Objetos.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,16 +37,88 @@ public class ReporteDoctor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ReporteDoctor</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ReporteDoctor at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            CitaMedico citaMedico;
+            Paciente paciente1;
+
+            
+            String btn = request.getParameter("boton");
+            if (btn.equals("Paciente con mas informes")) {
+                String cuentaI = (String) request.getParameter("user");
+                paciente1=new Paciente(cuentaI);
+                request.setAttribute("cuenta", paciente1.getCodigo());
+              request.getRequestDispatcher("/Reporte_Doctor/buscarPacienteConInforme.jsp").forward(request, response);  
+            }
+            
+            else if (btn.equals("Buscar")) {
+                 
+                String cuentaI = (String) request.getParameter("user");
+                paciente1=new Paciente(cuentaI);
+                request.setAttribute("cuenta", paciente1.getCodigo());
+                
+                ArrayList<Informe> informes = new ArrayList<Informe>();
+                String user = (String) request.getParameter("user");
+                String fecha1 = (String) request.getParameter("fecha1");
+                String fecha2 = (String) request.getParameter("fecha2");
+                
+                Doctor doctor;
+                GestorBDDoctor gestorBDPacient = new GestorBDDoctor();
+                
+                informes = gestorBDPacient.leeInforme(fecha1, fecha2);
+
+                if ((informes != null)) {
+                    request.setAttribute("Informe", informes);
+                    request.getRequestDispatcher("/Reporte_Doctor/buscarPacienteConInforme.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/Reporte_Doctor/buscarPacienteConInforme.jsp").forward(request, response);
+                }     
+                 
+                 
+             } 
+            
+            else if (btn.equals("Inicio")) {
+                String cuentaC=(String) request.getParameter("user");
+                paciente1=new Paciente(cuentaC);
+                request.setAttribute("cuenta", paciente1.getCodigo());
+
+                 request.getRequestDispatcher("/pagesDoctor/inicioSistema.jsp").forward(request, response);
+            }
+            
+            if (btn.equals("Citas programadas para hoy")) {
+                java.time.LocalDate today = java.time.LocalDate.now();
+
+                citaMedico=new CitaMedico();
+                
+                ArrayList<CitaMedico> citas = new ArrayList<CitaMedico>();
+                String user = (String) request.getParameter("user");
+                request.setAttribute("cuenta", user);
+                request.setAttribute("estado", "falso");
+
+                String paciente = " ";
+                
+                Doctor doctor;
+                GestorBDDoctor gestorBDDoctor = new GestorBDDoctor();
+                
+                citas = gestorBDDoctor.leeCitaDoctor(user, today.toString());
+
+                if ((citas != null)) {
+                    request.setAttribute("Cita", citas);
+                    request.setAttribute("paciente", paciente);
+                    request.getRequestDispatcher("/Reporte_Doctor/CitasProgramadas.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/Reporte_Doctor/CitasProgramadas.jsp").forward(request, response);
+                }  
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
         }
     }
 

@@ -31,6 +31,7 @@ public class GestorBDDoctor {
     Doctor doctorHallado;
     Consulta consultaHallada;
     Examenes examenHallado;
+    Informe informeHallado;
     Cita citaHallada;
     CitaMedico citaMHallada;
     String nom,tipE,fecha,hora;
@@ -212,6 +213,42 @@ public class GestorBDDoctor {
             System.out.println("Error en la base de datos.");
             e.printStackTrace();
             return false;
+        }
+    }
+        
+        
+        
+        
+    public ArrayList<Informe> leeInforme(String fecha1,String fecha2) {
+
+        ArrayList<Informe> informes = new ArrayList<Informe>();
+        try {
+ 
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT i.id_paciente,p.nombre, COUNT(*) Total FROM informe i INNER JOIN paciente p ON p.codigo=i.id_paciente where i.fecha between '"+fecha1+"' AND '"+fecha2+"' GROUP BY i.id_paciente HAVING COUNT(*)>=1;");
+            if (!usuarioResultSet.next()) {
+
+                System.out.println(" No se encontraron registros");
+                ConectaBD.cerrar();
+                return null;
+            } else {
+                do {
+
+                    nombre = usuarioResultSet.getString("id_paciente");
+                    tipE = usuarioResultSet.getString("nombre");
+                    fecha = usuarioResultSet.getString("Total");
+
+                    informeHallado = new Informe(nombre,tipE,fecha);
+                    informes.add(informeHallado);
+                } while (usuarioResultSet.next());
+                ConectaBD.cerrar();
+                return informes;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return null;
         }
     }
 

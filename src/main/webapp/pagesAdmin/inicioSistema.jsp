@@ -31,7 +31,12 @@
 
         %>
         <h1> Hola <%= nombreI%> bienvenido al sistema! tu usuario es:</h1>
-
+        <form action="paciente" method="POST" >
+            <div align="right" >
+                <input type="text" Id="user" name="user" value="<%=cuentaI%>" readonly="" style="visibility:hidden" >
+                <input  type="submit" name="boton" align="right" value="Cerrar sesion">    
+            </div>
+        </form>
 
         <form action="crearAdmin" method="post" >
             <input type="text"  name="user" value="<%= cuentaI%>" readonly="" style="visibility:hidden">
@@ -62,7 +67,7 @@
                     <td>
                 <input class="btn btn--3" type="submit" name="boton" align="center" value="Agrega Especialidad a Medico">    
 
-                <input class="btn btn--3" type="submit" name="boton" align="center" value="Modifica precio consulta">
+                
                     </td>
                 </tr>
                 <tr>
@@ -72,7 +77,7 @@
                 <input class="btn btn--3" type="submit" name="boton" align="center" value="Agregar Nuevo Laboratorista">
                     </td><!-- comment -->
                     <td>
-                <input class="btn btn--3" type="submit" name="boton" align="center" value="Modifica Laboratorista">
+                
                     </td>
                 </tr>
                 

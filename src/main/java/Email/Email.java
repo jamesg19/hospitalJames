@@ -19,12 +19,14 @@ import javax.mail.internet.MimeMessage;
  */
 public class Email {
     
+    
     public void Email(String destino, String Mensaje, String Asunto) {
         try {
-            // Get system properties
+            //obtiene propiedades del sistema
+            //defino el correo y la contrasena 
             final String username = "hospitalcunoc2020@gmail.com";
             final String password = "USAC2020";
-
+            //conexion hacia google
             Properties props = new Properties();
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.starttls.enable", "true");
@@ -40,13 +42,14 @@ public class Email {
 
             try {
 
-                // Define message
+                //Define el mensaje y su estructura 
+                // y se introduce el destinatario a donde se envia el correo
                 MimeMessage message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(username));
                 message.setSubject(Asunto);
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(destino));
                 message.setText(Mensaje);
-                // Envia el mensaje
+                // Y por ultimo envia el mensaje a su destino
                 Transport.send(message);
             } catch (Exception e) {
             }
@@ -55,10 +58,8 @@ public class Email {
         }
 
     }
-        
-        
 
-    }
+}
     
     
 

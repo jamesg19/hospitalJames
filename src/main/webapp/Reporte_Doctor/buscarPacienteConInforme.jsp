@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Buscar una consulta en un intervalo de tiempo</title>
+        <title>Buscar un paciente con mas informes realizados en un rango de fecha</title>
 
     </head>
     <body background="Imagenes/fondo2.jpg">
@@ -24,13 +24,13 @@
 
         <div align="right" >
 
-            <form action="paciente" name="boton" method="post" >
+            <form action="ReporteDoctor" name="boton" method="post" >
                 <input readonly type="text" Id='user' name="user" value="<%=cuentaI%>" style="visibility:hidden">
                 <input align="right" type="submit" name="boton" value="Inicio"  >
             </form> 
         </div>
         <div>
-            <form action="paciente" method="get">
+            <form action="ReporteDoctor" method="get">
 
                 <h4>Tu usuario es:</h4>
                 <input readonly type="text" Id='user' name="user" value="<%=cuentaI%>">
@@ -38,27 +38,26 @@
 
                     <tr>
                     <br>
-                    <h4>Busca un doctor adecuado </h4>
-                    <td align="right">Ingresa busqueda </td>            
-                    <td><input required type="text" Id='busqueda' name="busqueda"></td>           
+                    <h4>Ingresa los rangos de fecha </h4>
+                    <td>
+                        <div class="form-group" align="center">
+                            <label for="fecha1">Desde:</label>
+                            <input required type="date" id="start" name="fecha1" value="2020-9-4"
+                                   min="1980-01-01" max="2020-12-31">
+
+                            <label for="fecha2">Hasta:</label>
+
+                            <input required type="date" id="start" name="fecha2" value="2020-10-2"
+                                   min="1980-01-01" max="2020-12-31">
+                        </div>
+                    </td>
                     </tr>             
-                    <tr>
-                    <div class="form-check form-check-inline" align="center">
-                        <input class="form-check-input" required type="radio" name="inlineRadioOptions" id="inlineRadio1" value="nombre">
-                        <label class="form-check-label"  for="inlineRadio1">Por nombre</label>
-
-                        <input class="form-check-input" required type="radio" name="inlineRadioOptions" id="inlineRadio2" value="especialidad">
-                        <label class="form-check-label"  for="inlineRadio2">Por especialidad</label>
-                    </div>
-                    </tr>
-
-                    <input type="submit" name="boton" value="Busca doctor"  >
-
+                    <input type="submit" name="boton" value="Buscar"  >
                 </table><!--  -->
 
             </form>
         </div>
 
     </body>
-    <%@ include file = "../pagesPaciente/doctores.jsp" %>
+    <%@ include file = "../Reporte_Doctor/PacienteConMasInformes.jsp" %>
 </html>

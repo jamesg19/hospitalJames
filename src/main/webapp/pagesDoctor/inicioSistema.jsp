@@ -44,13 +44,7 @@
                         </td>
                         <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Modificar mis datos">
                         </td>
-                    </tr>
-                    <tr>                  
-                        <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="///Agendar una cita">
-                        </td>
-                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="///Ver mis citas">
-                        </td>
-                    </tr>                   
+                    </tr>                  
                         <tr align="center" >                      
                             <td align="center" ><input class="btn btn--3"  type="submit" name="boton" align="center" value="///Modificar mis datos">
                             </td>
@@ -59,13 +53,15 @@
             </div>
         </form>
         <div align="center" >
-            <form action="ReportePaciente" method="get"  >
+            <form action="ReporteDoctor" method="get"  >
                 <input type="text" Id="user" name="user" value="<%=cuentaI%>" readonly="" style="visibility:hidden">
                 <table>
                     <tr>
-                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="///Ultimas 5 citas">
+                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Paciente con mas informes">
                         </td>
-                         <td><input class="btn btn--3" type="submit" name="boton" align="center" value="///Ultimas 5 citas">
+                         <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Citas programadas para hoy">
+                        </td>
+                         <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Citas con intervalo de tiempo">
                         </td>
                     </tr>
                 </table>
