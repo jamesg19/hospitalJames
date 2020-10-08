@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Administrador;
 import Model.GestorBDAdmin;
+import Model.GestorBDPaciente;
 import java.awt.Button;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -30,24 +31,53 @@ public class adminServlet extends HttpServlet {
             String btn = request.getParameter("boton");
 
             if (btn.equals("Agregar Admin")) {
+                String USER = (String) request.getParameter("user").trim();
+                String CUENTA = (String) request.getParameter("nombre").trim();
+                request.setAttribute("cuenta", USER);
+                request.setAttribute("nombre", CUENTA);
+
 
                 request.getRequestDispatcher("/pagesAdmin/llenaRegistroAdmin.jsp").forward(request, response);
             } else if (btn.equals("Agregar Doctor")) {
+                String USER = (String) request.getParameter("user").trim();
+                String CUENTA = (String) request.getParameter("nombre").trim();
+                request.setAttribute("cuenta", USER);
+                request.setAttribute("nombre", CUENTA);
 
                 request.getRequestDispatcher("/pagesAdmin/llenaRegistroDoctor.jsp").forward(request, response);
-            } else if (btn.equals("Agregar Examen")) {
+            } 
+            else if (btn.equals("Agregar Examen")) {
+                String USER = (String) request.getParameter("user").trim();
+                String CUENTA = (String) request.getParameter("nombre").trim();
+                request.setAttribute("cuenta", USER);
+                request.setAttribute("nombre", CUENTA);
+                
                 request.getRequestDispatcher("/pagesAdmin/llenaRegistroExamen.jsp").forward(request, response);
-            } else if (btn.equals("Agregar Nuevo Laboratorista")) {
+            } 
+            else if (btn.equals("Agregar Nuevo Laboratorista")) {
+                String USER = (String) request.getParameter("user").trim();
+                String CUENTA = (String) request.getParameter("nombre").trim();
+                request.setAttribute("cuenta", USER);
+                request.setAttribute("nombre", CUENTA);
 
+                GestorBDAdmin gestorBD = new GestorBDAdmin();
+                ArrayList<Examenes> examenes = new ArrayList<Examenes>();
+                Examenes examen;
+                examenes = gestorBD.leeTodosExamen();
+
+                request.setAttribute("Examenes", examenes);
+                
                 request.getRequestDispatcher("/pagesLabo/llenaRegistroLabo.jsp").forward(request, response);
             } 
             /**
              *Modifica los datos del administrador
              */
             else if (btn.equals("Modificar mis datos")) {
-
+                
                 String USER = (String) request.getParameter("user").trim();
+                String CUENTA = (String) request.getParameter("nombre").trim();
                 request.setAttribute("cuenta", USER);
+                request.setAttribute("nombre", CUENTA);
 
                 GestorBDAdmin gestorBD = new GestorBDAdmin();
                 Administrador admin;
@@ -56,6 +86,7 @@ public class adminServlet extends HttpServlet {
                 request.setAttribute("Dpi", admin.getDPI().trim());
                 request.setAttribute("Password", admin.getClave().trim());
                 request.getRequestDispatcher("/pagesAdmin/modificaAdmin.jsp").forward(request, response);
+            
             } 
             /**
              *Registra un nuevo Administrador a la base de datos
@@ -116,6 +147,8 @@ public class adminServlet extends HttpServlet {
              * Modifica un examen y recibe los 
              */
             else if (btn.equals("Modificar precio examen")) {
+                String USER = (String) request.getParameter("user").trim();
+                request.setAttribute("cuenta", USER);
 
                 String codigo = (String) request.getParameter("codigo");
                 String costo = (String) request.getParameter("costo");
@@ -142,6 +175,9 @@ public class adminServlet extends HttpServlet {
             }
 
             else if (btn.equals("Agregar Nueva Consulta.")) {
+                String USER = (String) request.getParameter("user").trim();
+                request.setAttribute("cuenta", USER);
+                
                 ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
                 Especialidad especialidad;
                 GestorBDAdmin gestorBD = new GestorBDAdmin();
@@ -166,10 +202,19 @@ public class adminServlet extends HttpServlet {
                     request.getRequestDispatcher("/noHayRegistros.jsp").forward(request, response);
                 }
             } 
- 
             
             //redirige a la pagina para ver que doctor va a agregar la especialidad
             else if (btn.equals("Agrega Especialidad a Medico")) {
+                String codigo = request.getParameter("codigo");
+                String dpi = request.getParameter("dpi");
+                String nombre = request.getParameter("nombre");
+                String password = request.getParameter("password");    
+                    
+                    
+                    
+                String USER = (String) request.getParameter("user").trim();
+                request.setAttribute("cuenta", USER);
+                
                 ArrayList<Doctor> doctores = new ArrayList<Doctor>();
                 ArrayList<Doctor> doctores2 = new ArrayList<Doctor>();
                 Doctor doctor;
@@ -273,6 +318,14 @@ public class adminServlet extends HttpServlet {
                 } else {
                     request.getRequestDispatcher("/errorGuardar.jsp").forward(request, response);
                 }
+            } 
+            else if(btn.equals("Inicio")){
+            String nombreI = (String) request.getParameter("nombreI");
+            String cuentaI = (String) request.getParameter("cuentaI");
+            request.setAttribute("nombre",nombreI);
+            request.setAttribute("cuenta",cuentaI);
+            request.getRequestDispatcher("/pagesAdmin/inicioSistema.jsp").forward(request, response);
+            
             }
 
         } finally {

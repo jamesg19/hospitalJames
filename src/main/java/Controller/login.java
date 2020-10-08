@@ -31,6 +31,7 @@ public class login extends HttpServlet {
             
             Administrador admin;
             Paciente paciente;
+            Doctor doctor;
             String Check = request.getParameter("inlineRadioOptions");
             
 
@@ -65,6 +66,24 @@ public class login extends HttpServlet {
                     request.setAttribute("nombre", paciente.getNombre());
                     request.setAttribute("cuenta", paciente.getCodigo());
                     request.getRequestDispatcher("/pagesPaciente/inicioSistema.jsp").forward(request, response);
+
+                } else {
+
+                    request.getRequestDispatcher("/index.jsp").forward(request, response);
+                }
+
+            }
+            
+            else if (Check.equals("doctor")) {
+
+                GestorBDDoctor gestorBD = new GestorBDDoctor();
+
+                doctor = gestorBD.consultar(codigo, password);
+                if (doctor != null) {
+
+                    request.setAttribute("nombre", doctor.getNombre());
+                    request.setAttribute("cuenta", doctor.getCodigo());
+                    request.getRequestDispatcher("/pagesDoctor/inicioSistema.jsp").forward(request, response);
 
                 } else {
 

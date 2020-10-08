@@ -10,29 +10,9 @@
     <head>
         <meta http-equiv="Content-Type"
               content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Modifica Laboratorista</title>
     </head>
     <body background="Imagenes/fondoAdmin.jpg">
-        <script>             
-    function validaAd(form) {            
-        if(document.forma.codigo.value ==='')                  
-            alert("falta introducir el codigo");              
-        else{                 
-            if(document.forma.dpi.value ==='')   
-                alert("falta introducir el dpi");                  
-            else{
-                if(document.forma.nombre.value ==='')   
-                    alert("falta introducir el nombre");  
-                else{ 
-                    if(document.forma.password.value ==='')   
-                        alert("falta introducir el password");  
-                    else 
-                        form.submit();
-                }
-            }
-        }          
-    }      
-        </script>
         <%@ page import="Controller.adminServlet" %> 
         <%
             String nombreI = (String) request.getAttribute("Nombre");

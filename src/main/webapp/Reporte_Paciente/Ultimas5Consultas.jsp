@@ -4,12 +4,12 @@
 <html>     
     <head>        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
-        <title>Citas programadas</title>    
+        <title>Ultimas 5 citas</title>    
     </head>     
     <body background="Imagenes/fondo2.jpg"> 
         <%@ page import="Controller.adminServlet" %>
         <%@ page import="Objetos.Doctor, java.util.ArrayList" %> 
-        <h2>Citas programadas: </h2> 
+        <h2>Ultimas 5 citas realizadas: </h2> 
         <br>
         <%
             ArrayList<Cita> citas = null;
@@ -18,17 +18,17 @@
             String cuentaI = (String) request.getAttribute("cuenta");   
             request.setAttribute("cuenta",cuentaI);
             %>
-        <div align="right" > 
+        <div> 
             <form action="paciente" method="post" >
             <input readonly type="text"  value='<%=cuentaI%>' Id="user" name="user" style="visibility:hidden">
             <input align="center" type="submit" name="boton" value="Inicio">
             </form>
-        </div>
+        </div><!-- comment -->
         <br>        
             <table align="center" border="1">                  
             <tr> 
-            <h5>Citas con los siguientes pacientes</h5>
-                <th>Nombre</th>            
+            <h5>Citas con los siguientes doctores</h5>
+                <th>Medico </th>            
                 <th>Especialidad</th>            
                 <th>Fecha</th>            
                 <th>Hora</th>           
@@ -36,7 +36,7 @@
 <%                  if(citas!=null){   %> 
             <script>
                 
-                alert('Tienes citas programadas..');
+                alert('Ultimas 5 consultas y/o citas realizadas');
                 
             </script>
                 
@@ -51,7 +51,7 @@
             else {%>
             <script>
                 
-                alert('No tienes citas programadas...');
+                alert('No has realizado ninguna consulta :)');
                 
             </script>
     <%}%>

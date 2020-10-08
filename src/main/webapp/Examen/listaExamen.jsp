@@ -15,6 +15,17 @@
     <body background="Imagenes/fondoAdmin.jpg"> 
         <%@ page import="Controller.adminServlet" %>
         <%@ page import="Objetos.Examenes, java.util.ArrayList" %> 
+                <%
+            String nombreI = (String) request.getAttribute("Nombre");
+            String cuentaI = (String) request.getAttribute("cuenta");
+        %>       
+        <form action="crearAdmin" method="POST" >
+            <div align="right" >
+            <input type="submit"  name="boton" value="Inicio" >
+            </div>>
+            <input type="text"  name="user" value="<%= cuentaI%>" readonly="" style="visibility:hidden">
+            <input type="text"  name="nombre" value="<%=nombreI%>" readonly="" style="visibility:hidden">
+        </form>
         <h2>Cambiar precio de examenes </h2> 
         <br>
         <h2>Los examenes que están registrados son: </h2> 

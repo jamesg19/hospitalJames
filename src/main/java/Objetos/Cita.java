@@ -32,6 +32,10 @@ public class Cita {
         this.fecha = fecha;
         this.hora = hora;
     }
+
+    public Cita() {
+    }
+    
     
 
     public int getCodigo() {
@@ -56,6 +60,30 @@ public class Cita {
 
     public String getHora() {
         return hora;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setPaciente(String paciente) {
+        this.paciente = paciente;
+    }
+
+    public void setMedico(String medico) {
+        this.medico = medico;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
     }
     
     

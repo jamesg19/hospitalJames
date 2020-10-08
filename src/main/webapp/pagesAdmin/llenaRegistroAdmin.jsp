@@ -10,6 +10,12 @@
               href="CSS/Letra.css">
         <link rel="stylesheet"
               href="CSS/botones.css">
+        <%
+            String nombreI = (String) request.getAttribute("nombre");
+            String cuentaI = (String) request.getAttribute("cuenta");
+            request.setAttribute("nombre",nombreI);
+            request.setAttribute("cuenta",cuentaI);
+        %>        
     </head>
 
     <body  background="Imagenes/fondoAdmin.jpg">
@@ -43,6 +49,18 @@
         </script>
         <%@ page import="Controller.adminServlet" %>
 
+        <br>
+        
+        <form action="crearAdmin" method="post" >
+            <div align="right" >
+                <input type="submit" value="Inicio"  name="boton" >
+                
+            </div>
+            
+            <input type="text" value="<%=cuentaI%>" Id='cuentaI' name="cuentaI" style="visibility:hidden" >
+            <input type="text" value="<%=nombreI%>" Id='nombreI' name="nombreI" style="visibility:hidden" >
+
+        </form>
         <h2 align="center"> Agrega un nuevo administrador</h2>
         <form  action="crearAdmin" name="forma" method="post">
 

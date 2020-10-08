@@ -247,6 +247,7 @@ public class pacienteServlet extends HttpServlet {
                 
                 ArrayList<Cita> citas = new ArrayList<Cita>();
                 String user = (String) request.getParameter("user");
+                
                 Doctor doctor;
                 GestorBDPaciente gestorBDPacient = new GestorBDPaciente();
                 

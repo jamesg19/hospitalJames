@@ -1,6 +1,6 @@
 <%--
     Document   : inicioSistema
-    Created on : Sep 27, 2020, 4:29:52 AM
+    Created on : Oct 6, 2020, 2:19:42 AM
     Author     : james
 --%>
 
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Portal Paciente</title>
+        <title>Portal Doctor</title>
         <link rel="stylesheet"
               href="CSS/Estilo.css">
         <link rel="stylesheet"
@@ -19,39 +19,40 @@
         <link rel="stylesheet"
               href="CSS/SuccesBtn.css">
     </head>
-    <body  background="Imagenes/fondo2.jpg">
-        <h1>Bienvenido al portal de Paciente </h1>
-        <%@ page import="Controller.pacienteServlet" %>
+    <body  background="Imagenes/fondo3.jpg">
+        <h1 align="center" >Bienvenido al portal de Doctor </h1>
+        <%@ page import="Controller.doctorServlet" %>
         <%
             String nombreI = (String) request.getAttribute("nombre");
             String cuentaI = (String) request.getAttribute("cuenta");
             request.setAttribute("nombre",nombreI);
             request.setAttribute("cuenta",cuentaI);
         %>
-        <h1> Hola  bienvenido al sistema!</h1>
-        <form action="paciente" method="post" >
+        <h1 align="center" > Hola  bienvenido al sistema de doctores </h1>
+        <form action="paciente" method="POST" >
             <div align="right" >
+                <input type="text" Id="user" name="user" value="<%=cuentaI%>" readonly="" style="visibility:hidden" >
                 <input  type="submit" name="boton" align="right" value="Cerrar sesion">    
             </div>
         </form>
-        <form action="paciente" method="post" >
+        <form action="doctor" method="post" >
             <input type="text" Id="user" name="user" value="<%= cuentaI%>" readonly="" style="visibility:hidden">
             <div align="center" >
                 <table >
                     <tr>
-                        <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="Ver historial medico">
+                        <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="Citas programadas">
                         </td>
-                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Buscar doctor">
+                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Modificar mis datos">
                         </td>
                     </tr>
                     <tr>                  
-                        <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="Agendar una cita">
+                        <td><input class="btn btn--3"  type="submit" name="boton" align="center" value="///Agendar una cita">
                         </td>
-                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Ver mis citas">
+                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="///Ver mis citas">
                         </td>
                     </tr>                   
                         <tr align="center" >                      
-                            <td align="center" ><input class="btn btn--3"  type="submit" name="boton" align="center" value="Modificar mis datos">
+                            <td align="center" ><input class="btn btn--3"  type="submit" name="boton" align="center" value="///Modificar mis datos">
                             </td>
                         </tr>
                 </table>
@@ -62,9 +63,9 @@
                 <input type="text" Id="user" name="user" value="<%=cuentaI%>" readonly="" style="visibility:hidden">
                 <table>
                     <tr>
-                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Ultimas 5 citas">
+                        <td><input class="btn btn--3" type="submit" name="boton" align="center" value="///Ultimas 5 citas">
                         </td>
-                         <td><input class="btn btn--3" type="submit" name="boton" align="center" value="Ultimas 5 citas">
+                         <td><input class="btn btn--3" type="submit" name="boton" align="center" value="///Ultimas 5 citas">
                         </td>
                     </tr>
                 </table>
@@ -77,4 +78,5 @@
         <br>
         <br>
     </body>
+    
 </html>

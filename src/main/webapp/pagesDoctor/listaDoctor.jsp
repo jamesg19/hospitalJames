@@ -3,11 +3,25 @@
 <html>     
     <head>        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
-        <title>Listado de Doctores</title>    
+        <title>Listado de Doctores</title>
+<%
+            String nombreI = (String) request.getAttribute("nombre");
+            String cuentaI = (String) request.getAttribute("cuenta");
+            request.setAttribute("nombre",nombreI);
+            request.setAttribute("cuenta",cuentaI);
+        %>         
     </head>     
     <body background="Imagenes/fondoAdmin.jpg"> 
         <%@ page import="Controller.adminServlet" %>
         <%@ page import="Objetos.Doctor, java.util.ArrayList" %> 
+      
+        <form action="crearAdmin" method="POST" >
+            <div align="right" >
+            <input type="submit"  name="boton" value="Inicio" >
+            </div>>
+            <input type="text"  name="user" value="<%= cuentaI%>" readonly="" style="visibility:hidden">
+            <input type="text"  name="nombre" value="<%=nombreI%>" readonly="" style="visibility:hidden">
+        </form>
         <h2>Los doctores que están registrados son: </h2> 
         <br>
         <%ArrayList<Doctor> doctores = null;

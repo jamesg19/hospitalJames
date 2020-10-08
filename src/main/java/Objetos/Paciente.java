@@ -88,6 +88,12 @@ public class Paciente {
         return peso;
     }
 
+    public Paciente(String codigo, String nombre, String correo) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.correo = correo;
+    }
+    
     public String getSangre() {
         return sangre;
     }

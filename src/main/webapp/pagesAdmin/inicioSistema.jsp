@@ -34,7 +34,8 @@
 
 
         <form action="crearAdmin" method="post" >
-            <input type="text"  name="user" value="<%= cuentaI%>" readonly="">
+            <input type="text"  name="user" value="<%= cuentaI%>" readonly="" style="visibility:hidden">
+            <input type="text"  name="nombre" value="<%=nombreI%>" readonly="" style="visibility:hidden">
 
             <div align="center" >
 

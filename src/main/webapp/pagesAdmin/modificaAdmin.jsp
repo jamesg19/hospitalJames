@@ -20,7 +20,14 @@
             String dpi = (String) request.getAttribute("Dpi");
             String name = (String) request.getAttribute("Password");
         %>
-        <br>
+        <form action="crearAdmin" method="post" >
+            <div align="right" >
+                <input type="submit" value="Inicio"  name="boton" >          
+            </div>           
+            <input type="text" value="<%=cuentaI%>" Id='cuentaI' name="cuentaI" style="visibility:hidden" >
+            <input type="text" value="<%=nombreI%>" Id='nombreI' name="nombreI" style="visibility:hidden" >
+        </form>        
+        <br> 
         <h2 align="center"> Tus datos son:</h2>
         <br>      
         <br>

@@ -29,15 +29,19 @@
             String password = (String) request.getAttribute("Password");
             int m=45;
         %>
-        <br>
+
         <h2 align="center"> Tus datos son:</h2>
-        <br>      
-        <br>
+        <form action="paciente" method="post" >
+            <div align="right" >
+            <input readonly type="text"  value='<%=cuentaI%>' Id="user" name="user" style="visibility:hidden">
+            <input align="center" type="submit" name="boton" value="Inicio">
+            </div>
+        </form>
         <p align="center"> Puedes modificarlos </p>
         <form action="paciente" method="post" >
             
             <input readonly type="text"  value='<%=cuentaI%>' Id="user" name="user" style="visibility:hidden">
-            <input align="center" type="submit" name="boton" value="Inicio">
+            
             <table cellspacing="2" cellpadding="2" align="center"  >          
                 <tr>
                 <td align="left"> Codigo: </td>            

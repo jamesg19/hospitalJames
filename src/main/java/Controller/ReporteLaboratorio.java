@@ -5,12 +5,8 @@
  */
 package Controller;
 
-import Model.GestorBDPaciente;
-import Model.GestorPacienteReporte;
-import Objetos.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author james
  */
-@WebServlet(name = "ReportePaciente", urlPatterns = {"/ReportePaciente"})
-public class ReportePaciente extends HttpServlet {
+@WebServlet(name = "ReporteLaboratorio", urlPatterns = {"/ReporteLaboratorio"})
+public class ReporteLaboratorio extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,43 +32,17 @@ public class ReportePaciente extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Paciente paciente1;
-        
         try (PrintWriter out = response.getWriter()) {
-
-            String btn = request.getParameter("boton");
-            
-            if (btn.equals("Ultimas 5 citas")) {
-                
- 
-                String cuentaI = (String) request.getParameter("user");
-                paciente1=new Paciente(cuentaI);
-                request.setAttribute("cuenta", paciente1.getCodigo());
-                
-                ArrayList<Cita> citas = new ArrayList<Cita>();
-                String user = (String) request.getParameter("user");
-                Doctor doctor;
-                GestorPacienteReporte gestorBDPacient = new GestorPacienteReporte();
-                
-                citas = gestorBDPacient.leeCita(user);
-
-                if ((citas != null)) {
-                    request.setAttribute("Cita", citas);
-                    request.getRequestDispatcher("/Reporte_Paciente/Ultimas5Consultas.jsp").forward(request, response);
-                } else {
-                    request.getRequestDispatcher("/pagesPaciente/VerMisCitas.jsp").forward(request, response);
-                }     
-                 
-                 
-             }    
-            
-            
-            
-            
-            
-            
-            
-            
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ReporteLaboratorio</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ReporteLaboratorio at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

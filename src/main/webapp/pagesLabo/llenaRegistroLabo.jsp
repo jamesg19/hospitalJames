@@ -1,20 +1,40 @@
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Objetos.Examenes"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>     
     <head>         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
-        <title>JSP Page</title> 
+        <title>Registra Laboratorista</title> 
+<%          ArrayList<Examenes> examenes = null;
+            examenes = (ArrayList<Examenes>) request.getAttribute("Examenes");      
+            
+            String nombreI = (String) request.getAttribute("nombre");
+            String cuentaI = (String) request.getAttribute("cuenta");
+            request.setAttribute("nombre",nombreI);
+            request.setAttribute("cuenta",cuentaI);
 
+            
+%> 
     </head>
 
     <body  background="Imagenes/fondoAdmin.jpg">
 
         <%@ page import="Controller.adminServlet" %>
+        <form action="crearAdmin" method="post" >
+            <div align="right" >
+                <input type="submit" value="Inicio"  name="boton" >
+                
+            </div>
+            
+            <input type="text" value="<%=cuentaI%>" Id='cuentaI' name="cuentaI" style="visibility:hidden" >
+            <input type="text" value="<%=nombreI%>" Id='nombreI' name="nombreI" style="visibility:hidden" >
+
+        </form>
 
         <h3 align="center"> Agrega un nuevo Laboratorista</h3>
         <form  action="crearAdmin" name="forma" method="post">
-
 
             <table cellspacing="3" cellpadding="3" align="center"  >
 
@@ -40,11 +60,36 @@
                         <td align="right"> Telefono: </td>
                         <td> <input type="text" Id='telefono'  name="telefono"  required > </td>
                     </tr>
-                    <tr>
-                        <td align="right"> Examen: </td>
-                        <td> <input type="text" Id='examen'  name="examen"  required > </td>
-                    </tr>
-                    <tr>
+                    
+                    
+                    
+                <tr>
+ 
+                <td>Tipo de examen:</td>                                  
+                <td><select align="center" required type="text" Id='tipo' name="tipo" >
+                    <%for (Examenes examen : examenes) {%>
+                    <option><%=examen.getNombre()%></option>
+
+                    <% }%>
+                    </select></td>
+                </tr>
+    
+                
+                
+                
+                
+                
+                
+
+                
+                
+                
+                
+                
+                
+                
+                
+                <tr>
                         <td align="right"> Correo: </td>
                         <td> <input type="email" Id='correo'  name="correo"  required > </td>
                     </tr>

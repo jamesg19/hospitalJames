@@ -58,6 +58,16 @@ public class Doctor {
         this.fechaTrabajo = fechaTrabajo;
         this.especialidad = especialidad;
     }
+    /**
+     * Constructore del usuario doctor
+     * @param codigo
+     * @param password 
+     */
+    public Doctor(String codigo, String password) {
+        this.codigo = codigo;
+        this.password = password;
+    }
+    
 
     public String getCodigo() {
         return codigo;

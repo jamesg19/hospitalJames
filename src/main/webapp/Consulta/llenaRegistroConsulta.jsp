@@ -57,9 +57,7 @@
                  
             <table align="center" >
                 <tr>
-                    
-                    
-                    
+ 
                 <td>Tipo de consulta:</td>                                  
                 <td><select align="center" required type="text" Id='tipo' name="tipo" >
                     <%for (Consulta consulta2 : consultas2) {%>

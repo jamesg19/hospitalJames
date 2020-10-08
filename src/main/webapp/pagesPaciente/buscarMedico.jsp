@@ -12,7 +12,7 @@
         <title>Buscar Medico</title>
 
     </head>
-    <body>
+    <body background="Imagenes/fondo2.jpg">
         <%@ page import="Controller.pacienteServlet" %>
         <%@ page import="Model.*" %>
         <%

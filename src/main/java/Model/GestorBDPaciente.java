@@ -15,7 +15,7 @@ import javax.sql.rowset.serial.SerialBlob;
 import javax.swing.JOptionPane;
 
 /**
- * Gestor de base de datos del administrador que maneja todas las acciones o
+ * Gestor de base de datos del paciente que maneja todas las acciones o
  * consultas del mismo
  *
  * @author james
@@ -30,10 +30,12 @@ public class GestorBDPaciente {
     String codigo, nombre;
     Doctor doctorHallado;
     Consulta consultaHallada;
+    Examenes examenHallado;
     Cita citaHallada;
     String nom,tipE,fecha,hora;
     String codigoP,nombreP,sexoP,nacimientoP,dpiP,telP,sangreP,correoP,passP;
-    double pesoP;
+    String codigoE,nombreE,ordenE,descripcionE,formatoPDFE;
+    double pesoP,costoE;
     /**
      * registra un nuevo administrador al sistema
      *
@@ -81,6 +83,46 @@ public class GestorBDPaciente {
         }
     }
     
+        /**
+         * Agregar cita del paciente
+         * @param codigo
+         * @param especialidad
+         * @return 
+         */
+        public boolean registrarCita(String paciente, String medico,String especialidad, String fecha, String hora) {
+        int resultUpdate = 0;
+
+        conn = ConectaBD.abrir();
+
+        String query = "INSERT INTO cita VALUES (?,?,?,?,?)";
+
+        try (PreparedStatement preSt = conn.prepareStatement(query)) {
+            
+
+            preSt.setString(1, paciente);
+            preSt.setString(2, medico);
+            preSt.setString(3, especialidad);
+            preSt.setString(4, fecha);
+            preSt.setString(5, hora);
+
+            resultUpdate = preSt.executeUpdate();
+
+            if (resultUpdate != 0) {
+                ConectaBD.cerrar();
+                return true;
+            } else {
+                ConectaBD.cerrar();
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    
+
     
         /**
          * 
@@ -241,43 +283,7 @@ public class GestorBDPaciente {
     }
     
 
-        /**
-         * Agregar cita del paciente
-         * @param codigo
-         * @param especialidad
-         * @return 
-         */
-        public boolean registrarCita(String paciente, String medico,String especialidad, String fecha, String hora) {
-        int resultUpdate = 0;
 
-        conn = ConectaBD.abrir();
-
-        String query = "INSERT INTO cita VALUES (?,?,?,?,?)";
-
-        try (PreparedStatement preSt = conn.prepareStatement(query)) {
-            
-
-            preSt.setString(1, paciente);
-            preSt.setString(2, medico);
-            preSt.setString(3, especialidad);
-            preSt.setString(4, fecha);
-            preSt.setString(5, hora);
-
-            resultUpdate = preSt.executeUpdate();
-
-            if (resultUpdate != 0) {
-                ConectaBD.cerrar();
-                return true;
-            } else {
-                ConectaBD.cerrar();
-                return false;
-            }
-        } catch (SQLException e) {
-            System.out.println("Error en la base de datos.");
-            e.printStackTrace();
-            return false;
-        }
-    }
         
         
         
@@ -312,12 +318,13 @@ public class GestorBDPaciente {
     //Ver citas
 
         public ArrayList<Cita> leeCita(String paciente) {
+        java.time.LocalDate today = java.time.LocalDate.now();
         ArrayList<Cita> citas = new ArrayList<Cita>();
         try {
  
             conn = ConectaBD.abrir();
             stm = conn.createStatement();
-            usuarioResultSet = stm.executeQuery("SELECT distinct d.nombre,c.tipo_Especialidad,c.fecha, c.hora FROM doctor d INNER JOIN cita c ON d.codigo = c.id_doctor where c.id_paciente = '"+paciente+"';");
+            usuarioResultSet = stm.executeQuery("SELECT distinct d.nombre,c.tipo_Especialidad,c.fecha, c.hora FROM doctor d INNER JOIN cita c ON d.codigo = c.id_doctor where c.id_paciente = '"+paciente+"' AND c.fecha >= '"+today.toString().trim()+"';");
             if (!usuarioResultSet.next()) {
 
                 System.out.println(" No se encontraron registros");
@@ -385,9 +392,20 @@ public class GestorBDPaciente {
         }
     }
     
-    
-    
-    
+        /**
+         * MODIFICA UN PACIENTE
+         * @param codigo
+         * @param nombre
+         * @param sexo
+         * @param cumple
+         * @param dpi
+         * @param telefono
+         * @param peso
+         * @param sangre
+         * @param correo
+         * @param password
+         * @return 
+         */
         public boolean modificarPACIENTE(String codigo, String nombre, String sexo, String cumple,String dpi,String telefono, double peso, String sangre, String correo,String password) {
         int resultUpdate = 0;
 
@@ -423,34 +441,41 @@ public class GestorBDPaciente {
             return false;
         }
     }
-        
+    /**
+     * lee todos los examenes
+     * @return ArrayList Examen
+     */    
+    public ArrayList<Examenes> leeTodosExamen() {
+        ArrayList<Examenes> examenes = new ArrayList<Examenes>();
+        try {
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT * FROM examen");
+            if (!usuarioResultSet.next()) {
+                System.out.println(" No se encontraron registros");
+                ConectaBD.cerrar();
+                return null;
+            } else {
+                do {
+                    
+                    codigoE = usuarioResultSet.getString("codigo");
+                    nombreE = usuarioResultSet.getString("nombre");
+                    ordenE = usuarioResultSet.getString("orden");
+                    descripcionE = usuarioResultSet.getString("Descripcion");
+                    costoE = usuarioResultSet.getDouble("costo");
+                    formatoPDFE = usuarioResultSet.getString("tipo_informe");
 
-    
-    
-    
-    
-
-  
+                    examenHallado = new Examenes(codigoE, nombreE, ordenE, descripcionE, costoE, formatoPDFE);
+                    examenes.add(examenHallado);
+                } while (usuarioResultSet.next());
+                ConectaBD.cerrar();
+                return examenes;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+         
 }
-
-//
-//
-//    public boolean modificarPaciente(String codigo, String nombre, String sexo, String cumple,String dpi,String telefono, double peso, String sangre, String correo,String password) {
-//        int resultUpdate = 0;
-//
-//        conn = ConectaBD.abrir();
-//
-//        String query = "UPDATE paciente  SET nombre = ?, sexo = ?, String nacimiento = ?, dpi = ?, telefono = ?, peso = ?, tipo_sangre = ?, correo = ?, password = ? WHERE codigo = ?;";
-//
-//        try (PreparedStatement preSt = conn.prepareStatement(query)) {
-//
-//            preSt.setString(1, nombre);
-//            preSt.setString(2, sexo);
-//            preSt.setString(3, cumple);
-//            preSt.setString(4, dpi);
-//            preSt.setString(5, telefono);
-//            preSt.setDouble(6, 40);
-//            preSt.setString(7, sangre);
-//            preSt.setString(8, correo);
-//            preSt.setString(9, password);
-//            preSt.setString(10, codigo);

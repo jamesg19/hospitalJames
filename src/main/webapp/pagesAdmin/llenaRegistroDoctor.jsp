@@ -5,12 +5,27 @@
     <head>         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
         <title>JSP Page</title> 
-
+<%
+            String nombreI = (String) request.getAttribute("nombre");
+            String cuentaI = (String) request.getAttribute("cuenta");
+            request.setAttribute("nombre",nombreI);
+            request.setAttribute("cuenta",cuentaI);
+        %>        
     </head>
 
     <body  background="Imagenes/fondoAdmin.jpg">
 
         <%@ page import="Controller.adminServlet" %>
+        
+
+        <form action="crearAdmin" method="post" >
+            <div align="right" >
+                <input type="submit" value="Inicio"  name="boton" >               
+            </div>
+            <input type="text" value="<%=cuentaI%>" Id='cuentaI' name="cuentaI" style="visibility:hidden" >
+            <input type="text" value="<%=nombreI%>" Id='nombreI' name="nombreI" style="visibility:hidden" >
+
+        </form>
 
         <h2 align="center"> Agrega un nuevo Doctor</h2>
         <form  action="crearAdmin" name="forma" method="post">
