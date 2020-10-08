@@ -37,14 +37,18 @@
                 <h4>Citas agendadas en un intervalo de tiempo</h4>
                 <table align="left">
                     <tr>
-                    <br>
                         <td align="right">Ingresa un intervalo de tiempo para buscar una cita </td>
                     </tr>
                     <tr>
+                    <br>
                         
-                    <br>                       
                     <td>Ingresa el ID del medico</td>
                     <td><input required type="text" id="busqueda" name="busqueda"></td>
+                </tr>
+                    <tr>
+                        
+                    <br>                       
+                    
                 </tr>             
                     <tr>
             <div class="form-group" align="center">

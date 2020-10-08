@@ -46,8 +46,7 @@
                         </td>
                     </tr>                  
                         <tr align="center" >                      
-                            <td align="center" ><input class="btn btn--3"  type="submit" name="boton" align="center" value="///Modificar mis datos">
-                            </td>
+
                         </tr>
                 </table>
             </div>

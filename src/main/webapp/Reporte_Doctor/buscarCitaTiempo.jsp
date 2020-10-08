@@ -12,7 +12,7 @@
         <title>Buscar consulta</title>
 
     </head>
-    <body background="Imagenes/fondo2.jpg">
+    <body background="Imagenes/fondo3.jpg">
         <%@ page import="Controller.pacienteServlet" %>
         <%@ page import="Model.*" %>
         <%
@@ -34,16 +34,9 @@
 
                 <h4>Tu usuario es:</h4>
                 <input readonly type="text" Id='user' name="user" value="<%=cuentaI%>">
-                <h4>Ingresa el id del doctor para la busqueda</h4>
-                <table align="left">
-
-                    <tr>
-                    <br>
-                    <h4> </h4>
-                    <td align="right">Ingresa busqueda </td>            
-                    <td><input required type="text" Id='busqueda' name="busqueda"></td>           
-                    </tr>             
-                    <tr>
+                <h4>Reporte de citas agendadas en un intervalo de tiempo</h4>
+                <table align="left">   
+            <tr>
             <div class="form-group" align="center">
                 <label for="fecha1">Desde:</label>
                 <input required type="date" id="start" name="fecha1" value="2020-9-4"
@@ -65,5 +58,5 @@
         </div>
 
     </body>
-    <%@ include file = "../Reporte_Paciente/ConsultasRealizadasDocT.jsp" %>
+    <%@ include file = "../Reporte_Doctor/ConsultasRealizadasDocT.jsp" %>
 </html>

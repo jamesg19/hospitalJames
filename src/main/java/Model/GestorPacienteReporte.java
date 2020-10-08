@@ -105,6 +105,45 @@ public class GestorPacienteReporte {
             return null;
         }
     }
+        
+        
+        
+        
+                public ArrayList<Cita> leeCitaDocIntTiempo2(String doctor,String fecha1, String fecha2) {
+        java.time.LocalDate today = java.time.LocalDate.now();
+        String fechaa=today.toString();
+        
+        ArrayList<Cita> citas = new ArrayList<Cita>();
+        try {
+ 
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT distinct d.nombre,c.tipo_Especialidad,c.fecha, c.hora FROM doctor d INNER JOIN cita c ON d.codigo = c.id_doctor where c.id_doctor = '"+doctor+"' AND c.fecha BETWEEN '"+fecha1+"' AND '"+fecha2+"';");
+            if (!usuarioResultSet.next()) {
+
+                System.out.println(" No se encontraron registros");
+                ConectaBD.cerrar();
+                return null;
+            } else {
+                do {
+
+                    String nombre = usuarioResultSet.getString("nombre");
+                    String tipE = usuarioResultSet.getString("tipo_Especialidad");
+                    String fecha = usuarioResultSet.getString("fecha");
+                    String hora = usuarioResultSet.getString("hora");
+                    
+                    Cita citaHallada = new Cita(nombre,tipE,fecha,hora);
+                    citas.add(citaHallada);
+                } while (usuarioResultSet.next());
+                ConectaBD.cerrar();
+                return citas;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return null;
+        }
+    }
     
     
 }

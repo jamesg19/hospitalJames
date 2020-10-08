@@ -7,6 +7,7 @@ package Controller;
 
 import Model.GestorBDDoctor;
 import Model.GestorBDPaciente;
+import Model.GestorPacienteReporte;
 import Objetos.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -108,8 +109,43 @@ public class ReporteDoctor extends HttpServlet {
                     request.getRequestDispatcher("/Reporte_Doctor/CitasProgramadas.jsp").forward(request, response);
                 }  
             }
+           
+            else if (btn.equals("Citas con intervalo de tiempo")) {
+                String cuentaI = (String) request.getParameter("user");
+                paciente1=new Paciente(cuentaI);
+                request.setAttribute("cuenta", paciente1.getCodigo());
+              request.getRequestDispatcher("/Reporte_Doctor/buscarConsultaTiempo.jsp").forward(request, response);  
+            }
             
             
+            
+            
+            
+            else if (btn.equals("Buscar..")) {
+                String cuentaI = (String) request.getParameter("user");
+                paciente1=new Paciente(cuentaI);
+                request.setAttribute("cuenta", paciente1.getCodigo());
+                
+                String doc = (String) request.getParameter("busqueda");
+                String fecha1 = (String) request.getParameter("fecha1");
+                String fecha2 = (String) request.getParameter("fecha2");
+                
+                ArrayList<Cita> citas = new ArrayList<Cita>();
+                String user = (String) request.getParameter("user");
+                
+                Doctor doctor;
+                GestorPacienteReporte gestorBDPacient = new GestorPacienteReporte();
+                
+                citas = gestorBDPacient.leeCitaDocIntTiempo2(paciente1.getCodigo(), fecha1, fecha2);
+
+                if ((citas != null)) {
+                    request.setAttribute("Cita", citas);
+                    request.setAttribute("cuenta", paciente1.getCodigo());
+                    request.getRequestDispatcher("/Reporte_Doctor/buscarConsultaTiempo.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/Reporte_Doctor/buscarConsultaTiempo.jsp").forward(request, response);
+                }
+            }
             
             
             

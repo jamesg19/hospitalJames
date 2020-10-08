@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <title>Reporte 2</title>    
     </head>     
-    <body background="Imagenes/fondo2.jpg"> 
+    <body background="Imagenes/fondo3.jpg"> 
         <%@ page import="Controller.pacienteServlet" %>
         <%@ page import="Objetos.Doctor, java.util.ArrayList" %> 
         <br>
@@ -38,7 +38,7 @@
             </tr>   
 <%                  if(citas!=null){   %> 
             <script>               
-                alert('Citas realizadas con medico especifico en intervalo de tiempo');
+                alert('Citas en un intervalo de tiempo');
                 
             </script>               
 <%           for (Cita cita : citas) {%>          
@@ -57,5 +57,10 @@
             </script>
     <%}%>
     </table>
+    <br><!-- comment -->
+    <br>
+    <br>
+    <br>
+    <br>
     </body> 
 </html> 

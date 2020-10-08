@@ -99,19 +99,7 @@ public class ReportePaciente extends HttpServlet {
                     request.getRequestDispatcher("/Reporte_Paciente/buscarConsultaTiempo.jsp").forward(request, response);
                 }
             }
-            
-            else if (btn.equals("Citas con intervalo de tiempo")) {
-                String cuentaC=(String) request.getParameter("user");
-                paciente1=new Paciente(cuentaC);
-                request.setAttribute("cuenta", paciente1.getCodigo());
 
-                 request.getRequestDispatcher("/Reporte_Paciente/buscarConsultaTiempo.jsp").forward(request, response);
-            }
-            
-            
-            
-            
-            
             
             
         }

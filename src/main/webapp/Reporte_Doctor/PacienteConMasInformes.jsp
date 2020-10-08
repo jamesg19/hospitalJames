@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <title>Mas Informes</title>    
     </head>     
-    <body background="Imagenes/fondo2.jpg"> 
+    <body background="Imagenes/fondo3.jpg"> 
         <%@ page import="Controller.doctorServlet" %>
         <%@ page import="Objetos.Doctor, java.util.ArrayList" %> 
         <h2>Citas programadas: </h2> 
